@@ -7,29 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		69868AD81460E372004C5D9B /* packet.h in Headers */ = {isa = PBXBuildFile; fileRef = 69868AD61460E372004C5D9B /* packet.h */; };
-		69868AD91460E372004C5D9B /* packet.c in Sources */ = {isa = PBXBuildFile; fileRef = 69868AD71460E372004C5D9B /* packet.c */; };
+		69269F2514620D0F00F69705 /* packet_test.c in Sources */ = {isa = PBXBuildFile; fileRef = 69269F2114620D0F00F69705 /* packet_test.c */; };
+		69269F2614620D0F00F69705 /* packet_test.h in Headers */ = {isa = PBXBuildFile; fileRef = 69269F2214620D0F00F69705 /* packet_test.h */; };
+		69269F2714620D0F00F69705 /* packet.c in Sources */ = {isa = PBXBuildFile; fileRef = 69269F2314620D0F00F69705 /* packet.c */; };
+		69269F2814620D0F00F69705 /* packet.h in Headers */ = {isa = PBXBuildFile; fileRef = 69269F2414620D0F00F69705 /* packet.h */; };
 		69868BC31460F343004C5D9B /* libgcrypt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69868BC21460F343004C5D9B /* libgcrypt.a */; };
 		69868BC51460F34A004C5D9B /* libgpg-error.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69868BC41460F34A004C5D9B /* libgpg-error.a */; };
 		69868BC71460F37E004C5D9B /* gpg-error.h in Headers */ = {isa = PBXBuildFile; fileRef = 69868BC61460F37E004C5D9B /* gpg-error.h */; };
 		69868BCA1460F386004C5D9B /* gcrypt-module.h in Headers */ = {isa = PBXBuildFile; fileRef = 69868BC81460F386004C5D9B /* gcrypt-module.h */; };
 		69868BCB1460F386004C5D9B /* gcrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 69868BC91460F386004C5D9B /* gcrypt.h */; };
-		69868DE714619580004C5D9B /* packet_test.h in Headers */ = {isa = PBXBuildFile; fileRef = 69868DE514619580004C5D9B /* packet_test.h */; };
-		69868DE814619580004C5D9B /* packet_test.c in Sources */ = {isa = PBXBuildFile; fileRef = 69868DE614619580004C5D9B /* packet_test.c */; };
 		AA747D9F0F9514B9006C5449 /* simplepgp_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* simplepgp_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		69868AD61460E372004C5D9B /* packet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = packet.h; sourceTree = "<group>"; };
-		69868AD71460E372004C5D9B /* packet.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = packet.c; sourceTree = "<group>"; };
+		69269F2114620D0F00F69705 /* packet_test.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = packet_test.c; path = src/packet_test.c; sourceTree = "<group>"; };
+		69269F2214620D0F00F69705 /* packet_test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = packet_test.h; path = src/packet_test.h; sourceTree = "<group>"; };
+		69269F2314620D0F00F69705 /* packet.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = packet.c; path = src/packet.c; sourceTree = "<group>"; };
+		69269F2414620D0F00F69705 /* packet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = packet.h; path = src/packet.h; sourceTree = "<group>"; };
 		69868BC21460F343004C5D9B /* libgcrypt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgcrypt.a; sourceTree = "<group>"; };
 		69868BC41460F34A004C5D9B /* libgpg-error.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libgpg-error.a"; sourceTree = "<group>"; };
 		69868BC61460F37E004C5D9B /* gpg-error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "gpg-error.h"; sourceTree = "<group>"; };
 		69868BC81460F386004C5D9B /* gcrypt-module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "gcrypt-module.h"; sourceTree = "<group>"; };
 		69868BC91460F386004C5D9B /* gcrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcrypt.h; sourceTree = "<group>"; };
-		69868DE514619580004C5D9B /* packet_test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = packet_test.h; sourceTree = "<group>"; };
-		69868DE614619580004C5D9B /* packet_test.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = packet_test.c; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* simplepgp_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simplepgp_Prefix.pch; sourceTree = "<group>"; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libsimplepgp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsimplepgp.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +81,10 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				69269F2114620D0F00F69705 /* packet_test.c */,
+				69269F2214620D0F00F69705 /* packet_test.h */,
+				69269F2314620D0F00F69705 /* packet.c */,
+				69269F2414620D0F00F69705 /* packet.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -92,10 +96,6 @@
 				69868BC91460F386004C5D9B /* gcrypt.h */,
 				69868BC61460F37E004C5D9B /* gpg-error.h */,
 				AA747D9E0F9514B9006C5449 /* simplepgp_Prefix.pch */,
-				69868AD61460E372004C5D9B /* packet.h */,
-				69868AD71460E372004C5D9B /* packet.c */,
-				69868DE514619580004C5D9B /* packet_test.h */,
-				69868DE614619580004C5D9B /* packet_test.c */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -108,11 +108,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA747D9F0F9514B9006C5449 /* simplepgp_Prefix.pch in Headers */,
-				69868AD81460E372004C5D9B /* packet.h in Headers */,
 				69868BC71460F37E004C5D9B /* gpg-error.h in Headers */,
 				69868BCA1460F386004C5D9B /* gcrypt-module.h in Headers */,
 				69868BCB1460F386004C5D9B /* gcrypt.h in Headers */,
-				69868DE714619580004C5D9B /* packet_test.h in Headers */,
+				69269F2614620D0F00F69705 /* packet_test.h in Headers */,
+				69269F2814620D0F00F69705 /* packet.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,8 +166,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69868AD91460E372004C5D9B /* packet.c in Sources */,
-				69868DE814619580004C5D9B /* packet_test.c in Sources */,
+				69269F2514620D0F00F69705 /* packet_test.c in Sources */,
+				69269F2714620D0F00F69705 /* packet.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

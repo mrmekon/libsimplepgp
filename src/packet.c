@@ -80,6 +80,7 @@ void spgp_debug_log_set(uint8_t enable) {
 spgp_packet_t *spgp_decode_message(uint8_t *message, uint32_t length) {
 	spgp_packet_t *head = NULL;
   spgp_packet_t *pkt = NULL;
+  uint32_t startIdx = 0;
   uint32_t idx = 0;
   
 	LOG_PRINT("begin\n");
@@ -99,24 +100,41 @@ spgp_packet_t *spgp_decode_message(uint8_t *message, uint32_t length) {
   }
   
   head = malloc(sizeof(*head));
-  if (NULL == head)
-  	RAISE(OUT_OF_MEMORY);
+  if (NULL == head) RAISE(OUT_OF_MEMORY);
   memset(head, 0, sizeof(*head));
   pkt = head;
   
-  parse_header(message, &idx, length, pkt);
-  if (pkt->header) {
-  	switch (pkt->header->type) {
-    	case PKT_TYPE_SECRET_KEY:
+  while (idx < length-1) {
+  	startIdx = idx;
+    parse_header(message, &idx, length, pkt);
+    if (!pkt->header) RAISE(FORMAT_UNSUPPORTED);
+    
+    switch (pkt->header->type) {
+      case PKT_TYPE_SECRET_KEY:
       case PKT_TYPE_SECRET_SUBKEY:
-      	spgp_parse_secret_key(message, &idx, length, pkt);
+        spgp_parse_secret_key(message, &idx, length, pkt);
         break;
       default:
-      	LOG_PRINT("WARNING: Unsupported packet type %d\n", pkt->header->type);
-      	break;
+        LOG_PRINT("WARNING: Unsupported packet type %d\n", pkt->header->type);
+        // Increment to next packet.  We add the contentLength, but subtract
+        // one parse_header() left us on the first byte of content.
+        if (idx + pkt->header->contentLength - 1 < length)
+          idx = idx + pkt->header->contentLength - 1;
+        break;
     }
-  }
-  
+    
+    if (idx >= length-1) break; // we've done the last packet
+    
+    pkt->next = malloc(sizeof(*head));
+    if (NULL == pkt->next) RAISE(OUT_OF_MEMORY);
+    memset(pkt->next, 0, sizeof(*pkt->next));
+    pkt = pkt->next;
+    
+    // Packet parser increments to it's own last byte.  Need one more to get
+    // to the next packet's beginning 
+    SAFE_IDX_INCREMENT(idx, length);
+	}
+    
   end:
   LOG_PRINT("done\n");
   return head;
@@ -151,11 +169,15 @@ const char *spgp_err_str(uint32_t err) {
 	switch (err) {
   	case INVALID_ARGS:
     	return "Invalid arguments given to function.";
-      break;
+    case OUT_OF_MEMORY:
+    	return "Not enough memory to continue parsing.";
+    case INVALID_HEADER:
+    	return "Invalid header format.  Corrupted or invalid data.";
+    case FORMAT_UNSUPPORTED:
+    	return "Message format is valid, but not currently supported.";
   	case BUFFER_OVERFLOW:
     	return "Index into buffer exceeded the maximum "
       	"bound of the buffer.";
-      break;
     default:
     	return "Unknown/undocumented error.";
   }
@@ -452,6 +474,21 @@ static uint8_t spgp_read_all_public_mpis(uint8_t *msg,
     }
     secret->mpiCount = 4;
 	}
+  else if (secret->asymAlgo == ASYM_ALGO_ELGAMAL) {
+  	// DSA public MPIs: prime p, order q, generator g, value y
+    for (i = 0; i < 3; i++) {
+      newMpi = spgp_read_mpi(msg, idx, length);
+      if (i == 0) {
+        secret->mpiHead = newMpi;
+        curMpi = secret->mpiHead;
+      }
+      else {
+        curMpi->next = newMpi;
+        curMpi = curMpi->next;
+      }
+    }
+    secret->mpiCount = 3;  
+  }
   else {
   	RAISE(FORMAT_UNSUPPORTED);
   }

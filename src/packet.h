@@ -73,7 +73,6 @@ typedef enum {
   FORMAT_UNSUPPORTED,
 	INVALID_ARGS,
 	BUFFER_OVERFLOW,
-	EXCEPTIONS_UNSUPPORTED,
 } spgp_error_t;
 
 typedef enum {
