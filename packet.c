@@ -43,6 +43,7 @@ static uint8_t debug_log_enabled = 1;
 static uint8_t debug_log_enabled = 0;
 #endif
 
+
 static uint8_t parse_header(uint8_t *msg, uint32_t *idx, 
 														uint32_t length, spgp_packet_t *pkt);
 static uint8_t spgp_parse_secret_key(uint8_t *msg, uint32_t *idx, 
@@ -53,7 +54,22 @@ static uint8_t spgp_read_all_public_mpis(uint8_t *msg,
                                          uint32_t *idx,
 														 						 uint32_t length, 
                                          spgp_secret_pkt_t *secret);
-                                         
+static uint8_t spgp_read_all_secret_mpis(uint8_t *msg, 
+                                         uint32_t *idx,
+														 						 uint32_t length, 
+                                         spgp_secret_pkt_t *secret);
+static uint8_t spgp_read_salt(uint8_t *msg, 
+                              uint32_t *idx,
+                              uint32_t length, 
+                              spgp_secret_pkt_t *secret);
+static uint8_t spgp_read_iv(uint8_t *msg, 
+                            uint32_t *idx,
+                            uint32_t length, 
+                            spgp_secret_pkt_t *secret);
+static uint8_t spgp_iv_length_for_symmetric_algo(uint8_t algo);
+static uint8_t spgp_salt_length_for_hash_algo(uint8_t algo);
+
+
 uint8_t spgp_debug_log_enabled(void) {
 	return debug_log_enabled;
 }
@@ -245,6 +261,7 @@ static uint8_t parse_header(uint8_t *msg, uint32_t *idx,
 static uint8_t spgp_parse_secret_key(uint8_t *msg, uint32_t *idx, 
           													 uint32_t length, spgp_packet_t *pkt) {
   spgp_secret_pkt_t secret;
+  uint32_t startIdx = *idx;
   
   LOG_PRINT("Parsing secret key.\n");
   
@@ -270,7 +287,143 @@ static uint8_t spgp_parse_secret_key(uint8_t *msg, uint32_t *idx,
 	spgp_read_all_public_mpis(msg, idx, length, &secret);
   LOG_PRINT("Read %u MPIs\n", secret.mpiCount);
   
+  // S2K Type byte tells how to (or if to) decrypt secret exponent
+  secret.s2kType = msg[*idx];
+  SAFE_IDX_INCREMENT(*idx, length);
+  switch (secret.s2kType) {
+  	case 0:
+    	// There is no encryption
+    	secret.s2kEncryption = 0;
+      break;
+    case 254:
+    case 255:
+    	// Next byte is encryption type
+		  secret.s2kEncryption = msg[*idx];
+  		SAFE_IDX_INCREMENT(*idx, length);
+			break;
+    default:
+    	// This byte is encryption type
+    	secret.s2kEncryption = secret.s2kType;
+    	break;
+  }
+  LOG_PRINT("Encryption: %u\n", secret.s2kEncryption);
+  
+  if (secret.s2kEncryption) {
+  	// Secret exponent is encrypted (as it should be).  Time to decrypt.
+    
+    // S2K specifier tells us if there is a salt, and how to use it
+    if (secret.s2kType >= 254) {
+			secret.s2kSpecifier = msg[*idx];
+  	  SAFE_IDX_INCREMENT(*idx, length);
+   	 LOG_PRINT("S2K Specifier: %u\n", secret.s2kSpecifier);
+    }
+    
+    // S2K hash algorithm specifies how to hash passphrase into a key
+    secret.s2kHashAlgo = msg[*idx];
+    SAFE_IDX_INCREMENT(*idx, length);
+    LOG_PRINT("Hash algorithm: %u\n", secret.s2kHashAlgo);    
+    
+    // Read the salt if there is one
+    switch (secret.s2kSpecifier) {
+    	case 1:
+      	spgp_read_salt(msg, idx, length, &secret);
+      	break;
+      case 3:
+      	spgp_read_salt(msg, idx, length, &secret);
+        // S2K Count is number of bytes to hash to make the key
+				secret.s2kCount = msg[*idx];
+    		SAFE_IDX_INCREMENT(*idx, length);
+        break;
+      default:
+      	break;
+    }
+  }
+  LOG_PRINT("Salt length: %u\n", secret.s2kSaltLength);
+  
+  // If it's not encrypted, we can just read the secret MPIs
+  if (!secret.s2kEncryption) {
+  	spgp_read_all_public_mpis(msg, idx, length, &secret);
+  }
+  // If it is encrypted, just store it for now.  We'll decrypt later.
+  else {
+  
+  	// There's an initial vector (IV) here:
+  	spgp_read_iv(msg, idx, length, &secret);
+    LOG_PRINT("IV length: %u\n", secret.ivLength);
+  
+  	uint32_t packetOffset = *idx - startIdx;
+  	uint32_t remaining = pkt->header->contentLength - packetOffset;
+		if (packetOffset >= pkt->header->contentLength) RAISE(BUFFER_OVERFLOW);
+  	secret.encryptedData = malloc(remaining);
+    if (NULL == secret.encryptedData) RAISE(OUT_OF_MEMORY);
+    memcpy(secret.encryptedData, msg+*idx, remaining);
+    *idx += remaining-1;
+    LOG_PRINT("Stored %u encrypted bytes.\n", remaining);
+    // This is the end of the data, so we do NOT do a final idx increment
+  }
 	return 0;
+}
+
+static uint8_t spgp_read_salt(uint8_t *msg, 
+                              uint32_t *idx,
+                              uint32_t length, 
+                              spgp_secret_pkt_t *secret) {
+	uint8_t saltLen = 0;
+  
+ 	if (NULL == msg || NULL == idx || 0 == length || NULL == secret)
+  	RAISE(INVALID_ARGS);
+  
+  if ((saltLen = spgp_salt_length_for_hash_algo(secret->s2kHashAlgo)) == 0) 
+  	RAISE(FORMAT_UNSUPPORTED);
+  
+  if (length - *idx < saltLen) RAISE(BUFFER_OVERFLOW);
+  
+  secret->s2kSalt = malloc(sizeof(*(secret->s2kSalt)) * saltLen);
+  if (NULL == secret->s2kSalt) RAISE(OUT_OF_MEMORY);
+  
+  secret->s2kSaltLength = saltLen;
+  memcpy(secret->s2kSalt, msg+*idx, saltLen);
+  *idx += saltLen-1;
+  SAFE_IDX_INCREMENT(*idx, length);
+  
+	return 0;
+}
+
+static uint8_t spgp_read_iv(uint8_t *msg, 
+                            uint32_t *idx,
+                            uint32_t length, 
+                            spgp_secret_pkt_t *secret) {
+	uint8_t ivLen = 0;
+  
+ 	if (NULL == msg || NULL == idx || 0 == length || NULL == secret)
+  	RAISE(INVALID_ARGS);
+  
+  if ((ivLen = spgp_iv_length_for_symmetric_algo(secret->s2kEncryption)) == 0) 
+  	RAISE(FORMAT_UNSUPPORTED);
+  
+  if (length - *idx < ivLen) RAISE(BUFFER_OVERFLOW);
+  
+  secret->iv = malloc(sizeof(*(secret->iv)) * ivLen);
+  if (NULL == secret->iv) RAISE(OUT_OF_MEMORY);
+  
+  secret->ivLength = ivLen;
+  memcpy(secret->iv, msg+*idx, ivLen);
+  *idx += ivLen-1;
+  SAFE_IDX_INCREMENT(*idx, length);
+  
+	return 0;
+}
+
+static uint8_t spgp_iv_length_for_symmetric_algo(uint8_t algo) {
+	if (algo == SYM_ALGO_3DES) return 8;
+  else RAISE(FORMAT_UNSUPPORTED); // not implemented
+  return 0;
+}
+
+static uint8_t spgp_salt_length_for_hash_algo(uint8_t algo) {
+	if (algo == HASH_ALGO_SHA1) return 8;
+  else RAISE(FORMAT_UNSUPPORTED); // not implemented
+  return 0;
 }
 
 static uint8_t spgp_read_all_public_mpis(uint8_t *msg, 
@@ -298,6 +451,34 @@ static uint8_t spgp_read_all_public_mpis(uint8_t *msg,
       }
     }
     secret->mpiCount = 4;
+	}
+  else {
+  	RAISE(FORMAT_UNSUPPORTED);
+  }
+  
+	return secret->mpiCount;
+}
+
+static uint8_t spgp_read_all_secret_mpis(uint8_t *msg, 
+                                         uint32_t *idx,
+														 						 uint32_t length, 
+                                         spgp_secret_pkt_t *secret) {
+  spgp_mpi_t *curMpi;
+  
+  if (NULL == msg || NULL == idx || 0 == length || NULL == secret)
+  	RAISE(INVALID_ARGS);
+
+	// Set curMpi to last valid Mpi in linked list
+	curMpi = secret->mpiHead;
+  while (curMpi->next) curMpi = curMpi->next;
+
+  // Read all the MPIs
+	if (secret->asymAlgo == ASYM_ALGO_DSA) {
+  	// DSA secte MPIs: exponent x
+    curMpi->next = spgp_read_mpi(msg, idx, length);
+    secret->mpiCount++;
+    *idx += length - 1;
+    // This is the end of the data, so we do NOT do a final increment. 
 	}
   else {
   	RAISE(FORMAT_UNSUPPORTED);

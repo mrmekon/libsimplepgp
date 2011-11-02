@@ -57,7 +57,9 @@ struct spgp_secret_packet_struct {
   uint8_t s2kSpecifier;
   uint8_t s2kHashAlgo;
   uint8_t *s2kSalt;
+  uint8_t s2kSaltLength;
   uint8_t s2kCount;
+  uint8_t *encryptedData;
   uint8_t *key;
   uint32_t keyLength;
   uint8_t *iv;
