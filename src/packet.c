@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <setjmp.h>
 #include "gcrypt.h"
+#include <wchar.h>
+#include <locale.h>
 
 
 /**********************************************************************
@@ -65,7 +67,10 @@ static uint8_t debug_log_enabled = 0;
 
 static uint8_t spgp_parse_header(uint8_t *msg, uint32_t *idx, 
 														uint32_t length, spgp_packet_t *pkt);
-                            
+
+static uint8_t spgp_parse_user_id(uint8_t *msg, uint32_t *idx, 
+          												uint32_t length, spgp_packet_t *pkt);
+                                                              
 static uint8_t spgp_parse_secret_key(uint8_t *msg, uint32_t *idx, 
           													 uint32_t length, spgp_packet_t *pkt);
                                      
@@ -149,6 +154,9 @@ spgp_packet_t *spgp_decode_message(uint8_t *message, uint32_t length) {
     
     // Decode packet contents based on the type marked in its header
     switch (pkt->header->type) {
+    	case PKT_TYPE_USER_ID:
+      	spgp_parse_user_id(message, &idx, length, pkt);
+        break;
       case PKT_TYPE_SECRET_KEY:
       case PKT_TYPE_SECRET_SUBKEY:
         spgp_parse_secret_key(message, &idx, length, pkt);
@@ -220,6 +228,16 @@ void spgp_free_packet(spgp_packet_t **pkt) {
     	free((*pkt)->c.secret->iv);
       (*pkt)->c.secret->iv = NULL;
     }
+    free((*pkt)->c.secret);
+    (*pkt)->c.secret = NULL;
+  }
+  else if ((*pkt)->header->type == PKT_TYPE_USER_ID &&
+  				 (*pkt)->c.userid->data != NULL) {
+  	free((*pkt)->c.userid->data);
+    (*pkt)->c.userid->data = NULL;
+    
+    free((*pkt)->c.userid);
+    (*pkt)->c.userid = NULL;
   }
   
   // release header
@@ -364,6 +382,35 @@ static uint8_t spgp_parse_header(uint8_t *msg, uint32_t *idx,
 	return 0;
 }
 
+static uint8_t spgp_parse_user_id(uint8_t *msg, uint32_t *idx, 
+          												uint32_t length, spgp_packet_t *pkt) {
+	spgp_userid_pkt_t userid;
+
+  LOG_PRINT("Parsing user id.\n");
+
+	// Make sure we have enough bytes remaining for the copy
+  if (length - *idx < pkt->header->contentLength) RAISE(BUFFER_OVERFLOW);
+  
+  // Allocate space for buffer, plus one byte for NUL terminator
+	userid.data = malloc(sizeof(*(userid.data))*pkt->header->contentLength + 1);
+  if (NULL == userid.data) RAISE(OUT_OF_MEMORY);
+  
+  // Copy bytes from input to structure, and add a NUL terminator
+  memcpy(userid.data, msg+*idx, pkt->header->contentLength);
+  userid.data[pkt->header->contentLength] = '\0';
+  *idx += pkt->header->contentLength - 1;
+  
+  // Copy local structure into packet
+  pkt->c.userid = malloc(sizeof(*(pkt->c.userid)));
+  if (NULL == pkt->c.userid) RAISE(OUT_OF_MEMORY);
+  memcpy(pkt->c.userid, &userid, sizeof(userid));
+
+  setlocale(LC_CTYPE, "en_US.UTF-8");
+  wprintf(L"USER ID: %s\n", pkt->c.userid->data);
+  
+	return 0;                                     
+}
+
 static uint8_t spgp_parse_secret_key(uint8_t *msg, uint32_t *idx, 
           													 uint32_t length, spgp_packet_t *pkt) {
   spgp_secret_pkt_t secret;
@@ -448,7 +495,7 @@ static uint8_t spgp_parse_secret_key(uint8_t *msg, uint32_t *idx,
   
   // If it's not encrypted, we can just read the secret MPIs
   if (!secret.s2kEncryption) {
-  	spgp_read_all_public_mpis(msg, idx, length, &secret);
+  	spgp_read_all_secret_mpis(msg, idx, length, &secret);
   }
   // If it is encrypted, just store it for now.  We'll decrypt later.
   else {
@@ -467,6 +514,11 @@ static uint8_t spgp_parse_secret_key(uint8_t *msg, uint32_t *idx,
     LOG_PRINT("Stored %u encrypted bytes.\n", remaining);
     // This is the end of the data, so we do NOT do a final idx increment
   }
+  
+  pkt->c.secret = malloc(sizeof(*(pkt->c.secret)));
+  if (NULL == pkt->c.secret) RAISE(OUT_OF_MEMORY);
+  memcpy(pkt->c.secret, &secret, sizeof(secret));
+  
 	return 0;
 }
 

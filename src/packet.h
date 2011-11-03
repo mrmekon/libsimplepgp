@@ -17,6 +17,7 @@ typedef struct spgp_packet_header_struct spgp_pkt_header_t;
 typedef struct spgp_packet_struct spgp_packet_t;
 typedef struct spgp_mpi_struct spgp_mpi_t;
 typedef struct spgp_secret_packet_struct spgp_secret_pkt_t;
+typedef struct spgp_userid_packet_struct spgp_userid_pkt_t;
 
 struct spgp_packet_header_struct {
 	spgp_packet_t *parent;
@@ -31,6 +32,7 @@ struct spgp_packet_struct {
 	spgp_pkt_header_t *header;
   union {
   	spgp_secret_pkt_t *secret;
+    spgp_userid_pkt_t *userid;
   } c;
 	spgp_packet_t *next;	
 };
@@ -40,6 +42,10 @@ struct spgp_mpi_struct {
   uint32_t bits;
   uint32_t count;
 	spgp_mpi_t *next;
+};
+
+struct spgp_userid_packet_struct {
+	uint8_t *data;
 };
 
 struct spgp_secret_packet_struct {
