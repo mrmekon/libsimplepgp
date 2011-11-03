@@ -12,7 +12,13 @@
 #include <setjmp.h>
 #include "gcrypt.h"
 
-#define DEBUG_LOG
+
+/**********************************************************************
+**
+** MACROS
+**
+***********************************************************************/
+#pragma mark Macros
 
 #define RAISE(err) do { \
 		_spgp_err = (err); \
@@ -34,6 +40,13 @@
   } } while(0)
 
 
+/**********************************************************************
+**
+** Static variables
+**
+***********************************************************************/
+
+
 static uint32_t _spgp_err;
 static jmp_buf exception;
 
@@ -44,31 +57,54 @@ static uint8_t debug_log_enabled = 0;
 #endif
 
 
-static uint8_t parse_header(uint8_t *msg, uint32_t *idx, 
+/**********************************************************************
+**
+** Static function prototypes
+**
+***********************************************************************/
+
+static uint8_t spgp_parse_header(uint8_t *msg, uint32_t *idx, 
 														uint32_t length, spgp_packet_t *pkt);
+                            
 static uint8_t spgp_parse_secret_key(uint8_t *msg, uint32_t *idx, 
           													 uint32_t length, spgp_packet_t *pkt);
+                                     
 static spgp_mpi_t *spgp_read_mpi(uint8_t *msg, uint32_t *idx,
 														 uint32_t length);
+                             
 static uint8_t spgp_read_all_public_mpis(uint8_t *msg, 
                                          uint32_t *idx,
 														 						 uint32_t length, 
                                          spgp_secret_pkt_t *secret);
+                                         
 static uint8_t spgp_read_all_secret_mpis(uint8_t *msg, 
                                          uint32_t *idx,
 														 						 uint32_t length, 
                                          spgp_secret_pkt_t *secret);
+                                         
 static uint8_t spgp_read_salt(uint8_t *msg, 
                               uint32_t *idx,
                               uint32_t length, 
                               spgp_secret_pkt_t *secret);
+                              
 static uint8_t spgp_read_iv(uint8_t *msg, 
                             uint32_t *idx,
                             uint32_t length, 
                             spgp_secret_pkt_t *secret);
+                            
 static uint8_t spgp_iv_length_for_symmetric_algo(uint8_t algo);
+
 static uint8_t spgp_salt_length_for_hash_algo(uint8_t algo);
 
+
+
+
+/**********************************************************************
+**
+** External function definitions
+**
+***********************************************************************/
+#pragma mark External Function Definitions
 
 uint8_t spgp_debug_log_enabled(void) {
 	return debug_log_enabled;
@@ -80,7 +116,6 @@ void spgp_debug_log_set(uint8_t enable) {
 spgp_packet_t *spgp_decode_message(uint8_t *message, uint32_t length) {
 	spgp_packet_t *head = NULL;
   spgp_packet_t *pkt = NULL;
-  uint32_t startIdx = 0;
   uint32_t idx = 0;
   
 	LOG_PRINT("begin\n");
@@ -99,16 +134,20 @@ spgp_packet_t *spgp_decode_message(uint8_t *message, uint32_t length) {
   	RAISE(INVALID_ARGS);
   }
   
+  // There must be at least one packet, yeah?
   head = malloc(sizeof(*head));
   if (NULL == head) RAISE(OUT_OF_MEMORY);
   memset(head, 0, sizeof(*head));
   pkt = head;
   
+  
+  // Loop to decode every packet in message
   while (idx < length-1) {
-  	startIdx = idx;
-    parse_header(message, &idx, length, pkt);
+  	// Every packet starts with a header
+    spgp_parse_header(message, &idx, length, pkt);
     if (!pkt->header) RAISE(FORMAT_UNSUPPORTED);
     
+    // Decode packet contents based on the type marked in its header
     switch (pkt->header->type) {
       case PKT_TYPE_SECRET_KEY:
       case PKT_TYPE_SECRET_SUBKEY:
@@ -123,15 +162,17 @@ spgp_packet_t *spgp_decode_message(uint8_t *message, uint32_t length) {
         break;
     }
     
-    if (idx >= length-1) break; // we've done the last packet
-    
-    pkt->next = malloc(sizeof(*head));
+    // If we're at the end of the buffer, we're done
+    if (idx >= length-1) break;
+        
+    // Allocate space for another packet
+    pkt->next = malloc(sizeof(*pkt->next));
     if (NULL == pkt->next) RAISE(OUT_OF_MEMORY);
     memset(pkt->next, 0, sizeof(*pkt->next));
     pkt = pkt->next;
     
     // Packet parser increments to it's own last byte.  Need one more to get
-    // to the next packet's beginning 
+    // to the next packet's first byte. 
     SAFE_IDX_INCREMENT(idx, length);
 	}
     
@@ -141,12 +182,45 @@ spgp_packet_t *spgp_decode_message(uint8_t *message, uint32_t length) {
 }
 
 void spgp_free_packet(spgp_packet_t **pkt) {
+	spgp_mpi_t *curMpi, *nextMpi;
+  
 	if (pkt == NULL)
   	return;
   if (*pkt == NULL)
   	return;
   
-  // TODO: make this recursive, free it's next pointer first
+  LOG_PRINT("Freeing packet: %p\n", pkt);
+  
+  // Recursively call on the next packet before freeing parent.
+  if ((*pkt)->next) spgp_free_packet(&((*pkt)->next));
+  
+  // Release memory allocated for secret key fields
+  if (((*pkt)->header->type == PKT_TYPE_SECRET_KEY ||
+  		(*pkt)->header->type == PKT_TYPE_SECRET_SUBKEY) &&
+      (*pkt)->c.secret != NULL) {
+  	if ((*pkt)->c.secret->mpiCount > 0) {
+    	curMpi = (*pkt)->c.secret->mpiHead;
+      while (curMpi->next) {
+      	nextMpi = curMpi->next;
+        free(curMpi);
+        curMpi = nextMpi;
+      }
+      (*pkt)->c.secret->mpiHead = NULL;
+      (*pkt)->c.secret->mpiCount = 0;
+    }
+    if ((*pkt)->c.secret->s2kSalt) {
+    	free((*pkt)->c.secret->s2kSalt);
+      (*pkt)->c.secret->s2kSalt = NULL;
+    }
+    if ((*pkt)->c.secret->key) {
+    	free((*pkt)->c.secret->key);
+      (*pkt)->c.secret->key = NULL;
+    }
+    if ((*pkt)->c.secret->iv) {
+    	free((*pkt)->c.secret->iv);
+      (*pkt)->c.secret->iv = NULL;
+    }
+  }
   
   // release header
   if ((*pkt)->header) {
@@ -154,10 +228,9 @@ void spgp_free_packet(spgp_packet_t **pkt) {
 	  (*pkt)->header = NULL;
   }
   
-  // TODO: should release MPIs here
-  
   // release packet
   free(*pkt);
+
   *pkt = NULL;
 }
 
@@ -196,7 +269,18 @@ void tsb_test(void) {
         
 }
 
-static uint8_t parse_header(uint8_t *msg, uint32_t *idx, 
+
+
+
+/**********************************************************************
+**
+** Static function definitions
+**
+***********************************************************************/
+#pragma mark Static Function Definitions
+
+
+static uint8_t spgp_parse_header(uint8_t *msg, uint32_t *idx, 
 														uint32_t length, spgp_packet_t *pkt) {
 	uint8_t i;
   
