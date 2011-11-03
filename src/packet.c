@@ -70,10 +70,14 @@ static uint8_t spgp_parse_header(uint8_t *msg, uint32_t *idx,
 
 static uint8_t spgp_parse_user_id(uint8_t *msg, uint32_t *idx, 
           												uint32_t length, spgp_packet_t *pkt);
-                                                              
+                                      
+static uint8_t spgp_generate_fingerprint(spgp_packet_t *pkt);
+                                                                                      
 static uint8_t spgp_parse_secret_key(uint8_t *msg, uint32_t *idx, 
           													 uint32_t length, spgp_packet_t *pkt);
-                                     
+                          
+static uint32_t spgp_mpi_length(uint8_t *mpi);
+                                                
 static spgp_mpi_t *spgp_read_mpi(uint8_t *msg, uint32_t *idx,
 														 uint32_t length);
                              
@@ -206,15 +210,15 @@ void spgp_free_packet(spgp_packet_t **pkt) {
   if (((*pkt)->header->type == PKT_TYPE_SECRET_KEY ||
   		(*pkt)->header->type == PKT_TYPE_SECRET_SUBKEY) &&
       (*pkt)->c.secret != NULL) {
-  	if ((*pkt)->c.secret->mpiCount > 0) {
-    	curMpi = (*pkt)->c.secret->mpiHead;
+  	if ((*pkt)->c.secret->pub.mpiCount > 0) {
+    	curMpi = (*pkt)->c.secret->pub.mpiHead;
       while (curMpi->next) {
       	nextMpi = curMpi->next;
         free(curMpi);
         curMpi = nextMpi;
       }
-      (*pkt)->c.secret->mpiHead = NULL;
-      (*pkt)->c.secret->mpiCount = 0;
+      (*pkt)->c.secret->pub.mpiHead = NULL;
+      (*pkt)->c.secret->pub.mpiCount = 0;
     }
     if ((*pkt)->c.secret->s2kSalt) {
     	free((*pkt)->c.secret->s2kSalt);
@@ -411,6 +415,85 @@ static uint8_t spgp_parse_user_id(uint8_t *msg, uint32_t *idx,
 	return 0;                                     
 }
 
+static uint8_t spgp_generate_fingerprint(spgp_packet_t *pkt) {
+	uint16_t packetSize;
+  uint8_t packetHeaderSize;
+  spgp_mpi_t *curMpi;
+  uint8_t targetMpiCount;
+  gcry_md_hd_t md;
+  unsigned char *hash;
+  int i;
+  
+  if (NULL == pkt) RAISE(INVALID_ARGS);
+  
+  // Start with header info: 1 version, 4 creation time, 1 algorithm
+  packetHeaderSize = sizeof(pkt->c.pub->version) +
+  	sizeof(pkt->c.pub->creationTime) +
+    sizeof(pkt->c.pub->asymAlgo);
+  packetSize = packetHeaderSize;
+
+  // Figure out how many MPIs to add
+  switch(pkt->c.pub->asymAlgo) {
+  	case ASYM_ALGO_DSA:
+    	targetMpiCount = 4;
+      break;
+    case ASYM_ALGO_ELGAMAL:
+    	targetMpiCount = 3;
+      break;
+    default:
+    	RAISE(FORMAT_UNSUPPORTED);
+  }
+  
+  // Add size of each MPI
+  curMpi = pkt->c.pub->mpiHead;
+  i = 0;
+  while (curMpi && i < targetMpiCount) {
+  	packetSize += curMpi->count + 2; // add 2 for MPI header
+		curMpi = curMpi->next;
+    i++;
+  }
+      
+  // Give data to hash to gcrypt
+	if (gcry_md_open (&md, GCRY_MD_SHA1, 0) > 0) RAISE(GCRY_ERROR);
+  gcry_md_putc(md, 0x99 );
+  gcry_md_putc(md, packetSize >> 8);
+  gcry_md_putc(md, packetSize);
+  gcry_md_putc(md, pkt->c.pub->version);
+  gcry_md_putc(md, pkt->c.pub->creationTime);
+  gcry_md_putc(md, pkt->c.pub->creationTime >> 8);
+  gcry_md_putc(md, pkt->c.pub->creationTime >> 16);
+  gcry_md_putc(md, pkt->c.pub->creationTime >> 24);
+  gcry_md_putc(md, pkt->c.pub->asymAlgo);
+  
+	// Write the public key MPIs
+  curMpi = pkt->c.pub->mpiHead;
+  i = 0;
+  while (curMpi && i < targetMpiCount) {
+  	gcry_md_write(md, curMpi->data, curMpi->count + 2);
+		curMpi = curMpi->next;
+    i++;
+  }
+  
+  // Perform SHA-1 hash
+  gcry_md_final(md);
+  hash = gcry_md_read(md, 0);
+
+	// Copy hash results (20-bytes) into fingerprint
+  pkt->c.pub->fingerprint = malloc(20);
+  if (NULL == pkt->c.pub->fingerprint) RAISE(OUT_OF_MEMORY);
+  memcpy(pkt->c.pub->fingerprint, hash, 20);
+  
+  LOG_PRINT("HASH: ");
+  for (targetMpiCount=0; targetMpiCount < 20; targetMpiCount++) {
+  	fprintf(stderr, "%.2X", pkt->c.pub->fingerprint[targetMpiCount]);
+  }
+  fprintf(stderr,"\n");
+  
+  gcry_md_close(md);
+  
+  return 0;
+}
+
 static uint8_t spgp_parse_secret_key(uint8_t *msg, uint32_t *idx, 
           													 uint32_t length, spgp_packet_t *pkt) {
   spgp_secret_pkt_t *secret;
@@ -425,6 +508,9 @@ static uint8_t spgp_parse_secret_key(uint8_t *msg, uint32_t *idx,
 	// Allocate secret key in packet  
   pkt->c.secret = malloc(sizeof(*(pkt->c.secret)));
   if (NULL == pkt->c.secret) RAISE(OUT_OF_MEMORY);
+  memset(pkt->c.secret, 0, sizeof(*(pkt->c.secret)));
+  
+  // Convenient pointers to secret key, and public portion
 	secret = pkt->c.secret;
   pub = pkt->c.pub;
   
@@ -432,23 +518,23 @@ static uint8_t spgp_parse_secret_key(uint8_t *msg, uint32_t *idx,
   SAFE_IDX_INCREMENT(*idx, length);
   
   // First byte is the version.
-  if (secret->version != 4) RAISE(FORMAT_UNSUPPORTED);
+  if (pub->version != 4) RAISE(FORMAT_UNSUPPORTED);
   
   // Next 4 bytes are big-endian 'key creation time'
   if (length - *idx < 4) RAISE(BUFFER_OVERFLOW);
-  memcpy(&(secret->creationTime), msg+*idx, 4);
+  memcpy(&(pub->creationTime), msg+*idx, 4);
   *idx += 3; // this puts us on last byte of creation time
   SAFE_IDX_INCREMENT(*idx, length); // this goes to next byte (safely)
 
 	// Next byte identifies asymmetric algorithm
-	secret->asymAlgo = msg[*idx];
+	pub->asymAlgo = msg[*idx];
 	SAFE_IDX_INCREMENT(*idx, length);
-  LOG_PRINT("Asymmetric algorithm: %d\n", secret->asymAlgo);
+  LOG_PRINT("Asymmetric algorithm: %d\n", pub->asymAlgo);
   
   // Read variable number of MPIs (depends on asymmetric algorithm), each
   // of which are variable size.
 	spgp_read_all_public_mpis(msg, idx, length, secret);
-  LOG_PRINT("Read %u MPIs\n", secret->mpiCount);
+  LOG_PRINT("Read %u MPIs\n", pub->mpiCount);
   
   // S2K Type byte tells how to (or if to) decrypt secret exponent
   secret->s2kType = msg[*idx];
@@ -524,6 +610,10 @@ static uint8_t spgp_parse_secret_key(uint8_t *msg, uint32_t *idx,
     LOG_PRINT("Stored %u encrypted bytes.\n", remaining);
     // This is the end of the data, so we do NOT do a final idx increment
   }
+  
+  // Create and store fingerprint for this packet
+  if (pkt->header->type == PKT_TYPE_SECRET_KEY)
+	  spgp_generate_fingerprint(pkt);
     
 	return 0;
 }
@@ -595,47 +685,47 @@ static uint8_t spgp_read_all_public_mpis(uint8_t *msg,
 														 						 uint32_t length, 
                                          spgp_secret_pkt_t *secret) {
   spgp_mpi_t *curMpi, *newMpi;
+  spgp_public_pkt_t *pub = (spgp_public_pkt_t*)secret;
   uint32_t i;
   
   if (NULL == msg || NULL == idx || 0 == length || NULL == secret)
   	RAISE(INVALID_ARGS);
 
   // Read all the MPIs
-	if (secret->asymAlgo == ASYM_ALGO_DSA) {
+	if (pub->asymAlgo == ASYM_ALGO_DSA) {
   	// DSA public MPIs: prime p, order q, generator g, value y
     for (i = 0; i < 4; i++) {
       newMpi = spgp_read_mpi(msg, idx, length);
       if (i == 0) {
-        secret->mpiHead = newMpi;
-        curMpi = secret->mpiHead;
+        pub->mpiHead = newMpi;
+        curMpi = pub->mpiHead;
       }
       else {
         curMpi->next = newMpi;
         curMpi = curMpi->next;
       }
     }
-    secret->mpiCount = 4;
+    pub->mpiCount = 4;
 	}
-  else if (secret->asymAlgo == ASYM_ALGO_ELGAMAL) {
-  	// DSA public MPIs: prime p, order q, generator g, value y
+  else if (pub->asymAlgo == ASYM_ALGO_ELGAMAL) {
     for (i = 0; i < 3; i++) {
       newMpi = spgp_read_mpi(msg, idx, length);
       if (i == 0) {
-        secret->mpiHead = newMpi;
-        curMpi = secret->mpiHead;
+        pub->mpiHead = newMpi;
+        curMpi = pub->mpiHead;
       }
       else {
         curMpi->next = newMpi;
         curMpi = curMpi->next;
       }
     }
-    secret->mpiCount = 3;  
+    pub->mpiCount = 3;  
   }
   else {
   	RAISE(FORMAT_UNSUPPORTED);
   }
   
-	return secret->mpiCount;
+	return pub->mpiCount;
 }
 
 static uint8_t spgp_read_all_secret_mpis(uint8_t *msg, 
@@ -643,19 +733,20 @@ static uint8_t spgp_read_all_secret_mpis(uint8_t *msg,
 														 						 uint32_t length, 
                                          spgp_secret_pkt_t *secret) {
   spgp_mpi_t *curMpi;
+  spgp_public_pkt_t *pub = (spgp_public_pkt_t*)secret;
   
   if (NULL == msg || NULL == idx || 0 == length || NULL == secret)
   	RAISE(INVALID_ARGS);
 
 	// Set curMpi to last valid Mpi in linked list
-	curMpi = secret->mpiHead;
+	curMpi = pub->mpiHead;
   while (curMpi->next) curMpi = curMpi->next;
 
   // Read all the MPIs
-	if (secret->asymAlgo == ASYM_ALGO_DSA) {
+	if (pub->asymAlgo == ASYM_ALGO_DSA) {
   	// DSA secte MPIs: exponent x
     curMpi->next = spgp_read_mpi(msg, idx, length);
-    secret->mpiCount++;
+    pub->mpiCount++;
     *idx += length - 1;
     // This is the end of the data, so we do NOT do a final increment. 
 	}
@@ -663,7 +754,14 @@ static uint8_t spgp_read_all_secret_mpis(uint8_t *msg,
   	RAISE(FORMAT_UNSUPPORTED);
   }
   
-	return secret->mpiCount;
+	return pub->mpiCount;
+}
+
+static uint32_t spgp_mpi_length(uint8_t *mpi) {
+	uint32_t bits;
+	if (NULL == mpi) RAISE(INVALID_ARGS);
+  bits = ((mpi[0] << 8) | mpi[1]);
+  return (bits+7)/8;  
 }
 
 static spgp_mpi_t *spgp_read_mpi(uint8_t *msg, uint32_t *idx,
@@ -679,19 +777,17 @@ static spgp_mpi_t *spgp_read_mpi(uint8_t *msg, uint32_t *idx,
   // First two bytes are big-endian count of bits in MPI
   if (length - *idx < 2) RAISE(BUFFER_OVERFLOW);
   mpi->bits = ((msg[*idx] << 8) | msg[*idx + 1]);
-  *idx += 1;
-  SAFE_IDX_INCREMENT(*idx, length);
   
   mpi->count = (mpi->bits+7)/8;
   LOG_PRINT("MPI Bits: %u\n", mpi->bits);
   
   // Allocate space for MPI data
-  mpi->data = malloc(mpi->count);
+  mpi->data = malloc(mpi->count + 2);
   if (NULL == mpi->data) RAISE(OUT_OF_MEMORY);
   
   // Copy data from input buffer to mpi buffer
-  memcpy(mpi->data, msg, mpi->count);
-  *idx += mpi->count - 1;
+  memcpy(mpi->data, msg+*idx, mpi->count + 2);
+  *idx += mpi->count + 1;
   SAFE_IDX_INCREMENT(*idx, length);
   
   return mpi;

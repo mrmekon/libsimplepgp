@@ -59,19 +59,10 @@ struct spgp_public_packet_struct {
   spgp_mpi_t *mpiHead;
   uint8_t mpiCount;
   uint8_t *fingerprint;
-};
+} __attribute__((packed));
 
 struct spgp_secret_packet_struct {
 // This is public key stuff
-/*
-	uint8_t version;
-  uint32_t creationTime;
-	uint8_t asymAlgo;
-  uint8_t symAlgo;
-  spgp_mpi_t *mpiHead;
-  uint8_t mpiCount;
-  uint8_t *fingerprint;
-*/
 	spgp_public_pkt_t pub;
 // This is secret key stuff  
 	uint8_t isDecrypted;
@@ -96,6 +87,7 @@ typedef enum {
   FORMAT_UNSUPPORTED,
 	INVALID_ARGS,
 	BUFFER_OVERFLOW,
+  GCRY_ERROR,
 } spgp_error_t;
 
 typedef enum {
