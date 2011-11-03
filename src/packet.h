@@ -16,6 +16,7 @@
 typedef struct spgp_packet_header_struct spgp_pkt_header_t;
 typedef struct spgp_packet_struct spgp_packet_t;
 typedef struct spgp_mpi_struct spgp_mpi_t;
+typedef struct spgp_public_packet_struct spgp_public_pkt_t;
 typedef struct spgp_secret_packet_struct spgp_secret_pkt_t;
 typedef struct spgp_userid_packet_struct spgp_userid_pkt_t;
 
@@ -31,6 +32,7 @@ struct spgp_packet_header_struct {
 struct spgp_packet_struct {
 	spgp_pkt_header_t *header;
   union {
+  	spgp_public_pkt_t *pub;
   	spgp_secret_pkt_t *secret;
     spgp_userid_pkt_t *userid;
   } c;
@@ -48,7 +50,7 @@ struct spgp_userid_packet_struct {
 	uint8_t *data;
 };
 
-struct spgp_secret_packet_struct {
+struct spgp_public_packet_struct {
 // This is public key stuff
 	uint8_t version;
   uint32_t creationTime;
@@ -56,6 +58,21 @@ struct spgp_secret_packet_struct {
   uint8_t symAlgo;
   spgp_mpi_t *mpiHead;
   uint8_t mpiCount;
+  uint8_t *fingerprint;
+};
+
+struct spgp_secret_packet_struct {
+// This is public key stuff
+/*
+	uint8_t version;
+  uint32_t creationTime;
+	uint8_t asymAlgo;
+  uint8_t symAlgo;
+  spgp_mpi_t *mpiHead;
+  uint8_t mpiCount;
+  uint8_t *fingerprint;
+*/
+	spgp_public_pkt_t pub;
 // This is secret key stuff  
 	uint8_t isDecrypted;
   uint8_t s2kType;

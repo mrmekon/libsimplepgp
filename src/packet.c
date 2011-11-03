@@ -384,26 +384,26 @@ static uint8_t spgp_parse_header(uint8_t *msg, uint32_t *idx,
 
 static uint8_t spgp_parse_user_id(uint8_t *msg, uint32_t *idx, 
           												uint32_t length, spgp_packet_t *pkt) {
-	spgp_userid_pkt_t userid;
+	spgp_userid_pkt_t *userid;
 
   LOG_PRINT("Parsing user id.\n");
 
 	// Make sure we have enough bytes remaining for the copy
   if (length - *idx < pkt->header->contentLength) RAISE(BUFFER_OVERFLOW);
   
-  // Allocate space for buffer, plus one byte for NUL terminator
-	userid.data = malloc(sizeof(*(userid.data))*pkt->header->contentLength + 1);
-  if (NULL == userid.data) RAISE(OUT_OF_MEMORY);
-  
-  // Copy bytes from input to structure, and add a NUL terminator
-  memcpy(userid.data, msg+*idx, pkt->header->contentLength);
-  userid.data[pkt->header->contentLength] = '\0';
-  *idx += pkt->header->contentLength - 1;
-  
-  // Copy local structure into packet
+  // Allocate userid field in packet
   pkt->c.userid = malloc(sizeof(*(pkt->c.userid)));
   if (NULL == pkt->c.userid) RAISE(OUT_OF_MEMORY);
-  memcpy(pkt->c.userid, &userid, sizeof(userid));
+  userid = pkt->c.userid;
+  
+  // Allocate space for buffer, plus one byte for NUL terminator
+	userid->data = malloc(sizeof(*(userid->data))*pkt->header->contentLength + 1);
+  if (NULL == userid->data) RAISE(OUT_OF_MEMORY);
+  
+  // Copy bytes from input to structure, and add a NUL terminator
+  memcpy(userid->data, msg+*idx, pkt->header->contentLength);
+  userid->data[pkt->header->contentLength] = '\0';
+  *idx += pkt->header->contentLength - 1;
 
   setlocale(LC_CTYPE, "en_US.UTF-8");
   wprintf(L"USER ID: %s\n", pkt->c.userid->data);
@@ -413,112 +413,118 @@ static uint8_t spgp_parse_user_id(uint8_t *msg, uint32_t *idx,
 
 static uint8_t spgp_parse_secret_key(uint8_t *msg, uint32_t *idx, 
           													 uint32_t length, spgp_packet_t *pkt) {
-  spgp_secret_pkt_t secret;
+  spgp_secret_pkt_t *secret;
+  spgp_public_pkt_t *pub;
   uint32_t startIdx = *idx;
   
   LOG_PRINT("Parsing secret key.\n");
+
+	// Make sure we have enough bytes remaining for parsing
+  if (length - *idx < pkt->header->contentLength) RAISE(BUFFER_OVERFLOW);
+
+	// Allocate secret key in packet  
+  pkt->c.secret = malloc(sizeof(*(pkt->c.secret)));
+  if (NULL == pkt->c.secret) RAISE(OUT_OF_MEMORY);
+	secret = pkt->c.secret;
+  pub = pkt->c.pub;
   
-  secret.version = msg[*idx]; 
+  pub->version = msg[*idx]; 
   SAFE_IDX_INCREMENT(*idx, length);
   
   // First byte is the version.
-  if (secret.version != 4) RAISE(FORMAT_UNSUPPORTED);
+  if (secret->version != 4) RAISE(FORMAT_UNSUPPORTED);
   
   // Next 4 bytes are big-endian 'key creation time'
   if (length - *idx < 4) RAISE(BUFFER_OVERFLOW);
-  memcpy(&(secret.creationTime), msg+*idx, 4);
+  memcpy(&(secret->creationTime), msg+*idx, 4);
   *idx += 3; // this puts us on last byte of creation time
   SAFE_IDX_INCREMENT(*idx, length); // this goes to next byte (safely)
 
 	// Next byte identifies asymmetric algorithm
-	secret.asymAlgo = msg[*idx];
+	secret->asymAlgo = msg[*idx];
 	SAFE_IDX_INCREMENT(*idx, length);
-  LOG_PRINT("Asymmetric algorithm: %d\n", secret.asymAlgo);
+  LOG_PRINT("Asymmetric algorithm: %d\n", secret->asymAlgo);
   
   // Read variable number of MPIs (depends on asymmetric algorithm), each
   // of which are variable size.
-	spgp_read_all_public_mpis(msg, idx, length, &secret);
-  LOG_PRINT("Read %u MPIs\n", secret.mpiCount);
+	spgp_read_all_public_mpis(msg, idx, length, secret);
+  LOG_PRINT("Read %u MPIs\n", secret->mpiCount);
   
   // S2K Type byte tells how to (or if to) decrypt secret exponent
-  secret.s2kType = msg[*idx];
+  secret->s2kType = msg[*idx];
   SAFE_IDX_INCREMENT(*idx, length);
-  switch (secret.s2kType) {
+  switch (secret->s2kType) {
   	case 0:
     	// There is no encryption
-    	secret.s2kEncryption = 0;
+    	secret->s2kEncryption = 0;
       break;
     case 254:
     case 255:
     	// Next byte is encryption type
-		  secret.s2kEncryption = msg[*idx];
+		  secret->s2kEncryption = msg[*idx];
   		SAFE_IDX_INCREMENT(*idx, length);
 			break;
     default:
     	// This byte is encryption type
-    	secret.s2kEncryption = secret.s2kType;
+    	secret->s2kEncryption = secret->s2kType;
     	break;
   }
-  LOG_PRINT("Encryption: %u\n", secret.s2kEncryption);
+  LOG_PRINT("Encryption: %u\n", secret->s2kEncryption);
   
-  if (secret.s2kEncryption) {
+  if (secret->s2kEncryption) {
   	// Secret exponent is encrypted (as it should be).  Time to decrypt.
     
     // S2K specifier tells us if there is a salt, and how to use it
-    if (secret.s2kType >= 254) {
-			secret.s2kSpecifier = msg[*idx];
+    if (secret->s2kType >= 254) {
+			secret->s2kSpecifier = msg[*idx];
   	  SAFE_IDX_INCREMENT(*idx, length);
-   	 LOG_PRINT("S2K Specifier: %u\n", secret.s2kSpecifier);
+   	 LOG_PRINT("S2K Specifier: %u\n", secret->s2kSpecifier);
     }
     
     // S2K hash algorithm specifies how to hash passphrase into a key
-    secret.s2kHashAlgo = msg[*idx];
+    secret->s2kHashAlgo = msg[*idx];
     SAFE_IDX_INCREMENT(*idx, length);
-    LOG_PRINT("Hash algorithm: %u\n", secret.s2kHashAlgo);    
+    LOG_PRINT("Hash algorithm: %u\n", secret->s2kHashAlgo);    
     
     // Read the salt if there is one
-    switch (secret.s2kSpecifier) {
+    switch (secret->s2kSpecifier) {
     	case 1:
-      	spgp_read_salt(msg, idx, length, &secret);
+      	spgp_read_salt(msg, idx, length, secret);
       	break;
       case 3:
-      	spgp_read_salt(msg, idx, length, &secret);
+      	spgp_read_salt(msg, idx, length, secret);
         // S2K Count is number of bytes to hash to make the key
-				secret.s2kCount = msg[*idx];
+				secret->s2kCount = msg[*idx];
     		SAFE_IDX_INCREMENT(*idx, length);
         break;
       default:
       	break;
     }
   }
-  LOG_PRINT("Salt length: %u\n", secret.s2kSaltLength);
+  LOG_PRINT("Salt length: %u\n", secret->s2kSaltLength);
   
   // If it's not encrypted, we can just read the secret MPIs
-  if (!secret.s2kEncryption) {
-  	spgp_read_all_secret_mpis(msg, idx, length, &secret);
+  if (!secret->s2kEncryption) {
+  	spgp_read_all_secret_mpis(msg, idx, length, secret);
   }
   // If it is encrypted, just store it for now.  We'll decrypt later.
   else {
   
   	// There's an initial vector (IV) here:
-  	spgp_read_iv(msg, idx, length, &secret);
-    LOG_PRINT("IV length: %u\n", secret.ivLength);
+  	spgp_read_iv(msg, idx, length, secret);
+    LOG_PRINT("IV length: %u\n", secret->ivLength);
   
   	uint32_t packetOffset = *idx - startIdx;
   	uint32_t remaining = pkt->header->contentLength - packetOffset;
 		if (packetOffset >= pkt->header->contentLength) RAISE(BUFFER_OVERFLOW);
-  	secret.encryptedData = malloc(remaining);
-    if (NULL == secret.encryptedData) RAISE(OUT_OF_MEMORY);
-    memcpy(secret.encryptedData, msg+*idx, remaining);
+  	secret->encryptedData = malloc(remaining);
+    if (NULL == secret->encryptedData) RAISE(OUT_OF_MEMORY);
+    memcpy(secret->encryptedData, msg+*idx, remaining);
     *idx += remaining-1;
     LOG_PRINT("Stored %u encrypted bytes.\n", remaining);
     // This is the end of the data, so we do NOT do a final idx increment
   }
-  
-  pkt->c.secret = malloc(sizeof(*(pkt->c.secret)));
-  if (NULL == pkt->c.secret) RAISE(OUT_OF_MEMORY);
-  memcpy(pkt->c.secret, &secret, sizeof(secret));
-  
+    
 	return 0;
 }
 
