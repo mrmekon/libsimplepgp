@@ -55,7 +55,6 @@ struct spgp_public_packet_struct {
 	uint8_t version;
   uint32_t creationTime;
 	uint8_t asymAlgo;
-  uint8_t symAlgo;
   spgp_mpi_t *mpiHead;
   uint8_t mpiCount;
   uint8_t *fingerprint;
@@ -128,6 +127,13 @@ typedef enum {
   HASH_ALGO_SHA512,
   HASH_ALGO_SHA224,
 } spgp_hash_algo_t;
+
+typedef enum {
+	S2K_TYPE_SIMPLE            = 1,
+  S2K_TYPE_SALTED,
+  S2K_TYPE_RESERVED,
+  S2K_TYPE_ITERATED,
+} spgp_s2k_type_t;
 
 spgp_packet_t *spgp_decode_message(uint8_t *message, uint32_t length);
 void spgp_free_packet(spgp_packet_t **pkt);
