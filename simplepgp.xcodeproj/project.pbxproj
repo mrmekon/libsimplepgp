@@ -13,6 +13,8 @@
 		69269F2814620D0F00F69705 /* packet.h in Headers */ = {isa = PBXBuildFile; fileRef = 69269F2414620D0F00F69705 /* packet.h */; };
 		6926A662146B38F200F69705 /* keychain.c in Sources */ = {isa = PBXBuildFile; fileRef = 6926A660146B38F200F69705 /* keychain.c */; };
 		6926A663146B38F200F69705 /* keychain.h in Headers */ = {isa = PBXBuildFile; fileRef = 6926A661146B38F200F69705 /* keychain.h */; };
+		6926A9BD146C608900F69705 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6926A9BC146C608900F69705 /* libz.a */; };
+		6926A9BF146C609200F69705 /* zlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 6926A9BE146C609200F69705 /* zlib.h */; };
 		69868BC31460F343004C5D9B /* libgcrypt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69868BC21460F343004C5D9B /* libgcrypt.a */; };
 		69868BC51460F34A004C5D9B /* libgpg-error.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69868BC41460F34A004C5D9B /* libgpg-error.a */; };
 		69868BC71460F37E004C5D9B /* gpg-error.h in Headers */ = {isa = PBXBuildFile; fileRef = 69868BC61460F37E004C5D9B /* gpg-error.h */; };
@@ -29,6 +31,8 @@
 		69269F2414620D0F00F69705 /* packet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = packet.h; path = src/packet.h; sourceTree = "<group>"; };
 		6926A660146B38F200F69705 /* keychain.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = keychain.c; path = src/keychain.c; sourceTree = "<group>"; };
 		6926A661146B38F200F69705 /* keychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = keychain.h; path = src/keychain.h; sourceTree = "<group>"; };
+		6926A9BC146C608900F69705 /* libz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libz.a; sourceTree = "<group>"; };
+		6926A9BE146C609200F69705 /* zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zlib.h; sourceTree = "<group>"; };
 		69868BC21460F343004C5D9B /* libgcrypt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgcrypt.a; sourceTree = "<group>"; };
 		69868BC41460F34A004C5D9B /* libgpg-error.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libgpg-error.a"; sourceTree = "<group>"; };
 		69868BC61460F37E004C5D9B /* gpg-error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "gpg-error.h"; sourceTree = "<group>"; };
@@ -47,6 +51,7 @@
 				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
 				69868BC31460F343004C5D9B /* libgcrypt.a in Frameworks */,
 				69868BC51460F34A004C5D9B /* libgpg-error.a in Frameworks */,
+				6926A9BD146C608900F69705 /* libz.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +80,7 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6926A9BC146C608900F69705 /* libz.a */,
 				69868BC41460F34A004C5D9B /* libgpg-error.a */,
 				69868BC21460F343004C5D9B /* libgcrypt.a */,
 				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
@@ -98,6 +104,7 @@
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				6926A9BE146C609200F69705 /* zlib.h */,
 				69868BC81460F386004C5D9B /* gcrypt-module.h */,
 				69868BC91460F386004C5D9B /* gcrypt.h */,
 				69868BC61460F37E004C5D9B /* gpg-error.h */,
@@ -120,6 +127,7 @@
 				69269F2614620D0F00F69705 /* packet_test.h in Headers */,
 				69269F2814620D0F00F69705 /* packet.h in Headers */,
 				6926A663146B38F200F69705 /* keychain.h in Headers */,
+				6926A9BF146C609200F69705 /* zlib.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

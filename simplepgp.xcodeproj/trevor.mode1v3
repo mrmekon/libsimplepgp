@@ -299,7 +299,7 @@
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>-1349 580 1174 810 -1680 385 1680 1050 </string>
+						<string>-1248 490 1174 810 -1680 385 1680 1050 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -329,7 +329,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>6926A9A7146C4F6200F69705</string>
+										<string>6926ABB1146C965700F69705</string>
 										<key>history</key>
 										<array>
 											<string>69868BD11460F42D004C5D9B</string>
@@ -337,12 +337,13 @@
 											<string>69868C931460F7C3004C5D9B</string>
 											<string>69269F5214620FC500F69705</string>
 											<string>69269F5314620FC500F69705</string>
-											<string>6926A15B146350B600F69705</string>
 											<string>6926A6D0146B44A300F69705</string>
 											<string>6926A6E1146B44E000F69705</string>
-											<string>6926A6E2146B44E000F69705</string>
-											<string>6926A97D146C463400F69705</string>
-											<string>6926A98E146C48EB00F69705</string>
+											<string>6926A9C7146C658300F69705</string>
+											<string>6926AA5A146C817F00F69705</string>
+											<string>6926AA91146C83FA00F69705</string>
+											<string>6926AAD4146C882900F69705</string>
+											<string>6926AB85146C935300F69705</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -356,7 +357,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {966, 675}}</string>
 								<key>RubberWindowFrame</key>
-								<string>-1349 580 1174 810 -1680 385 1680 1050 </string>
+								<string>-1248 490 1174 810 -1680 385 1680 1050 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -376,7 +377,7 @@
 								<key>Frame</key>
 								<string>{{0, 680}, {966, 89}}</string>
 								<key>RubberWindowFrame</key>
-								<string>-1349 580 1174 810 -1680 385 1680 1050 </string>
+								<string>-1248 490 1174 810 -1680 385 1680 1050 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -545,7 +546,7 @@
 		<string>/Users/trevor/Documents/Cocoa Projects/libsimplepgp/simplepgp.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>-1349 580 1174 810 -1680 385 1680 1050 </string>
+	<string>-1248 490 1174 810 -1680 385 1680 1050 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -637,7 +638,7 @@
 			<key>WindowToolGUID</key>
 			<string>69868B2D1460E71D004C5D9B</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>

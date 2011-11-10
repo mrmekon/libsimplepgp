@@ -87,10 +87,15 @@ static spgp_packet_t *spgp_next_secret_key_packet(spgp_packet_t *msg);
                 
 static uint8_t spgp_decrypt_secret_key(spgp_packet_t *pkt, 
                                 			 uint8_t *passphrase, uint32_t length);
+
+static uint8_t spgp_parse_compressed_packet(uint8_t *msg, 
+                                            uint32_t *idx, 
+          													 	      uint32_t length, 
+                                            spgp_packet_t *pkt);
                               
 static uint8_t spgp_parse_encrypted_packet(uint8_t *msg, 
                                            uint32_t *idx, 
-          														 		 uint32_t length, 
+          														 		 uint32_t *length, 
                                            spgp_packet_t *pkt);
                                  
 static spgp_packet_t *spgp_find_session_packet(spgp_packet_t *chain);
@@ -142,10 +147,81 @@ static uint8_t spgp_salt_length_for_hash_algo(uint8_t algo);
 ***********************************************************************/
 #pragma mark External Function Definitions
 
+static spgp_packet_t* spgp_packet_decode_loop(uint8_t *message, uint32_t *idx, uint32_t length) {
+	spgp_packet_t *head = NULL;
+  spgp_packet_t *pkt = NULL;
+
+  // There must be at least one packet, yeah?
+  head = malloc(sizeof(*head));
+  if (NULL == head) RAISE(OUT_OF_MEMORY);
+  memset(head, 0, sizeof(*head));
+  pkt = head;
+  
+  // Loop to decode every packet in message
+  while (*idx < length-1) {
+   	// Every packet starts with a header
+    spgp_parse_header(message, idx, length, pkt);
+    if (!pkt->header) RAISE(FORMAT_UNSUPPORTED);
+    
+    // Decode packet contents based on the type marked in its header
+    switch (pkt->header->type) {
+    	case PKT_TYPE_USER_ID:
+      	spgp_parse_user_id(message, idx, length, pkt);
+        break;
+      case PKT_TYPE_PUBLIC_KEY:
+      case PKT_TYPE_PUBLIC_SUBKEY:
+      	spgp_parse_public_key(message, idx, length, pkt);
+        break;
+      case PKT_TYPE_SECRET_KEY:
+      case PKT_TYPE_SECRET_SUBKEY:
+        spgp_parse_secret_key(message, idx, length, pkt);
+        break;
+      case PKT_TYPE_SESSION:
+      	spgp_parse_session_packet(message, idx, length, pkt);
+      	break;
+      case PKT_TYPE_SYM_ENC_INT_DATA:
+      	spgp_parse_encrypted_packet(message, idx, &length, pkt);
+      	break;
+      case PKT_TYPE_COMPRESSED_DATA:
+      	spgp_parse_compressed_packet(message, idx, length, pkt);
+        break;
+      case PKT_TYPE_LITERAL_DATA:
+      	LOG_PRINT("Literal data\n");
+      default:
+        LOG_PRINT("WARNING: Unsupported packet type %u\n", pkt->header->type);
+        // Increment to next packet.  We add the contentLength, but subtract
+        // one parse_header() left us on the first byte of content.
+        if (*idx + pkt->header->contentLength - 1 < length)
+          *idx = *idx + pkt->header->contentLength - 1;
+        break;
+    }
+    
+    // If we're at the end of the buffer, we're done
+    if (*idx >= length-1) break;
+        
+    // A packet can contain other packets -- if such a thing was just decoded,
+    // new packets have already been added to the list.  Progress until we
+    // get to the end of the packet list.
+    while (pkt->next != NULL) pkt = pkt->next;
+        
+    // Allocate space for another packet
+    pkt->next = malloc(sizeof(*pkt->next));
+    if (NULL == pkt->next) RAISE(OUT_OF_MEMORY);
+    memset(pkt->next, 0, sizeof(*pkt->next));
+    pkt->next->prev = pkt; // make backwards pointer
+    pkt = pkt->next;
+    
+    // Packet parser increments to it's own last byte.  Need one more to get
+    // to the next packet's first byte. 
+    SAFE_IDX_INCREMENT(*idx, length);
+	}
+
+	return head;
+}
 
 spgp_packet_t *spgp_decode_message(uint8_t *message, uint32_t length) {
 	spgp_packet_t *head = NULL;
-  spgp_packet_t *pkt = NULL;
+//  spgp_packet_t *pkt = NULL;
   uint32_t idx = 0;
   
 	LOG_PRINT("begin\n");
@@ -164,6 +240,7 @@ spgp_packet_t *spgp_decode_message(uint8_t *message, uint32_t length) {
   	RAISE(INVALID_ARGS);
   }
   
+#if 0
   // There must be at least one packet, yeah?
   head = malloc(sizeof(*head));
   if (NULL == head) RAISE(OUT_OF_MEMORY);
@@ -173,17 +250,7 @@ spgp_packet_t *spgp_decode_message(uint8_t *message, uint32_t length) {
   
   // Loop to decode every packet in message
   while (idx < length-1) {
-  
-  	// Skip NULL bytes.  This is because 'partial packets' are a thing.  We
-    // should theoretically always be on a valid packet boundary when we get
-    // to this point.  However, if we are in the middle of processing a 
-    // 'partial packet' we might be looking at a sub-header here instead of
-    // the start of a new packet.  In the data packet decryption process, we
-    // replace the sub-header with zeroes so we can detect it here and skip
-    // over it.
-		while (message[idx] == 0) idx++;
-
-  	// Every packet starts with a header
+   	// Every packet starts with a header
     spgp_parse_header(message, &idx, length, pkt);
     if (!pkt->header) RAISE(FORMAT_UNSUPPORTED);
     
@@ -206,6 +273,9 @@ spgp_packet_t *spgp_decode_message(uint8_t *message, uint32_t length) {
       case PKT_TYPE_SYM_ENC_INT_DATA:
       	spgp_parse_encrypted_packet(message, &idx, length, pkt);
       	break;
+      case PKT_TYPE_COMPRESSED_DATA:
+      	spgp_parse_compressed_packet(message, &idx, length, pkt);
+        break;
       default:
         LOG_PRINT("WARNING: Unsupported packet type %u\n", pkt->header->type);
         // Increment to next packet.  We add the contentLength, but subtract
@@ -229,7 +299,10 @@ spgp_packet_t *spgp_decode_message(uint8_t *message, uint32_t length) {
     // to the next packet's first byte. 
     SAFE_IDX_INCREMENT(idx, length);
 	}
-    
+#endif
+
+	head = spgp_packet_decode_loop(message, &idx, length);
+
   end:
   LOG_PRINT("done\n");
   return head;
@@ -427,8 +500,10 @@ static uint8_t spgp_parse_header(uint8_t *msg, uint32_t *idx,
       case 1: pkt->header->headerLength = 3; break;
       case 2: pkt->header->headerLength = 5; break;
       default: 
-      	// "indeterminate length" is supported by OpenPGP, but not us.
-      	RAISE(FORMAT_UNSUPPORTED);
+      	// "indeterminate length" packet
+        LOG_PRINT("Indeterminate length packet\n");
+      	pkt->header->headerLength = 1;
+        pkt->header->contentLength = length-*idx-1;
     }
     for (i = 0; i < pkt->header->headerLength - 1; i++) {
     	pkt->header->contentLength <<= 8;
@@ -1017,9 +1092,117 @@ static uint8_t spgp_decrypt_secret_key(spgp_packet_t *pkt,
 	return err;
 }
 
+#include "zlib.h"
+static uint8_t spgp_zlib_decompress_buffer(uint8_t *inbuf, uint32_t inlen,
+                                           uint8_t **outbuf, uint32_t *outlen,
+                                           uint8_t algo) {
+	uint32_t maxsize;
+	z_stream s;
+  uint8_t *tmpbuf;
+  int wbits;
+  int err;
+  int i;
+  
+  if (NULL == inbuf || inlen == 0 || NULL == outbuf || NULL == outlen)
+  	RAISE(INVALID_ARGS);
+  
+  maxsize = inlen * 100;
+  
+  *outbuf = malloc(maxsize);
+  if (NULL == *outbuf) RAISE(OUT_OF_MEMORY);
+  
+	s.zalloc = Z_NULL;
+	s.zfree = Z_NULL;
+	s.next_in = inbuf;
+	s.avail_in = inlen;
+	s.next_out = *outbuf;
+	s.avail_out = maxsize;
+
+	if (algo == COMPRESSION_ZIP) wbits = -15;
+  else wbits = 15;
+	if (inflateInit2(&s, wbits) != Z_OK) RAISE(ZLIB_ERROR);
+
+  for (i = s.total_out; i < maxsize; i++)
+  	(*outbuf)[i] = 0x55;
+  
+  LOG_PRINT("Inflating up to %u bytes\n", maxsize);
+  while ((err = inflate(&s, Z_NO_FLUSH)) != Z_STREAM_END) {
+  	if (err != Z_OK) RAISE(ZLIB_ERROR);
+    if (s.avail_in == 0) break; // Done
+		// If we're here, our output buffer isn't large enough
+    maxsize <<= 1; // double size
+		tmpbuf = *outbuf;
+    *outbuf = realloc(*outbuf, maxsize);
+    if (NULL == *outbuf) {
+    	free(tmpbuf);
+      RAISE(OUT_OF_MEMORY);
+    }
+    s.next_out = *outbuf + s.total_out;
+    for (i = s.total_out; i < maxsize; i++)
+    	(*outbuf)[i] = 0x55;
+		s.avail_out = maxsize - s.total_out;
+    LOG_PRINT("Grew to up to %u bytes\n", maxsize);
+  }
+  LOG_PRINT("Total inflated bytes: %lu\n", s.total_out);
+  *outlen = s.total_out;
+  
+  if (inflateEnd(&s) != Z_OK) RAISE(ZLIB_ERROR);
+  
+  return 0;
+}
+
+static uint8_t spgp_parse_compressed_packet(uint8_t *msg, 
+                                            uint32_t *idx, 
+          													 	      uint32_t length, 
+                                            spgp_packet_t *pkt) {
+  int algo;
+  spgp_packet_t *pkts;
+  uint8_t *decomp;
+  uint32_t decomp_len;
+  uint32_t didx;
+
+
+  if (NULL == msg || NULL == idx || length == 0 || NULL == pkt)
+  	RAISE(INVALID_ARGS);
+     
+  algo = msg[*idx];
+  SAFE_IDX_INCREMENT(*idx, length);
+  switch (algo) {
+    case 1:
+    	LOG_PRINT("ZIP compressed packet\n");
+      spgp_zlib_decompress_buffer(msg+*idx, pkt->header->contentLength,
+                                  &decomp, &decomp_len, algo);
+      break;
+    case 2:
+    	LOG_PRINT("ZLIB compressed packet\n");
+      spgp_zlib_decompress_buffer(msg+*idx, pkt->header->contentLength,
+                                  &decomp, &decomp_len, algo);
+      break;
+    default:
+    	LOG_PRINT("Unsupported packet compression: %u\n", algo);
+      RAISE(FORMAT_UNSUPPORTED);
+  }
+  
+  
+  // Decode all the packets in this compressed packet        
+	didx = 0;
+  pkts = spgp_packet_decode_loop(decomp, &didx, decomp_len);
+  if (NULL == pkts) RAISE(INCOMPLETE_PACKET);
+  
+  // Add packets to the current chain
+  pkt->next = pkts;
+  pkts->prev = pkt;
+  
+  // Progress index through current chain
+  *idx += pkt->header->contentLength;
+ 
+	return 0;
+}
+
+
 static uint8_t spgp_parse_encrypted_packet(uint8_t *msg, 
                                            uint32_t *idx, 
-          														 		 uint32_t length, 
+          														 		 uint32_t *length, 
                                            spgp_packet_t *pkt) {
   spgp_packet_t *session_pkt;
   spgp_session_pkt_t *session;
@@ -1029,16 +1212,15 @@ static uint8_t spgp_parse_encrypted_packet(uint8_t *msg,
   unsigned long blksize;
   uint32_t encbytes;
   uint32_t startidx;
-  uint32_t i;
   uint8_t headerlen;
   uint8_t is_done;
   uint8_t is_partial;
   
-  if (NULL == msg || NULL == idx || length == 0 || NULL == pkt)
+  if (NULL == msg || NULL == idx || *length == 0 || NULL == pkt)
   	RAISE(INVALID_ARGS);
     
   version = msg[*idx];
-  SAFE_IDX_INCREMENT(*idx, length);
+  SAFE_IDX_INCREMENT(*idx, *length);
   
   // As of this writing, only version 1 exists
   if (version != 1) RAISE(FORMAT_UNSUPPORTED);
@@ -1056,25 +1238,25 @@ static uint8_t spgp_parse_encrypted_packet(uint8_t *msg,
   
   // Drop 1 from contentLength to account for version
   encbytes = pkt->header->contentLength - 1;
+
+  err = gcry_cipher_open (&cipher_hd, 
+          spgp_pgp_to_gcrypt_symmetric_algo(session->symAlgo),
+          GCRY_CIPHER_MODE_CFB,
+          (GCRY_CIPHER_SECURE | GCRY_CIPHER_ENABLE_SYNC |
+          GCRY_CIPHER_ENABLE_SYNC));
+  blksize = spgp_iv_length_for_symmetric_algo(session->symAlgo);
+  err |= gcry_cipher_setkey(cipher_hd, session->key, session->keylen);
+  err |= gcry_cipher_setiv(cipher_hd, 0, blksize);
+  if (err) RAISE(GCRY_ERROR);
   
   // Since data packets can have partial length, we loop and decrypt
   // here until the whole blasted thing is decrypted.
   while (!is_done) {
-    err = gcry_cipher_open (&cipher_hd, 
-            spgp_pgp_to_gcrypt_symmetric_algo(session->symAlgo),
-            GCRY_CIPHER_MODE_CFB,
-            (GCRY_CIPHER_SECURE | GCRY_CIPHER_ENABLE_SYNC |
-            GCRY_CIPHER_ENABLE_SYNC));
-           
-    blksize = spgp_iv_length_for_symmetric_algo(session->symAlgo);
-           
-    err |= gcry_cipher_setkey(cipher_hd, session->key, session->keylen);
-    err |= gcry_cipher_setiv(cipher_hd, 0, blksize);
-    err |= gcry_cipher_decrypt(cipher_hd, 
-          	                   msg+*idx, 
-                               encbytes, 
-                               NULL, 
-                               0);
+    err = gcry_cipher_decrypt(cipher_hd, 
+                              msg+*idx, 
+                              encbytes, 
+                              NULL, 
+                              0);
     if (err) RAISE(GCRY_ERROR);
     
     *idx += encbytes - 1; // increment to last byte of data
@@ -1086,18 +1268,28 @@ static uint8_t spgp_parse_encrypted_packet(uint8_t *msg,
     }
     
     // We are processing a partial packet, so figure out next length
-	  SAFE_IDX_INCREMENT(*idx, length); // inc to first byte of header
+	  SAFE_IDX_INCREMENT(*idx, *length); // inc to first byte of header
     encbytes = spgp_new_header_length(msg+*idx, 
                						            &(headerlen),
                           						&(is_partial));
-    // Change the header bytes to zero so the packet parser knows to skip them
-    // later.
-    for (i = 0; i < headerlen; i++) {
-    	msg[*idx + i] = 0x00;
-    }
-    // Move ahead to the next data byte
-    *idx += headerlen - 2;
-	  SAFE_IDX_INCREMENT(*idx, length); // inc to first byte of data
+    LOG_PRINT("%u more bytes\n", encbytes);
+
+  	// Fuck everything and everyone.  Partial lengths are the enemy of
+    // gentlemen.  We shall kill it brutishly, by moving everything down.
+    // God help you if your buffer is massive.
+    //
+    // The issue here is that a packet can technically be massive -- like
+    // exabytes -- and that's still valid by the OpenPGP spec.  You can't
+    // depend on the ability to create temporary buffers to stick this stuff
+    // in.  But if you leave it in the original buffer, the sub-packets won't
+    // know if there are "partial body length" headers jammed in the middle of
+    // their data.  
+    //
+    // The only proper solution is some sort of dynamic stream data structure,
+    // but it's too late for that now.  memmove() will have to do.  If your
+    // packet is gigabytes long, this is going to take a while.
+    memmove(msg+*idx, msg+*idx+headerlen-1, *length-(*idx+headerlen-1));
+    *length -= headerlen-1;
   }
 
 	// Validate decryption with PGP's MDC doo-hickey.  
@@ -1105,6 +1297,7 @@ static uint8_t spgp_parse_encrypted_packet(uint8_t *msg,
   	LOG_PRINT("Decrypted data block fails validation!\n");
     RAISE(DECRYPT_FAILED);
   }
+  LOG_PRINT("Decrypt succeeded.\n");
 
   // At this point, msg has been decrypted in place and now contains
   // a bunch of packets.  Since it was decoded in place, and since we're

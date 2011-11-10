@@ -113,6 +113,7 @@ typedef enum {
   DECRYPT_FAILED,
   GCRY_ERROR,
   KEYCHAIN_ERROR,
+  ZLIB_ERROR,
 } spgp_error_t;
 
 typedef enum {
@@ -157,6 +158,13 @@ typedef enum {
   HASH_ALGO_SHA512,
   HASH_ALGO_SHA224,
 } spgp_hash_algo_t;
+
+typedef enum {
+	COMPRESSION_UNCOMPRESSED   = 0,
+  COMPRESSION_ZIP,
+  COMPRESSION_ZLIB,
+  COMPRESSION_BZIP2,
+} spgp_compression_t;
 
 typedef enum {
 	S2K_TYPE_SIMPLE            = 0,
