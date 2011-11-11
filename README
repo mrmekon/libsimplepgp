@@ -1,0 +1,30 @@
+libsimplepgp - C library for parsing OpenPGP messages.  
+
+Copyright 2011 Trevor Bentley
+Provided under Apache License, Version 2.0
+See LICENSE file for details
+
+libsimplepgp is a library for loading PGP keys and decrypting PGP messages.
+
+Instead of aiming to support the entire OpenPGP standard, as GnuPG does, this 
+project aims to support only the most common PGP message formats used for 
+encrypting e-mail messages.  
+
+Initial goals are:
+ * Parse secret and public keys
+ * Store secret keys in an in-memory keychain
+ * Decrypt message formats commonly found in e-mail communication:
+   - DSA/Elgamal asymmetric keys
+   - TripleDES, CAST5, and AES-256 symmetric ciphers
+   - SHA-1 hashes
+   - ZIP and ZLIB compression
+   
+Known limitations:
+ * No support for RSA keys
+ * No support for creating messages (encryption)
+ * No support for validating signatures
+ * No support for old formats, or deprecated message types
+
+Note that this is a C library, but currently the build script is an Xcode 
+project for OS X.  I want the code to be semi-portable, but this library is a 
+subset of an iOS project.

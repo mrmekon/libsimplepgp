@@ -3,7 +3,20 @@
  *  libsimplepgp
  *
  *  Created by Trevor Bentley on 11/1/11.
- *  Copyright 2011 Trevor Bentley. All rights reserved.
+ *
+ *  Copyright 2011 Trevor Bentley
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
  *
  */
  
@@ -27,6 +40,7 @@ typedef struct spgp_public_packet_struct  spgp_public_pkt_t;
 typedef struct spgp_secret_packet_struct  spgp_secret_pkt_t;
 typedef struct spgp_userid_packet_struct  spgp_userid_pkt_t;
 typedef struct spgp_session_packet_struct spgp_session_pkt_t;
+typedef struct spgp_literal_packet_struct spgp_literal_pkt_t;
 
 struct spgp_packet_header_struct {
 	spgp_packet_t *parent;
@@ -45,6 +59,7 @@ struct spgp_packet_struct {
   	spgp_secret_pkt_t  *secret;
     spgp_userid_pkt_t  *userid;
     spgp_session_pkt_t *session;
+    spgp_literal_pkt_t *literal;
   } c;
 	spgp_packet_t *next;
   spgp_packet_t *prev;
@@ -56,6 +71,13 @@ struct spgp_mpi_struct {
   uint32_t count;
 	spgp_mpi_t *next;
 }; 
+
+struct spgp_literal_packet_struct {
+	char *filename;
+	char *data;
+  uint32_t dataLen;
+  uint32_t filenameLen;
+};
 
 struct spgp_userid_packet_struct {
 	uint8_t *data;

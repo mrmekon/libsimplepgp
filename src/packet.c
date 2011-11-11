@@ -3,7 +3,20 @@
  *  libsimplepgp
  *
  *  Created by Trevor Bentley on 11/1/11.
- *  Copyright 2011 Trevor Bentley. All rights reserved.
+ *
+ *  Copyright 2011 Trevor Bentley
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
  *
  */
 
@@ -60,6 +73,10 @@ uint8_t debug_log_enabled = 0;
 **
 ***********************************************************************/
 
+static spgp_packet_t* spgp_packet_decode_loop(uint8_t *message, 
+																							uint32_t *idx, 
+                                              uint32_t length);
+                                              
 static uint8_t spgp_parse_header(uint8_t *msg, uint32_t *idx, 
 														uint32_t length, spgp_packet_t *pkt);
 
@@ -97,7 +114,12 @@ static uint8_t spgp_parse_encrypted_packet(uint8_t *msg,
                                            uint32_t *idx, 
           														 		 uint32_t *length, 
                                            spgp_packet_t *pkt);
-                                 
+             
+static uint8_t spgp_parse_literal_packet(uint8_t *msg, 
+                                         uint32_t *idx, 
+          													 		 uint32_t length, 
+                                         spgp_packet_t *pkt);
+                                                     
 static spgp_packet_t *spgp_find_session_packet(spgp_packet_t *chain);
          
 static uint8_t spgp_parse_session_packet(uint8_t *msg, uint32_t *idx, 
@@ -147,77 +169,6 @@ static uint8_t spgp_salt_length_for_hash_algo(uint8_t algo);
 ***********************************************************************/
 #pragma mark External Function Definitions
 
-static spgp_packet_t* spgp_packet_decode_loop(uint8_t *message, uint32_t *idx, uint32_t length) {
-	spgp_packet_t *head = NULL;
-  spgp_packet_t *pkt = NULL;
-
-  // There must be at least one packet, yeah?
-  head = malloc(sizeof(*head));
-  if (NULL == head) RAISE(OUT_OF_MEMORY);
-  memset(head, 0, sizeof(*head));
-  pkt = head;
-  
-  // Loop to decode every packet in message
-  while (*idx < length-1) {
-   	// Every packet starts with a header
-    spgp_parse_header(message, idx, length, pkt);
-    if (!pkt->header) RAISE(FORMAT_UNSUPPORTED);
-    
-    // Decode packet contents based on the type marked in its header
-    switch (pkt->header->type) {
-    	case PKT_TYPE_USER_ID:
-      	spgp_parse_user_id(message, idx, length, pkt);
-        break;
-      case PKT_TYPE_PUBLIC_KEY:
-      case PKT_TYPE_PUBLIC_SUBKEY:
-      	spgp_parse_public_key(message, idx, length, pkt);
-        break;
-      case PKT_TYPE_SECRET_KEY:
-      case PKT_TYPE_SECRET_SUBKEY:
-        spgp_parse_secret_key(message, idx, length, pkt);
-        break;
-      case PKT_TYPE_SESSION:
-      	spgp_parse_session_packet(message, idx, length, pkt);
-      	break;
-      case PKT_TYPE_SYM_ENC_INT_DATA:
-      	spgp_parse_encrypted_packet(message, idx, &length, pkt);
-      	break;
-      case PKT_TYPE_COMPRESSED_DATA:
-      	spgp_parse_compressed_packet(message, idx, length, pkt);
-        break;
-      case PKT_TYPE_LITERAL_DATA:
-      	LOG_PRINT("Literal data\n");
-      default:
-        LOG_PRINT("WARNING: Unsupported packet type %u\n", pkt->header->type);
-        // Increment to next packet.  We add the contentLength, but subtract
-        // one parse_header() left us on the first byte of content.
-        if (*idx + pkt->header->contentLength - 1 < length)
-          *idx = *idx + pkt->header->contentLength - 1;
-        break;
-    }
-    
-    // If we're at the end of the buffer, we're done
-    if (*idx >= length-1) break;
-        
-    // A packet can contain other packets -- if such a thing was just decoded,
-    // new packets have already been added to the list.  Progress until we
-    // get to the end of the packet list.
-    while (pkt->next != NULL) pkt = pkt->next;
-        
-    // Allocate space for another packet
-    pkt->next = malloc(sizeof(*pkt->next));
-    if (NULL == pkt->next) RAISE(OUT_OF_MEMORY);
-    memset(pkt->next, 0, sizeof(*pkt->next));
-    pkt->next->prev = pkt; // make backwards pointer
-    pkt = pkt->next;
-    
-    // Packet parser increments to it's own last byte.  Need one more to get
-    // to the next packet's first byte. 
-    SAFE_IDX_INCREMENT(*idx, length);
-	}
-
-	return head;
-}
 
 spgp_packet_t *spgp_decode_message(uint8_t *message, uint32_t length) {
 	spgp_packet_t *head = NULL;
@@ -394,6 +345,23 @@ void spgp_free_packet(spgp_packet_t **pkt) {
     free((*pkt)->c.secret);
     (*pkt)->c.secret = NULL;
   }
+  
+  else if (((*pkt)->header->type == PKT_TYPE_PUBLIC_KEY ||
+            (*pkt)->header->type == PKT_TYPE_PUBLIC_SUBKEY) &&
+            (*pkt)->c.pub != NULL) {
+  	if ((*pkt)->c.pub->mpiCount > 0) {
+    	curMpi = (*pkt)->c.pub->mpiHead;
+      while (curMpi->next) {
+      	nextMpi = curMpi->next;
+        if (curMpi->data) free(curMpi->data);
+        free(curMpi);
+        curMpi = nextMpi;
+      }
+      (*pkt)->c.pub->mpiHead = NULL;
+      (*pkt)->c.pub->mpiCount = 0;
+    }            
+  }
+  
   else if ((*pkt)->header->type == PKT_TYPE_USER_ID &&
   				 (*pkt)->c.userid->data != NULL) {
   	free((*pkt)->c.userid->data);
@@ -401,6 +369,34 @@ void spgp_free_packet(spgp_packet_t **pkt) {
     
     free((*pkt)->c.userid);
     (*pkt)->c.userid = NULL;
+  }
+  
+  else if ((*pkt)->header->type == PKT_TYPE_SESSION &&
+  				 (*pkt)->c.session != NULL) {
+  	if ((*pkt)->c.session->key) {
+    	free((*pkt)->c.session->key);
+      (*pkt)->c.session->key = NULL;
+    }
+  	if ((*pkt)->c.session->mpi1) {
+    	free((*pkt)->c.session->mpi1);
+      (*pkt)->c.session->mpi1 = NULL;
+    }
+  	if ((*pkt)->c.session->mpi2) {
+    	free((*pkt)->c.session->mpi2);
+      (*pkt)->c.session->mpi2 = NULL;
+    }
+  }
+  
+  else if ((*pkt)->header->type == PKT_TYPE_LITERAL_DATA &&
+  				 (*pkt)->c.literal != NULL) {
+  	if ((*pkt)->c.literal->filename) {
+    	free((*pkt)->c.literal->filename);
+      (*pkt)->c.literal->filename = NULL;
+    }
+  	if ((*pkt)->c.literal->data) {
+    	free((*pkt)->c.literal->data);
+      (*pkt)->c.literal->data = NULL;
+    }
   }
   
   // release header
@@ -453,6 +449,81 @@ void spgp_debug_log_set(uint8_t enable) {
 ***********************************************************************/
 #pragma mark Static Function Definitions
 
+
+static spgp_packet_t* spgp_packet_decode_loop(uint8_t *message, 
+																							uint32_t *idx, 
+                                              uint32_t length) {
+	spgp_packet_t *head = NULL;
+  spgp_packet_t *pkt = NULL;
+
+  // There must be at least one packet, yeah?
+  head = malloc(sizeof(*head));
+  if (NULL == head) RAISE(OUT_OF_MEMORY);
+  memset(head, 0, sizeof(*head));
+  pkt = head;
+  
+  // Loop to decode every packet in message
+  while (*idx < length-1) {
+   	// Every packet starts with a header
+    spgp_parse_header(message, idx, length, pkt);
+    if (!pkt->header) RAISE(FORMAT_UNSUPPORTED);
+    
+    // Decode packet contents based on the type marked in its header
+    switch (pkt->header->type) {
+    	case PKT_TYPE_USER_ID:
+      	spgp_parse_user_id(message, idx, length, pkt);
+        break;
+      case PKT_TYPE_PUBLIC_KEY:
+      case PKT_TYPE_PUBLIC_SUBKEY:
+      	spgp_parse_public_key(message, idx, length, pkt);
+        break;
+      case PKT_TYPE_SECRET_KEY:
+      case PKT_TYPE_SECRET_SUBKEY:
+        spgp_parse_secret_key(message, idx, length, pkt);
+        break;
+      case PKT_TYPE_SESSION:
+      	spgp_parse_session_packet(message, idx, length, pkt);
+      	break;
+      case PKT_TYPE_SYM_ENC_INT_DATA:
+      	spgp_parse_encrypted_packet(message, idx, &length, pkt);
+      	break;
+      case PKT_TYPE_COMPRESSED_DATA:
+      	spgp_parse_compressed_packet(message, idx, length, pkt);
+        break;
+      case PKT_TYPE_LITERAL_DATA:
+      	spgp_parse_literal_packet(message, idx, length, pkt);
+        break;
+      default:
+        LOG_PRINT("WARNING: Unsupported packet type %u\n", pkt->header->type);
+        // Increment to next packet.  We add the contentLength, but subtract
+        // one parse_header() left us on the first byte of content.
+        if (*idx + pkt->header->contentLength - 1 < length)
+          *idx = *idx + pkt->header->contentLength - 1;
+        break;
+    }
+    
+    // If we're at the end of the buffer, we're done
+    if (*idx >= length-1) break;
+        
+    // A packet can contain other packets -- if such a thing was just decoded,
+    // new packets have already been added to the list.  Progress until we
+    // get to the end of the packet list.
+    while (pkt->next != NULL) pkt = pkt->next;
+        
+    // Allocate space for another packet
+    pkt->next = malloc(sizeof(*pkt->next));
+    if (NULL == pkt->next) RAISE(OUT_OF_MEMORY);
+    memset(pkt->next, 0, sizeof(*pkt->next));
+    pkt->next->prev = pkt; // make backwards pointer
+    pkt = pkt->next;
+    
+    // Packet parser increments to it's own last byte.  Need one more to get
+    // to the next packet's first byte. 
+    SAFE_IDX_INCREMENT(*idx, length);
+	}
+
+	return head;
+}
 
 static uint8_t spgp_parse_header(uint8_t *msg, uint32_t *idx, 
 														uint32_t length, spgp_packet_t *pkt) {
@@ -1183,6 +1254,7 @@ static uint8_t spgp_parse_compressed_packet(uint8_t *msg,
       RAISE(FORMAT_UNSUPPORTED);
   }
   
+  if (NULL == decomp) RAISE(DECRYPT_FAILED);
   
   // Decode all the packets in this compressed packet        
 	didx = 0;
@@ -1192,6 +1264,9 @@ static uint8_t spgp_parse_compressed_packet(uint8_t *msg,
   // Add packets to the current chain
   pkt->next = pkts;
   pkts->prev = pkt;
+  
+  free(decomp);
+  decomp = NULL;
   
   // Progress index through current chain
   *idx += pkt->header->contentLength;
@@ -1315,6 +1390,60 @@ static uint8_t spgp_parse_encrypted_packet(uint8_t *msg,
 	return 0;
 }
 
+static uint8_t spgp_parse_literal_packet(uint8_t *msg, 
+                                         uint32_t *idx, 
+          													 		 uint32_t length, 
+                                         spgp_packet_t *pkt) {
+	spgp_literal_pkt_t *literal = NULL;
+  uint32_t date;
+  uint32_t startidx;
+  uint8_t format;
+  
+  LOG_PRINT("Parsing literal packet\n");
+
+	if (NULL == msg || NULL == idx || NULL == pkt || length == 0)                              
+  	RAISE(INVALID_ARGS);
+
+	startidx = *idx;
+
+  pkt->c.literal = malloc(sizeof(*(pkt->c.literal)));
+  if (NULL == pkt->c.literal) RAISE(OUT_OF_MEMORY);
+  memset(pkt->c.literal, 0, sizeof(*(pkt->c.literal)));
+  literal = pkt->c.literal;                                       
+
+	// Read the format of the message.  This is ignored.
+	format = msg[*idx];
+  SAFE_IDX_INCREMENT(*idx, length);
+
+	// Read the length byte of the fylename
+	literal->filenameLen = msg[*idx];
+  SAFE_IDX_INCREMENT(*idx, length);
+  
+  // Read the filename
+  literal->filename = malloc(literal->filenameLen + 1);
+  if (NULL == literal->filename) RAISE(OUT_OF_MEMORY);
+  memcpy(literal->filename, msg+*idx, literal->filenameLen);
+  literal->filename[literal->filenameLen] = '\0';
+  *idx += literal->filenameLen - 1;
+	SAFE_IDX_INCREMENT(*idx, length);
+  
+  // Read the timestamp.  This is ignored.
+  memcpy(&date, msg+*idx, sizeof(date));
+  *idx += 3;
+  SAFE_IDX_INCREMENT(*idx, length);
+  
+  // Read the actual data in to buffer
+  literal->dataLen = pkt->header->contentLength - (*idx - startidx);
+  literal->data = malloc(literal->dataLen);
+  if (NULL == literal->data) RAISE(OUT_OF_MEMORY);
+  memcpy(literal->data, msg+*idx, literal->dataLen);
+  *idx += literal->dataLen - 1;
+  
+  LOG_PRINT("Stored %u bytes\n", literal->dataLen);
+  
+	return 0;
+}
+                                         
 static spgp_packet_t *spgp_find_session_packet(spgp_packet_t *chain) {
 	spgp_packet_t *cur;
   
