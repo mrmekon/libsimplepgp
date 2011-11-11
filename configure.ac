@@ -3,13 +3,14 @@
 
 AC_PREREQ([2.68])
 AC_INIT([libsimplepgp], [1.0], [trevor@trevorbentley.com])
-AM_INIT_AUTOMAKE([libsimplepgp], [1.0])
 
-AC_COPYRIGHT(Apache License V2.0)
+AC_COPYRIGHT(Trevor Bentley 2011)
 
-AC_CONFIG_SRCDIR([gcrypt-module.h])
+AC_CONFIG_SRCDIR([src/packet.c])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([Makefile])
+
+AM_INIT_AUTOMAKE([subdir-objects foreign])
 
 AC_PROG_LIBTOOL
 
