@@ -20,7 +20,7 @@
  *
  */
 
-#include "packet.h"
+#include "simplepgp.h"
 #include "packet_private.h"
 #include "keychain.h"
 #include "util.h"

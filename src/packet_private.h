@@ -22,7 +22,7 @@
 
 #ifndef _PACKET_PRIVATE_H
 
-#include "packet.h"
+#include "simplepgp.h"
 #include "gcrypt.h"
 
 #include <stdio.h>

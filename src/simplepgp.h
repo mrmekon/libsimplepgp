@@ -1,5 +1,5 @@
 /*
- *  packet.h
+ *  simplepgp.h
  *  libsimplepgp
  *
  *  Created by Trevor Bentley on 11/1/11.

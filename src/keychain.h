@@ -24,7 +24,7 @@
 
 #include <stdint.h>
 #include <pthread.h>
-#include "packet.h"
+#include "simplepgp.h"
 
 
 uint8_t spgp_keychain_init(void);

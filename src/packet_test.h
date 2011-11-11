@@ -22,7 +22,7 @@
 
 #ifndef _PACKET_TEST_H
 
-#include "packet.h"
+#include "simplepgp.h"
 #include "packet_private.h"
 #include <stdint.h>
 #include <stdio.h>
