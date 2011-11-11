@@ -24,6 +24,7 @@ Known limitations:
  * No support for creating messages (encryption)
  * No support for validating signatures
  * No support for old formats, or deprecated message types
+ * Not thread-safe
 
 Note that this is a C library, but currently the build script is an Xcode 
 project for OS X.  I want the code to be semi-portable, but this library is a 

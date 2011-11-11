@@ -21,34 +21,17 @@
  */
 
 #include "packet.h"
-#include <stdio.h>
-#include <setjmp.h>
+#include "packet_private.h"
+#include "keychain.h"
+#include "util.h"
+#include "mpi.h"
+
 #include "gcrypt.h"
+
 #include <wchar.h>
 #include <locale.h>
-#include "keychain.h"
 #include <string.h>
 
-
-/**********************************************************************
-**
-** MACROS
-**
-***********************************************************************/
-#pragma mark Macros
-
-#define RAISE(err) do { \
-		_spgp_err = (err); \
-    LOG_PRINT("raise 0x%X\n",_spgp_err); \
-    longjmp(exception,_spgp_err); \
-  } while(0)
-
-#define SAFE_IDX_INCREMENT(idx,max) \
-	do{ \
-		if (++(idx)>=(max)) {\
-  		RAISE(BUFFER_OVERFLOW);\
-    } \
-  } while(0)
 
 
 /**********************************************************************
@@ -57,8 +40,8 @@
 **
 ***********************************************************************/
 
-static uint32_t _spgp_err;
-static jmp_buf exception;
+uint32_t _spgp_err;
+jmp_buf exception;
 
 #ifdef DEBUG_LOG_ENABLED
 uint8_t debug_log_enabled = 1;
@@ -128,21 +111,7 @@ static uint8_t spgp_parse_session_packet(uint8_t *msg, uint32_t *idx,
 static spgp_packet_t *spgp_secret_key_matching_id(spgp_packet_t *chain,
 																									uint8_t *keyid);
                                          
-static uint32_t spgp_mpi_length(uint8_t *mpi);
-                                                
-static spgp_mpi_t *spgp_read_mpi(uint8_t *msg, uint32_t *idx,
-														 uint32_t length);
-                             
-static uint8_t spgp_read_all_public_mpis(uint8_t *msg, 
-                                         uint32_t *idx,
-														 						 uint32_t length, 
-                                         spgp_public_pkt_t *pub);
-                                         
-static uint8_t spgp_read_all_secret_mpis(uint8_t *msg, 
-                                         uint32_t *idx,
-														 						 uint32_t length, 
-                                         spgp_secret_pkt_t *secret);
-                                         
+                                        
 static uint8_t spgp_read_salt(uint8_t *msg, 
                               uint32_t *idx,
                               uint32_t length, 
@@ -153,13 +122,6 @@ static uint8_t spgp_read_iv(uint8_t *msg,
                             uint32_t length, 
                             spgp_secret_pkt_t *secret);
                             
-static uint8_t spgp_pgp_to_gcrypt_symmetric_algo(uint8_t pgpalgo);
-                            
-static uint8_t spgp_iv_length_for_symmetric_algo(uint8_t algo);
-
-static uint8_t spgp_salt_length_for_hash_algo(uint8_t algo);
-
-
 
 
 /**********************************************************************
@@ -278,26 +240,6 @@ uint8_t spgp_decrypt_all_secret_keys(spgp_packet_t *msg,
   }
   
   end:
-  return err;
-}
-
-
-uint8_t spgp_load_keychain_with_keys(spgp_packet_t *msg) {
-	spgp_packet_t *cur = msg;
-  uint8_t err = 0;
-  
-	if (setjmp(exception)) {
-    	LOG_PRINT("Exception (0x%x)\n",_spgp_err);
-  	  goto end;
-  }
-
-	if (NULL == msg) RAISE(INVALID_ARGS);
-	while ((cur = spgp_next_secret_key_packet(cur)) != NULL) {
-  	LOG_PRINT("Adding key to keychain.\n");
-  	cur = cur->next;
-  }
-
-	end:
   return err;
 }
 
@@ -1669,132 +1611,5 @@ static uint8_t spgp_read_iv(uint8_t *msg,
 	return 0;
 }
 
-static uint8_t spgp_pgp_to_gcrypt_symmetric_algo(uint8_t pgpalgo) {
-  switch (pgpalgo) {
-  case 1: return GCRY_CIPHER_IDEA;
-  case 2: return GCRY_CIPHER_3DES;
-  case 3: return GCRY_CIPHER_CAST5;
-  case 4: return GCRY_CIPHER_BLOWFISH;
-  case 7: return GCRY_CIPHER_AES128;
-  case 8: return GCRY_CIPHER_AES192;
-  case 9: return GCRY_CIPHER_AES256;
-  case 10:return GCRY_CIPHER_TWOFISH;
-  default: return 0xFF;
-  }
-}
 
-static uint8_t spgp_iv_length_for_symmetric_algo(uint8_t algo) {
-	size_t ivlen = 0;
-	if (gcry_cipher_algo_info(spgp_pgp_to_gcrypt_symmetric_algo(algo), 
-  													GCRYCTL_GET_BLKLEN, 
-                            NULL, 
-                            &ivlen) != 0)
-  	RAISE(FORMAT_UNSUPPORTED);
-  return ivlen;
-}
-
-static uint8_t spgp_salt_length_for_hash_algo(uint8_t algo) {
-	if (algo == HASH_ALGO_SHA1) return 8;
-  else RAISE(FORMAT_UNSUPPORTED); // not implemented
-  return 0;
-}
-
-static uint8_t spgp_read_all_public_mpis(uint8_t *msg, 
-                                         uint32_t *idx,
-														 						 uint32_t length, 
-                                         spgp_public_pkt_t *pub) {
-  spgp_mpi_t *curMpi, *newMpi;
-  uint32_t i;
-  uint8_t mpiCount;
-  
-  if (NULL == msg || NULL == idx || 0 == length || NULL == pub)
-  	RAISE(INVALID_ARGS);
-
-	switch (pub->asymAlgo) {
-  	case ASYM_ALGO_DSA: mpiCount = 4; break;
-    case ASYM_ALGO_ELGAMAL: mpiCount = 3; break;
-    default: RAISE(FORMAT_UNSUPPORTED);
-  }
-
-  // Read all the MPIs
-  for (i = 0; i < mpiCount; i++) {
-  	// spgp_read_mpi() doesn't increment past the end of the MPI, so if this
-    // isn't the first pass we need to increment once more
-  	if (i) SAFE_IDX_INCREMENT(*idx, length);    
-    newMpi = spgp_read_mpi(msg, idx, length);
-    if (i == 0) {
-      pub->mpiHead = newMpi;
-      curMpi = pub->mpiHead;
-    }
-    else {
-      curMpi->next = newMpi;
-      curMpi = curMpi->next;
-    }
-  }
-  pub->mpiCount = mpiCount;
-  
-	return pub->mpiCount;
-}
-
-static uint8_t spgp_read_all_secret_mpis(uint8_t *msg, 
-                                         uint32_t *idx,
-														 						 uint32_t length, 
-                                         spgp_secret_pkt_t *secret) {
-  spgp_mpi_t *curMpi;
-  spgp_public_pkt_t *pub = (spgp_public_pkt_t*)secret;
-  
-  if (NULL == msg || NULL == idx || 0 == length || NULL == secret)
-  	RAISE(INVALID_ARGS);
-
-	// Set curMpi to last valid Mpi in linked list
-	curMpi = pub->mpiHead;
-  while (curMpi->next) curMpi = curMpi->next;
-
-  // Read all the MPIs
-	if (pub->asymAlgo == ASYM_ALGO_DSA) {
-  	// DSA secte MPIs: exponent x
-    curMpi->next = spgp_read_mpi(msg, idx, length);
-    pub->mpiCount++;
-	}
-  else {
-  	RAISE(FORMAT_UNSUPPORTED);
-  }
-  
-	return pub->mpiCount;
-}
-
-static uint32_t spgp_mpi_length(uint8_t *mpi) {
-	uint32_t bits;
-	if (NULL == mpi) RAISE(INVALID_ARGS);
-  bits = ((mpi[0] << 8) | mpi[1]);
-  return (bits+7)/8;  
-}
-
-static spgp_mpi_t *spgp_read_mpi(uint8_t *msg, uint32_t *idx,
-														 uint32_t length) {
-	spgp_mpi_t *mpi = NULL;
-  
-  if (NULL == msg || NULL == idx || 0 == length) RAISE(INVALID_ARGS);
-  
-  mpi = malloc(sizeof(*mpi));
-  if (NULL == mpi) RAISE(OUT_OF_MEMORY);
-  memset(mpi, 0, sizeof(*mpi));
-  
-  // First two bytes are big-endian count of bits in MPI
-  if (length - *idx < 2) RAISE(BUFFER_OVERFLOW);
-  mpi->bits = ((msg[*idx] << 8) | msg[*idx + 1]);
-  
-  mpi->count = (mpi->bits+7)/8;
-  LOG_PRINT("MPI Bits: %u\n", mpi->bits);
-  
-  // Allocate space for MPI data
-  mpi->data = malloc(mpi->count + 2);
-  if (NULL == mpi->data) RAISE(OUT_OF_MEMORY);
-  
-  // Copy data from input buffer to mpi buffer
-  memcpy(mpi->data, msg+*idx, mpi->count + 2);
-  *idx += mpi->count + 1;
-  
-  return mpi;
-}
 

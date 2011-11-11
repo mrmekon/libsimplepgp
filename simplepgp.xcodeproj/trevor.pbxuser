@@ -4,10 +4,11 @@
 		activeBuildConfigurationName = Debug;
 		activeTarget = D2AAC07D0554694100DB518D /* simplepgp */;
 		addToTargets = (
+			D2AAC07D0554694100DB518D /* simplepgp */,
 		);
 		breakpoints = (
 			69868C9D14618450004C5D9B /* packet.c:22 */,
-			69269F4E14620FC200F69705 /* packet.c:241 */,
+			69269F4E14620FC200F69705 /* packet.c:203 */,
 		);
 		codeSenseManager = 69868AD51460E35F004C5D9B /* Code sense */;
 		perUserDictionary = {
@@ -354,6 +355,51 @@
 			6926AC79146DC18500F69705 /* PBXTextBookmark */ = 6926AC79146DC18500F69705 /* PBXTextBookmark */;
 			6926AC7A146DC18500F69705 /* PBXTextBookmark */ = 6926AC7A146DC18500F69705 /* PBXTextBookmark */;
 			6926AC7B146DC18500F69705 /* PBXTextBookmark */ = 6926AC7B146DC18500F69705 /* PBXTextBookmark */;
+			6926AC89146DC61500F69705 /* PBXTextBookmark */ = 6926AC89146DC61500F69705 /* PBXTextBookmark */;
+			6926AC8A146DC61500F69705 /* PBXTextBookmark */ = 6926AC8A146DC61500F69705 /* PBXTextBookmark */;
+			6926AC8B146DC61500F69705 /* PBXTextBookmark */ = 6926AC8B146DC61500F69705 /* PBXTextBookmark */;
+			6926AC8C146DC61500F69705 /* PBXTextBookmark */ = 6926AC8C146DC61500F69705 /* PBXTextBookmark */;
+			6926AC8E146DC65400F69705 /* PBXTextBookmark */ = 6926AC8E146DC65400F69705 /* PBXTextBookmark */;
+			6926AC8F146DC65400F69705 /* PBXTextBookmark */ = 6926AC8F146DC65400F69705 /* PBXTextBookmark */;
+			6926AC90146DC65400F69705 /* PBXTextBookmark */ = 6926AC90146DC65400F69705 /* PBXTextBookmark */;
+			6926ACA6146DC70D00F69705 /* PBXTextBookmark */ = 6926ACA6146DC70D00F69705 /* PBXTextBookmark */;
+			6926ACA7146DC70D00F69705 /* PBXTextBookmark */ = 6926ACA7146DC70D00F69705 /* PBXTextBookmark */;
+			6926ACA8146DC70D00F69705 /* PBXTextBookmark */ = 6926ACA8146DC70D00F69705 /* PBXTextBookmark */;
+			6926ACA9146DC70D00F69705 /* PBXTextBookmark */ = 6926ACA9146DC70D00F69705 /* PBXTextBookmark */;
+			6926ACAA146DC70D00F69705 /* PBXTextBookmark */ = 6926ACAA146DC70D00F69705 /* PBXTextBookmark */;
+			6926ACAB146DC70D00F69705 /* PBXTextBookmark */ = 6926ACAB146DC70D00F69705 /* PBXTextBookmark */;
+			6926ACAC146DC70D00F69705 /* PBXTextBookmark */ = 6926ACAC146DC70D00F69705 /* PBXTextBookmark */;
+			6926ACAD146DC70D00F69705 /* PBXTextBookmark */ = 6926ACAD146DC70D00F69705 /* PBXTextBookmark */;
+			6926ACB6146DC76A00F69705 /* PBXTextBookmark */ = 6926ACB6146DC76A00F69705 /* PBXTextBookmark */;
+			6926ACB7146DC76A00F69705 /* PBXTextBookmark */ = 6926ACB7146DC76A00F69705 /* PBXTextBookmark */;
+			6926ACB8146DC76A00F69705 /* PBXTextBookmark */ = 6926ACB8146DC76A00F69705 /* PBXTextBookmark */;
+			6926ACB9146DC76A00F69705 /* PBXTextBookmark */ = 6926ACB9146DC76A00F69705 /* PBXTextBookmark */;
+			6926ACBC146DC78A00F69705 /* PBXTextBookmark */ = 6926ACBC146DC78A00F69705 /* PBXTextBookmark */;
+			6926ACBD146DC78A00F69705 /* PBXTextBookmark */ = 6926ACBD146DC78A00F69705 /* PBXTextBookmark */;
+			6926ACD7146DC8A000F69705 /* PBXTextBookmark */ = 6926ACD7146DC8A000F69705 /* PBXTextBookmark */;
+			6926ACD8146DC8A000F69705 /* PBXTextBookmark */ = 6926ACD8146DC8A000F69705 /* PBXTextBookmark */;
+			6926ACD9146DC8A000F69705 /* PBXTextBookmark */ = 6926ACD9146DC8A000F69705 /* PBXTextBookmark */;
+			6926ACDA146DC8A000F69705 /* PBXTextBookmark */ = 6926ACDA146DC8A000F69705 /* PBXTextBookmark */;
+			6926ACDB146DC8A000F69705 /* PBXTextBookmark */ = 6926ACDB146DC8A000F69705 /* PBXTextBookmark */;
+			6926ACDC146DC8A000F69705 /* PBXTextBookmark */ = 6926ACDC146DC8A000F69705 /* PBXTextBookmark */;
+			6926ACDD146DC8A000F69705 /* PBXTextBookmark */ = 6926ACDD146DC8A000F69705 /* PBXTextBookmark */;
+			6926ACDE146DC8A000F69705 /* PBXTextBookmark */ = 6926ACDE146DC8A000F69705 /* PBXTextBookmark */;
+			6926ACEE146DC91F00F69705 /* PBXTextBookmark */ = 6926ACEE146DC91F00F69705 /* PBXTextBookmark */;
+			6926ACEF146DC91F00F69705 /* PBXTextBookmark */ = 6926ACEF146DC91F00F69705 /* PBXTextBookmark */;
+			6926ACF0146DC91F00F69705 /* PBXTextBookmark */ = 6926ACF0146DC91F00F69705 /* PBXTextBookmark */;
+			6926ACF1146DC91F00F69705 /* PBXTextBookmark */ = 6926ACF1146DC91F00F69705 /* PBXTextBookmark */;
+			6926ACF2146DC91F00F69705 /* PBXTextBookmark */ = 6926ACF2146DC91F00F69705 /* PBXTextBookmark */;
+			6926ACF7146DC97F00F69705 /* PBXTextBookmark */ = 6926ACF7146DC97F00F69705 /* PBXTextBookmark */;
+			6926ACF8146DC97F00F69705 /* PBXTextBookmark */ = 6926ACF8146DC97F00F69705 /* PBXTextBookmark */;
+			6926ACF9146DC97F00F69705 /* PBXTextBookmark */ = 6926ACF9146DC97F00F69705 /* PBXTextBookmark */;
+			6926ACFA146DC97F00F69705 /* PBXTextBookmark */ = 6926ACFA146DC97F00F69705 /* PBXTextBookmark */;
+			6926ACFB146DC97F00F69705 /* PBXTextBookmark */ = 6926ACFB146DC97F00F69705 /* PBXTextBookmark */;
+			6926ACFC146DC97F00F69705 /* PBXTextBookmark */ = 6926ACFC146DC97F00F69705 /* PBXTextBookmark */;
+			6926ACFD146DC99E00F69705 /* PBXTextBookmark */ = 6926ACFD146DC99E00F69705 /* PBXTextBookmark */;
+			6926ACFE146DC99E00F69705 /* PBXTextBookmark */ = 6926ACFE146DC99E00F69705 /* PBXTextBookmark */;
+			6926AD0F146DC9D700F69705 /* PBXTextBookmark */ = 6926AD0F146DC9D700F69705 /* PBXTextBookmark */;
+			6926AD10146DC9D700F69705 /* PBXBookmark */ = 6926AD10146DC9D700F69705 /* PBXBookmark */;
+			6926AD11146DC9D700F69705 /* PBXTextBookmark */ = 6926AD11146DC9D700F69705 /* PBXTextBookmark */;
 			69868BD11460F42D004C5D9B = 69868BD11460F42D004C5D9B /* PBXTextBookmark */;
 			69868BD91460F468004C5D9B = 69868BD91460F468004C5D9B /* PBXTextBookmark */;
 			69868C931460F7C3004C5D9B = 69868C931460F7C3004C5D9B /* PBXTextBookmark */;
@@ -364,34 +410,34 @@
 	};
 	69269F2114620D0F00F69705 /* packet_test.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {905, 897}}";
-			sepNavSelRange = "{683, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {905, 871}}";
+			sepNavSelRange = "{716, 0}";
 			sepNavVisRange = "{0, 1509}";
 		};
 	};
 	69269F2214620D0F00F69705 /* packet_test.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {905, 618}}";
-			sepNavSelRange = "{683, 0}";
-			sepNavVisRange = "{0, 839}";
+			sepNavSelRange = "{763, 0}";
+			sepNavVisRange = "{0, 867}";
 		};
 	};
 	69269F2314620D0F00F69705 /* packet.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {509, 23660}}";
-			sepNavSelRange = "{48986, 0}";
-			sepNavVisRange = "{39463, 248}";
+			sepNavIntBoundsRect = "{{0, 0}, {905, 21710}}";
+			sepNavSelRange = "{78, 606}";
+			sepNavVisRange = "{0, 1153}";
 			sepNavWindowFrame = "{{139, 11}, {1136, 746}}";
 		};
 	};
 	69269F2414620D0F00F69705 /* packet.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {905, 2691}}";
-			sepNavSelRange = "{80, 0}";
-			sepNavVisRange = "{0, 1540}";
+			sepNavIntBoundsRect = "{{0, 0}, {905, 1157}}";
+			sepNavSelRange = "{81, 603}";
+			sepNavVisRange = "{0, 1510}";
 		};
 	};
-	69269F4E14620FC200F69705 /* packet.c:241 */ = {
+	69269F4E14620FC200F69705 /* packet.c:203 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -403,7 +449,7 @@
 		functionName = "spgp_decode_message()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 241;
+		lineNumber = 203;
 		location = duckdog;
 		modificationTime = 342734490.62607;
 		originalNumberOfMultipleMatches = 1;
@@ -454,7 +500,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 76";
 		rLen = 0;
-		rLoc = 2933;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 902;
 		vrLoc = 1034;
@@ -464,7 +510,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 816";
 		rLen = 0;
-		rLoc = 30811;
+		rLoc = 29058;
 		rType = 0;
 		vrLen = 1446;
 		vrLoc = 24434;
@@ -474,7 +520,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 820";
 		rLen = 0;
-		rLoc = 30979;
+		rLoc = 29226;
 		rType = 0;
 		vrLen = 1479;
 		vrLoc = 24016;
@@ -484,7 +530,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 791";
 		rLen = 0;
-		rLoc = 29978;
+		rLoc = 28225;
 		rType = 0;
 		vrLen = 1529;
 		vrLoc = 27306;
@@ -494,7 +540,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 179";
 		rLen = 0;
-		rLoc = 7446;
+		rLoc = 6086;
 		rType = 0;
 		vrLen = 1966;
 		vrLoc = 4084;
@@ -504,7 +550,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 960";
 		rLen = 0;
-		rLoc = 52644;
+		rLoc = 50823;
 		rType = 0;
 		vrLen = 1655;
 		vrLoc = 28491;
@@ -514,7 +560,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 975";
 		rLen = 0;
-		rLoc = 53116;
+		rLoc = 50823;
 		rType = 0;
 		vrLen = 1799;
 		vrLoc = 28668;
@@ -524,7 +570,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 974";
 		rLen = 0;
-		rLoc = 53062;
+		rLoc = 50823;
 		rType = 0;
 		vrLen = 1802;
 		vrLoc = 28668;
@@ -534,7 +580,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 672";
 		rLen = 0;
-		rLoc = 25746;
+		rLoc = 23993;
 		rType = 0;
 		vrLen = 2232;
 		vrLoc = 19150;
@@ -544,7 +590,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 672";
 		rLen = 0;
-		rLoc = 25746;
+		rLoc = 23993;
 		rType = 0;
 		vrLen = 2232;
 		vrLoc = 19150;
@@ -554,7 +600,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 671";
 		rLen = 0;
-		rLoc = 25704;
+		rLoc = 23951;
 		rType = 0;
 		vrLen = 2244;
 		vrLoc = 19150;
@@ -564,7 +610,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 729";
 		rLen = 0;
-		rLoc = 27667;
+		rLoc = 25914;
 		rType = 0;
 		vrLen = 2063;
 		vrLoc = 21499;
@@ -574,7 +620,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 251";
 		rLen = 0;
-		rLoc = 9751;
+		rLoc = 7999;
 		rType = 0;
 		vrLen = 1791;
 		vrLoc = 6607;
@@ -594,7 +640,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 144";
 		rLen = 0;
-		rLoc = 4787;
+		rLoc = 1984;
 		rType = 0;
 		vrLen = 1408;
 		vrLoc = 1952;
@@ -604,7 +650,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 233";
 		rLen = 0;
-		rLoc = 9040;
+		rLoc = 7680;
 		rType = 0;
 		vrLen = 1575;
 		vrLoc = 6539;
@@ -614,7 +660,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 233";
 		rLen = 0;
-		rLoc = 9040;
+		rLoc = 7680;
 		rType = 0;
 		vrLen = 1575;
 		vrLoc = 6539;
@@ -624,7 +670,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 147";
 		rLen = 0;
-		rLoc = 4896;
+		rLoc = 2264;
 		rType = 0;
 		vrLen = 1402;
 		vrLoc = 1936;
@@ -634,7 +680,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 325";
 		rLen = 0;
-		rLoc = 13424;
+		rLoc = 11671;
 		rType = 0;
 		vrLen = 1425;
 		vrLoc = 8435;
@@ -644,7 +690,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 243";
 		rLen = 0;
-		rLoc = 9899;
+		rLoc = 8146;
 		rType = 0;
 		vrLen = 1663;
 		vrLoc = 6777;
@@ -654,7 +700,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 226";
 		rLen = 0;
-		rLoc = 9251;
+		rLoc = 7891;
 		rType = 0;
 		vrLen = 1673;
 		vrLoc = 6472;
@@ -663,8 +709,8 @@
 		isa = PBXTextBookmark;
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 96";
-		rLen = 16;
-		rLoc = 3292;
+		rLen = 0;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 1315;
 		vrLoc = 1627;
@@ -674,7 +720,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 181";
 		rLen = 1;
-		rLoc = 7798;
+		rLoc = 6438;
 		rType = 0;
 		vrLen = 1900;
 		vrLoc = 4533;
@@ -684,7 +730,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 959";
 		rLen = 0;
-		rLoc = 46558;
+		rLoc = 44805;
 		rType = 0;
 		vrLen = 1765;
 		vrLoc = 29422;
@@ -694,7 +740,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 969";
 		rLen = 0;
-		rLoc = 47040;
+		rLoc = 45287;
 		rType = 0;
 		vrLen = 1684;
 		vrLoc = 29422;
@@ -704,7 +750,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 55";
 		rLen = 0;
-		rLoc = 2195;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 539;
@@ -714,7 +760,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 977";
 		rLen = 0;
-		rLoc = 47342;
+		rLoc = 45589;
 		rType = 0;
 		vrLen = 1601;
 		vrLoc = 29516;
@@ -724,7 +770,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 977";
 		rLen = 0;
-		rLoc = 47342;
+		rLoc = 45589;
 		rType = 0;
 		vrLen = 1598;
 		vrLoc = 29516;
@@ -734,7 +780,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 959";
 		rLen = 0;
-		rLoc = 46519;
+		rLoc = 44766;
 		rType = 0;
 		vrLen = 1633;
 		vrLoc = 29516;
@@ -744,7 +790,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 974";
 		rLen = 0;
-		rLoc = 47008;
+		rLoc = 45255;
 		rType = 0;
 		vrLen = 1643;
 		vrLoc = 29261;
@@ -754,7 +800,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 984";
 		rLen = 0;
-		rLoc = 47318;
+		rLoc = 45565;
 		rType = 0;
 		vrLen = 1637;
 		vrLoc = 29261;
@@ -764,7 +810,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 993";
 		rLen = 0;
-		rLoc = 48068;
+		rLoc = 46315;
 		rType = 0;
 		vrLen = 1784;
 		vrLoc = 30278;
@@ -774,7 +820,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 55";
 		rLen = 0;
-		rLoc = 2195;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 1429;
 		vrLoc = 1284;
@@ -784,7 +830,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 993";
 		rLen = 0;
-		rLoc = 48068;
+		rLoc = 46315;
 		rType = 0;
 		vrLen = 1784;
 		vrLoc = 30278;
@@ -794,7 +840,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 993";
 		rLen = 0;
-		rLoc = 48068;
+		rLoc = 46315;
 		rType = 0;
 		vrLen = 1847;
 		vrLoc = 30172;
@@ -804,7 +850,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 55";
 		rLen = 0;
-		rLoc = 2195;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 1357;
 		vrLoc = 1744;
@@ -814,7 +860,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 990";
 		rLen = 0;
-		rLoc = 47433;
+		rLoc = 45680;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 29921;
@@ -824,7 +870,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1025";
 		rLen = 0;
-		rLoc = 51050;
+		rLoc = 49297;
 		rType = 0;
 		vrLen = 1708;
 		vrLoc = 30610;
@@ -834,7 +880,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 55";
 		rLen = 0;
-		rLoc = 2195;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 1318;
 		vrLoc = 1099;
@@ -844,7 +890,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1025";
 		rLen = 0;
-		rLoc = 51026;
+		rLoc = 49273;
 		rType = 0;
 		vrLen = 1740;
 		vrLoc = 30610;
@@ -854,7 +900,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1002";
 		rLen = 0;
-		rLoc = 47743;
+		rLoc = 45990;
 		rType = 0;
 		vrLen = 1864;
 		vrLoc = 29944;
@@ -863,8 +909,8 @@
 		isa = PBXTextBookmark;
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 154";
-		rLen = 56;
-		rLoc = 4597;
+		rLen = 0;
+		rLoc = 1505;
 		rType = 0;
 		vrLen = 1515;
 		vrLoc = 2213;
@@ -874,7 +920,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1001";
 		rLen = 0;
-		rLoc = 47742;
+		rLoc = 45989;
 		rType = 0;
 		vrLen = 1801;
 		vrLoc = 30007;
@@ -884,16 +930,16 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 249";
 		rLen = 0;
-		rLoc = 9700;
+		rLoc = 7999;
 		rType = 0;
 		vrLen = 1363;
 		vrLoc = 6644;
 	};
 	6926A660146B38F200F69705 /* keychain.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {905, 1482}}";
-			sepNavSelRange = "{117, 563}";
-			sepNavVisRange = "{0, 1255}";
+			sepNavIntBoundsRect = "{{0, 0}, {905, 1430}}";
+			sepNavSelRange = "{738, 0}";
+			sepNavVisRange = "{0, 1265}";
 		};
 	};
 	6926A661146B38F200F69705 /* keychain.h */ = {
@@ -908,7 +954,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 50";
 		rLen = 0;
-		rLoc = 1469;
+		rLoc = 1050;
 		rType = 0;
 		vrLen = 1332;
 		vrLoc = 30243;
@@ -918,7 +964,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 153";
 		rLen = 0;
-		rLoc = 4550;
+		rLoc = 1457;
 		rType = 0;
 		vrLen = 1139;
 		vrLoc = 2589;
@@ -928,7 +974,7 @@
 		fRef = 6926A660146B38F200F69705 /* keychain.c */;
 		name = "keychain.c: 37";
 		rLen = 0;
-		rLoc = 1290;
+		rLoc = 1318;
 		rType = 0;
 		vrLen = 1008;
 		vrLoc = 0;
@@ -968,7 +1014,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 49";
 		rLen = 25;
-		rLoc = 1549;
+		rLoc = 1116;
 		rType = 0;
 		vrLen = 1196;
 		vrLoc = 262;
@@ -988,7 +1034,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 20";
 		rLen = 0;
-		rLoc = 971;
+		rLoc = 749;
 		rType = 0;
 		vrLen = 1201;
 		vrLoc = 0;
@@ -1058,7 +1104,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 108";
 		rLen = 0;
-		rLoc = 3258;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 1088;
 		vrLoc = 2043;
@@ -1068,7 +1114,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 90";
 		rLen = 0;
-		rLoc = 4429;
+		rLoc = 3996;
 		rType = 0;
 		vrLen = 1411;
 		vrLoc = 30330;
@@ -1078,7 +1124,7 @@
 		fRef = 6926A660146B38F200F69705 /* keychain.c */;
 		name = "keychain.c: 41";
 		rLen = 36;
-		rLoc = 1327;
+		rLoc = 1355;
 		rType = 0;
 		vrLen = 1036;
 		vrLoc = 1048;
@@ -1088,7 +1134,7 @@
 		fRef = 6926A660146B38F200F69705 /* keychain.c */;
 		name = "keychain.c: 88";
 		rLen = 0;
-		rLoc = 2419;
+		rLoc = 2447;
 		rType = 0;
 		vrLen = 1069;
 		vrLoc = 1014;
@@ -1098,7 +1144,7 @@
 		fRef = 6926A660146B38F200F69705 /* keychain.c */;
 		name = "keychain.c: 88";
 		rLen = 0;
-		rLoc = 2419;
+		rLoc = 2447;
 		rType = 0;
 		vrLen = 1035;
 		vrLoc = 1048;
@@ -1118,7 +1164,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 90";
 		rLen = 0;
-		rLoc = 4429;
+		rLoc = 3996;
 		rType = 0;
 		vrLen = 1432;
 		vrLoc = 31262;
@@ -1128,7 +1174,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 90";
 		rLen = 0;
-		rLoc = 4429;
+		rLoc = 3996;
 		rType = 0;
 		vrLen = 1432;
 		vrLoc = 31262;
@@ -1138,7 +1184,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1045";
 		rLen = 0;
-		rLoc = 50907;
+		rLoc = 49154;
 		rType = 0;
 		vrLen = 1444;
 		vrLoc = 31262;
@@ -1148,7 +1194,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1045";
 		rLen = 0;
-		rLoc = 50907;
+		rLoc = 49154;
 		rType = 0;
 		vrLen = 1444;
 		vrLoc = 31262;
@@ -1158,7 +1204,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1045";
 		rLen = 0;
-		rLoc = 50907;
+		rLoc = 49154;
 		rType = 0;
 		vrLen = 1444;
 		vrLoc = 31262;
@@ -1168,7 +1214,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1045";
 		rLen = 0;
-		rLoc = 50907;
+		rLoc = 49154;
 		rType = 0;
 		vrLen = 1453;
 		vrLoc = 31262;
@@ -1178,7 +1224,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1045";
 		rLen = 0;
-		rLoc = 50907;
+		rLoc = 49154;
 		rType = 0;
 		vrLen = 1453;
 		vrLoc = 31262;
@@ -1188,7 +1234,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 108";
 		rLen = 0;
-		rLoc = 3258;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 1217;
 		vrLoc = 0;
@@ -1198,7 +1244,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 21";
 		rLen = 0;
-		rLoc = 971;
+		rLoc = 749;
 		rType = 0;
 		vrLen = 1217;
 		vrLoc = 0;
@@ -1208,7 +1254,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1046";
 		rLen = 0;
-		rLoc = 50907;
+		rLoc = 49154;
 		rType = 0;
 		vrLen = 1450;
 		vrLoc = 31285;
@@ -1218,7 +1264,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1043";
 		rLen = 0;
-		rLoc = 50830;
+		rLoc = 49077;
 		rType = 0;
 		vrLen = 1450;
 		vrLoc = 31285;
@@ -1228,7 +1274,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1043";
 		rLen = 0;
-		rLoc = 50830;
+		rLoc = 49077;
 		rType = 0;
 		vrLen = 1450;
 		vrLoc = 31285;
@@ -1238,7 +1284,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1048";
 		rLen = 0;
-		rLoc = 50799;
+		rLoc = 49046;
 		rType = 0;
 		vrLen = 1333;
 		vrLoc = 31285;
@@ -1248,7 +1294,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 67";
 		rLen = 0;
-		rLoc = 2355;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 895;
 		vrLoc = 993;
@@ -1257,8 +1303,8 @@
 		isa = PBXTextBookmark;
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1226";
-		rLen = 74;
-		rLoc = 55459;
+		rLen = 0;
+		rLoc = 50824;
 		rType = 0;
 		vrLen = 1307;
 		vrLoc = 36795;
@@ -1268,7 +1314,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1034";
 		rLen = 0;
-		rLoc = 48795;
+		rLoc = 47042;
 		rType = 0;
 		vrLen = 1205;
 		vrLoc = 30973;
@@ -1278,7 +1324,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1032";
 		rLen = 0;
-		rLoc = 48607;
+		rLoc = 46854;
 		rType = 0;
 		vrLen = 1408;
 		vrLoc = 30775;
@@ -1288,7 +1334,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 67";
 		rLen = 0;
-		rLoc = 2355;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 895;
 		vrLoc = 993;
@@ -1298,7 +1344,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1032";
 		rLen = 0;
-		rLoc = 48226;
+		rLoc = 46473;
 		rType = 0;
 		vrLen = 1492;
 		vrLoc = 31248;
@@ -1308,7 +1354,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1045";
 		rLen = 0;
-		rLoc = 48702;
+		rLoc = 46949;
 		rType = 0;
 		vrLen = 1462;
 		vrLoc = 31147;
@@ -1318,7 +1364,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1048";
 		rLen = 0;
-		rLoc = 48924;
+		rLoc = 47171;
 		rType = 0;
 		vrLen = 1462;
 		vrLoc = 31147;
@@ -1328,7 +1374,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1049";
 		rLen = 0;
-		rLoc = 48868;
+		rLoc = 47115;
 		rType = 0;
 		vrLen = 1394;
 		vrLoc = 31415;
@@ -1338,7 +1384,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1049";
 		rLen = 0;
-		rLoc = 48868;
+		rLoc = 47115;
 		rType = 0;
 		vrLen = 1394;
 		vrLoc = 31415;
@@ -1348,7 +1394,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1029";
 		rLen = 0;
-		rLoc = 48093;
+		rLoc = 46340;
 		rType = 0;
 		vrLen = 1498;
 		vrLoc = 30842;
@@ -1358,7 +1404,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1032";
 		rLen = 0;
-		rLoc = 48170;
+		rLoc = 46417;
 		rType = 0;
 		vrLen = 1502;
 		vrLoc = 30842;
@@ -1368,7 +1414,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1032";
 		rLen = 0;
-		rLoc = 48170;
+		rLoc = 46417;
 		rType = 0;
 		vrLen = 1508;
 		vrLoc = 30842;
@@ -1377,8 +1423,8 @@
 		isa = PBXTextBookmark;
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 51";
-		rLen = 15;
-		rLoc = 1914;
+		rLen = 0;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 955;
 		vrLoc = 1025;
@@ -1388,7 +1434,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 970";
 		rLen = 119;
-		rLoc = 46156;
+		rLoc = 44403;
 		rType = 0;
 		vrLen = 1389;
 		vrLoc = 31415;
@@ -1398,7 +1444,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1250";
 		rLen = 0;
-		rLoc = 55742;
+		rLoc = 50824;
 		rType = 0;
 		vrLen = 1185;
 		vrLoc = 37615;
@@ -1408,7 +1454,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1250";
 		rLen = 0;
-		rLoc = 55742;
+		rLoc = 50824;
 		rType = 0;
 		vrLen = 1185;
 		vrLoc = 37619;
@@ -1418,7 +1464,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1039";
 		rLen = 0;
-		rLoc = 48454;
+		rLoc = 46701;
 		rType = 0;
 		vrLen = 1356;
 		vrLoc = 31419;
@@ -1428,7 +1474,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1064";
 		rLen = 0;
-		rLoc = 49306;
+		rLoc = 47553;
 		rType = 0;
 		vrLen = 1461;
 		vrLoc = 31857;
@@ -1438,7 +1484,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1062";
 		rLen = 0;
-		rLoc = 49166;
+		rLoc = 47413;
 		rType = 0;
 		vrLen = 1476;
 		vrLoc = 31764;
@@ -1449,7 +1495,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 1553;
+		rLoc = 1495;
 		rType = 1;
 	};
 	6926A7E1146B59BC00F69705 /* PBXTextBookmark */ = {
@@ -1457,7 +1503,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 978";
 		rLen = 0;
-		rLoc = 46490;
+		rLoc = 44737;
 		rType = 0;
 		vrLen = 1540;
 		vrLoc = 31881;
@@ -1467,7 +1513,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1064";
 		rLen = 0;
-		rLoc = 49306;
+		rLoc = 47553;
 		rType = 0;
 		vrLen = 1532;
 		vrLoc = 31881;
@@ -1476,8 +1522,8 @@
 		isa = PBXTextBookmark;
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 108";
-		rLen = 14;
-		rLoc = 3197;
+		rLen = 0;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 1072;
 		vrLoc = 2099;
@@ -1487,7 +1533,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1065";
 		rLen = 0;
-		rLoc = 49293;
+		rLoc = 47540;
 		rType = 0;
 		vrLen = 1532;
 		vrLoc = 31881;
@@ -1497,7 +1543,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1069";
 		rLen = 0;
-		rLoc = 49582;
+		rLoc = 47829;
 		rType = 0;
 		vrLen = 1453;
 		vrLoc = 31881;
@@ -1507,7 +1553,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1071";
 		rLen = 0;
-		rLoc = 49618;
+		rLoc = 47865;
 		rType = 0;
 		vrLen = 1532;
 		vrLoc = 31881;
@@ -1517,7 +1563,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1069";
 		rLen = 0;
-		rLoc = 49457;
+		rLoc = 47704;
 		rType = 0;
 		vrLen = 1612;
 		vrLoc = 31913;
@@ -1527,7 +1573,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 67";
 		rLen = 0;
-		rLoc = 2316;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 959;
 		vrLoc = 1262;
@@ -1537,7 +1583,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1067";
 		rLen = 0;
-		rLoc = 49348;
+		rLoc = 47595;
 		rType = 0;
 		vrLen = 1555;
 		vrLoc = 31987;
@@ -1547,7 +1593,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1067";
 		rLen = 0;
-		rLoc = 49348;
+		rLoc = 47595;
 		rType = 0;
 		vrLen = 1555;
 		vrLoc = 31987;
@@ -1557,7 +1603,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1073";
 		rLen = 0;
-		rLoc = 49624;
+		rLoc = 47871;
 		rType = 0;
 		vrLen = 1560;
 		vrLoc = 31987;
@@ -1567,7 +1613,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 68";
 		rLen = 0;
-		rLoc = 2316;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 945;
 		vrLoc = 1262;
@@ -1577,7 +1623,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1073";
 		rLen = 0;
-		rLoc = 49624;
+		rLoc = 47871;
 		rType = 0;
 		vrLen = 1560;
 		vrLoc = 31987;
@@ -1587,7 +1633,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1075";
 		rLen = 0;
-		rLoc = 49698;
+		rLoc = 47945;
 		rType = 0;
 		vrLen = 1486;
 		vrLoc = 31987;
@@ -1597,7 +1643,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1086";
 		rLen = 0;
-		rLoc = 50058;
+		rLoc = 48305;
 		rType = 0;
 		vrLen = 1581;
 		vrLoc = 32939;
@@ -1607,7 +1653,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1088";
 		rLen = 0;
-		rLoc = 50058;
+		rLoc = 48305;
 		rType = 0;
 		vrLen = 1636;
 		vrLoc = 32363;
@@ -1617,7 +1663,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1088";
 		rLen = 0;
-		rLoc = 50058;
+		rLoc = 48305;
 		rType = 0;
 		vrLen = 1637;
 		vrLoc = 32362;
@@ -1627,7 +1673,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1089";
 		rLen = 0;
-		rLoc = 50058;
+		rLoc = 48305;
 		rType = 0;
 		vrLen = 1647;
 		vrLoc = 32362;
@@ -1637,7 +1683,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1090";
 		rLen = 0;
-		rLoc = 50112;
+		rLoc = 48359;
 		rType = 0;
 		vrLen = 1651;
 		vrLoc = 32366;
@@ -1647,7 +1693,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1090";
 		rLen = 0;
-		rLoc = 50112;
+		rLoc = 48359;
 		rType = 0;
 		vrLen = 1651;
 		vrLoc = 32366;
@@ -1657,7 +1703,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1090";
 		rLen = 0;
-		rLoc = 50112;
+		rLoc = 48359;
 		rType = 0;
 		vrLen = 1658;
 		vrLoc = 32366;
@@ -1667,7 +1713,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1090";
 		rLen = 0;
-		rLoc = 50112;
+		rLoc = 48359;
 		rType = 0;
 		vrLen = 1658;
 		vrLoc = 32366;
@@ -1677,7 +1723,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1090";
 		rLen = 0;
-		rLoc = 50112;
+		rLoc = 48359;
 		rType = 0;
 		vrLen = 1543;
 		vrLoc = 32544;
@@ -1687,7 +1733,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1096";
 		rLen = 0;
-		rLoc = 50265;
+		rLoc = 48512;
 		rType = 0;
 		vrLen = 1484;
 		vrLoc = 32775;
@@ -1697,7 +1743,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 438";
 		rLen = 0;
-		rLoc = 18554;
+		rLoc = 16801;
 		rType = 0;
 		vrLen = 1856;
 		vrLoc = 11348;
@@ -1707,7 +1753,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 438";
 		rLen = 0;
-		rLoc = 18554;
+		rLoc = 16801;
 		rType = 0;
 		vrLen = 1886;
 		vrLoc = 11348;
@@ -1717,7 +1763,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 438";
 		rLen = 0;
-		rLoc = 18554;
+		rLoc = 16801;
 		rType = 0;
 		vrLen = 1864;
 		vrLoc = 11538;
@@ -1727,7 +1773,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 438";
 		rLen = 0;
-		rLoc = 18554;
+		rLoc = 16801;
 		rType = 0;
 		vrLen = 1858;
 		vrLoc = 11538;
@@ -1737,7 +1783,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 470";
 		rLen = 0;
-		rLoc = 19664;
+		rLoc = 17911;
 		rType = 0;
 		vrLen = 1250;
 		vrLoc = 13332;
@@ -1747,7 +1793,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 38";
 		rLen = 0;
-		rLoc = 1623;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 1096;
 		vrLoc = 485;
@@ -1757,7 +1803,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 444";
 		rLen = 0;
-		rLoc = 18554;
+		rLoc = 16801;
 		rType = 0;
 		vrLen = 1464;
 		vrLoc = 12557;
@@ -1767,7 +1813,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 68";
 		rLen = 0;
-		rLoc = 2295;
+		rLoc = 1862;
 		rType = 0;
 		vrLen = 1528;
 		vrLoc = 12678;
@@ -1777,7 +1823,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 68";
 		rLen = 0;
-		rLoc = 2295;
+		rLoc = 1862;
 		rType = 0;
 		vrLen = 1528;
 		vrLoc = 12678;
@@ -1787,7 +1833,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 68";
 		rLen = 0;
-		rLoc = 2295;
+		rLoc = 1862;
 		rType = 0;
 		vrLen = 1529;
 		vrLoc = 12678;
@@ -1797,7 +1843,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 68";
 		rLen = 0;
-		rLoc = 2295;
+		rLoc = 1862;
 		rType = 0;
 		vrLen = 1530;
 		vrLoc = 12679;
@@ -1807,7 +1853,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 68";
 		rLen = 0;
-		rLoc = 2295;
+		rLoc = 1862;
 		rType = 0;
 		vrLen = 1530;
 		vrLoc = 12679;
@@ -1817,7 +1863,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 38";
 		rLen = 0;
-		rLoc = 1623;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 1093;
 		vrLoc = 485;
@@ -1826,8 +1872,8 @@
 		isa = PBXTextBookmark;
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 127";
-		rLen = 25;
-		rLoc = 3598;
+		rLen = 0;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 1088;
 		vrLoc = 2155;
@@ -1837,7 +1883,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 139";
 		rLen = 54;
-		rLoc = 6130;
+		rLoc = 4770;
 		rType = 0;
 		vrLen = 1692;
 		vrLoc = 5114;
@@ -1847,7 +1893,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1012";
 		rLen = 0;
-		rLoc = 43990;
+		rLoc = 42237;
 		rType = 0;
 		vrLen = 1382;
 		vrLoc = 30008;
@@ -1857,7 +1903,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1007";
 		rLen = 0;
-		rLoc = 40088;
+		rLoc = 38335;
 		rType = 0;
 		vrLen = 1403;
 		vrLoc = 30374;
@@ -1867,7 +1913,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1017";
 		rLen = 0;
-		rLoc = 40473;
+		rLoc = 38720;
 		rType = 0;
 		vrLen = 1491;
 		vrLoc = 30915;
@@ -1876,8 +1922,8 @@
 		isa = PBXTextBookmark;
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 108";
-		rLen = 18;
-		rLoc = 3121;
+		rLen = 0;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 1072;
 		vrLoc = 2171;
@@ -1887,7 +1933,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1017";
 		rLen = 0;
-		rLoc = 40505;
+		rLoc = 38752;
 		rType = 0;
 		vrLen = 1495;
 		vrLoc = 30915;
@@ -1897,7 +1943,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1012";
 		rLen = 0;
-		rLoc = 40251;
+		rLoc = 38498;
 		rType = 0;
 		vrLen = 1481;
 		vrLoc = 30905;
@@ -1907,7 +1953,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1040";
 		rLen = 0;
-		rLoc = 41464;
+		rLoc = 39711;
 		rType = 0;
 		vrLen = 1427;
 		vrLoc = 30905;
@@ -1917,7 +1963,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 50";
 		rLen = 0;
-		rLoc = 1902;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 1066;
 		vrLoc = 534;
@@ -1927,7 +1973,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1045";
 		rLen = 0;
-		rLoc = 43990;
+		rLoc = 42237;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 30908;
@@ -1937,7 +1983,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1050";
 		rLen = 119;
-		rLoc = 46156;
+		rLoc = 44403;
 		rType = 0;
 		vrLen = 1509;
 		vrLoc = 31655;
@@ -1947,7 +1993,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 50";
 		rLen = 0;
-		rLoc = 1902;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 906;
 		vrLoc = 823;
@@ -1957,7 +2003,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1058";
 		rLen = 0;
-		rLoc = 45990;
+		rLoc = 44237;
 		rType = 0;
 		vrLen = 1317;
 		vrLoc = 32232;
@@ -1967,7 +2013,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1062";
 		rLen = 0;
-		rLoc = 46137;
+		rLoc = 44384;
 		rType = 0;
 		vrLen = 1285;
 		vrLoc = 32232;
@@ -1977,7 +2023,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1030";
 		rLen = 0;
-		rLoc = 40655;
+		rLoc = 38902;
 		rType = 0;
 		vrLen = 1417;
 		vrLoc = 31218;
@@ -1987,7 +2033,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1030";
 		rLen = 0;
-		rLoc = 40655;
+		rLoc = 38902;
 		rType = 0;
 		vrLen = 1417;
 		vrLoc = 31218;
@@ -1997,7 +2043,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1032";
 		rLen = 0;
-		rLoc = 40655;
+		rLoc = 38902;
 		rType = 0;
 		vrLen = 1392;
 		vrLoc = 31253;
@@ -2007,7 +2053,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1032";
 		rLen = 0;
-		rLoc = 40655;
+		rLoc = 38902;
 		rType = 0;
 		vrLen = 1392;
 		vrLoc = 31253;
@@ -2017,7 +2063,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1032";
 		rLen = 0;
-		rLoc = 40655;
+		rLoc = 38902;
 		rType = 0;
 		vrLen = 1451;
 		vrLoc = 31194;
@@ -2027,7 +2073,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 436";
 		rLen = 0;
-		rLoc = 18771;
+		rLoc = 17018;
 		rType = 0;
 		vrLen = 1818;
 		vrLoc = 11735;
@@ -2037,7 +2083,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 436";
 		rLen = 0;
-		rLoc = 18771;
+		rLoc = 17018;
 		rType = 0;
 		vrLen = 1451;
 		vrLoc = 12773;
@@ -2047,7 +2093,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 437";
 		rLen = 0;
-		rLoc = 18777;
+		rLoc = 17024;
 		rType = 0;
 		vrLen = 1519;
 		vrLoc = 12550;
@@ -2057,7 +2103,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 437";
 		rLen = 0;
-		rLoc = 18777;
+		rLoc = 17024;
 		rType = 0;
 		vrLen = 1523;
 		vrLoc = 12550;
@@ -2067,7 +2113,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 437";
 		rLen = 0;
-		rLoc = 18777;
+		rLoc = 17024;
 		rType = 0;
 		vrLen = 1519;
 		vrLoc = 12550;
@@ -2077,7 +2123,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 437";
 		rLen = 0;
-		rLoc = 18777;
+		rLoc = 17024;
 		rType = 0;
 		vrLen = 1519;
 		vrLoc = 12550;
@@ -2087,7 +2133,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1074";
 		rLen = 0;
-		rLoc = 43113;
+		rLoc = 41360;
 		rType = 0;
 		vrLen = 1529;
 		vrLoc = 31834;
@@ -2097,7 +2143,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1074";
 		rLen = 0;
-		rLoc = 43113;
+		rLoc = 41360;
 		rType = 0;
 		vrLen = 1529;
 		vrLoc = 31834;
@@ -2107,7 +2153,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1074";
 		rLen = 0;
-		rLoc = 43113;
+		rLoc = 41360;
 		rType = 0;
 		vrLen = 1635;
 		vrLoc = 31881;
@@ -2117,7 +2163,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1074";
 		rLen = 0;
-		rLoc = 43113;
+		rLoc = 41360;
 		rType = 0;
 		vrLen = 1635;
 		vrLoc = 31881;
@@ -2127,7 +2173,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1074";
 		rLen = 0;
-		rLoc = 43113;
+		rLoc = 41360;
 		rType = 0;
 		vrLen = 1634;
 		vrLoc = 31881;
@@ -2137,7 +2183,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 454";
 		rLen = 0;
-		rLoc = 19214;
+		rLoc = 17461;
 		rType = 0;
 		vrLen = 1502;
 		vrLoc = 12734;
@@ -2147,7 +2193,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1076";
 		rLen = 0;
-		rLoc = 42136;
+		rLoc = 40383;
 		rType = 0;
 		vrLen = 1580;
 		vrLoc = 32022;
@@ -2157,7 +2203,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 50";
 		rLen = 0;
-		rLoc = 1902;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 887;
 		vrLoc = 823;
@@ -2167,7 +2213,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1090";
 		rLen = 0;
-		rLoc = 43384;
+		rLoc = 41631;
 		rType = 0;
 		vrLen = 1776;
 		vrLoc = 32146;
@@ -2177,7 +2223,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 177";
 		rLen = 0;
-		rLoc = 6836;
+		rLoc = 5476;
 		rType = 0;
 		vrLen = 1558;
 		vrLoc = 5039;
@@ -2187,7 +2233,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 210";
 		rLen = 0;
-		rLoc = 7868;
+		rLoc = 6508;
 		rType = 0;
 		vrLen = 1859;
 		vrLoc = 5449;
@@ -2197,7 +2243,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1020";
 		rLen = 211;
-		rLoc = 39784;
+		rLoc = 38031;
 		rType = 0;
 		vrLen = 1580;
 		vrLoc = 33567;
@@ -2207,7 +2253,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1020";
 		rLen = 211;
-		rLoc = 39784;
+		rLoc = 38031;
 		rType = 0;
 		vrLen = 1580;
 		vrLoc = 33567;
@@ -2217,7 +2263,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1119";
 		rLen = 0;
-		rLoc = 43771;
+		rLoc = 42018;
 		rType = 0;
 		vrLen = 1634;
 		vrLoc = 33895;
@@ -2227,7 +2273,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1070";
 		rLen = 0;
-		rLoc = 41464;
+		rLoc = 39711;
 		rType = 0;
 		vrLen = 1725;
 		vrLoc = 32525;
@@ -2237,7 +2283,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 16";
 		rLen = 0;
-		rLoc = 829;
+		rLoc = 856;
 		rType = 0;
 		vrLen = 975;
 		vrLoc = 0;
@@ -2247,7 +2293,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1037";
 		rLen = 0;
-		rLoc = 39755;
+		rLoc = 38002;
 		rType = 0;
 		vrLen = 1329;
 		vrLoc = 31486;
@@ -2257,7 +2303,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1041";
 		rLen = 0;
-		rLoc = 39372;
+		rLoc = 37619;
 		rType = 0;
 		vrLen = 1193;
 		vrLoc = 32102;
@@ -2267,7 +2313,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1035";
 		rLen = 0;
-		rLoc = 38548;
+		rLoc = 36795;
 		rType = 0;
 		vrLen = 1145;
 		vrLoc = 32098;
@@ -2277,7 +2323,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1052";
 		rLen = 0;
-		rLoc = 39316;
+		rLoc = 37563;
 		rType = 0;
 		vrLen = 1164;
 		vrLoc = 32098;
@@ -2314,7 +2360,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 50";
 		rLen = 0;
-		rLoc = 1902;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 887;
 		vrLoc = 823;
@@ -2324,7 +2370,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1052";
 		rLen = 0;
-		rLoc = 39316;
+		rLoc = 37563;
 		rType = 0;
 		vrLen = 1164;
 		vrLoc = 32098;
@@ -2334,7 +2380,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1031";
 		rLen = 0;
-		rLoc = 36703;
+		rLoc = 34950;
 		rType = 0;
 		vrLen = 1078;
 		vrLoc = 32098;
@@ -2344,7 +2390,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1043";
 		rLen = 0;
-		rLoc = 38300;
+		rLoc = 36547;
 		rType = 0;
 		vrLen = 1055;
 		vrLoc = 32098;
@@ -2355,7 +2401,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 1553;
+		rLoc = 1495;
 		rType = 1;
 	};
 	6926A9D2146C759700F69705 /* PBXTextBookmark */ = {
@@ -2363,7 +2409,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1287";
 		rLen = 0;
-		rLoc = 48986;
+		rLoc = 47233;
 		rType = 0;
 		vrLen = 193;
 		vrLoc = 37053;
@@ -2373,7 +2419,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1139";
 		rLen = 0;
-		rLoc = 41830;
+		rLoc = 40077;
 		rType = 0;
 		vrLen = 1815;
 		vrLoc = 34704;
@@ -2383,7 +2429,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1147";
 		rLen = 899;
-		rLoc = 42185;
+		rLoc = 40432;
 		rType = 0;
 		vrLen = 1908;
 		vrLoc = 34706;
@@ -2393,7 +2439,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1153";
 		rLen = 0;
-		rLoc = 42507;
+		rLoc = 40754;
 		rType = 0;
 		vrLen = 2044;
 		vrLoc = 35207;
@@ -2403,7 +2449,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1178";
 		rLen = 0;
-		rLoc = 43509;
+		rLoc = 41756;
 		rType = 0;
 		vrLen = 2065;
 		vrLoc = 35634;
@@ -2413,7 +2459,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1043";
 		rLen = 0;
-		rLoc = 37402;
+		rLoc = 35649;
 		rType = 0;
 		vrLen = 1109;
 		vrLoc = 32174;
@@ -2423,7 +2469,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1037";
 		rLen = 0;
-		rLoc = 37244;
+		rLoc = 35491;
 		rType = 0;
 		vrLen = 1119;
 		vrLoc = 32174;
@@ -2433,7 +2479,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 116";
 		rLen = 0;
-		rLoc = 3258;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 1859;
@@ -2443,7 +2489,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1043";
 		rLen = 10;
-		rLoc = 37441;
+		rLoc = 35688;
 		rType = 0;
 		vrLen = 1150;
 		vrLoc = 32174;
@@ -2453,7 +2499,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1043";
 		rLen = 0;
-		rLoc = 37424;
+		rLoc = 35671;
 		rType = 0;
 		vrLen = 1147;
 		vrLoc = 32174;
@@ -2463,7 +2509,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1052";
 		rLen = 0;
-		rLoc = 38208;
+		rLoc = 36455;
 		rType = 0;
 		vrLen = 1124;
 		vrLoc = 32174;
@@ -2473,7 +2519,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1050";
 		rLen = 0;
-		rLoc = 37424;
+		rLoc = 35671;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 32174;
@@ -2483,7 +2529,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1053";
 		rLen = 0;
-		rLoc = 37639;
+		rLoc = 35886;
 		rType = 0;
 		vrLen = 1137;
 		vrLoc = 32174;
@@ -2493,7 +2539,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1055";
 		rLen = 0;
-		rLoc = 38147;
+		rLoc = 36394;
 		rType = 0;
 		vrLen = 1142;
 		vrLoc = 32174;
@@ -2503,7 +2549,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1036";
 		rLen = 0;
-		rLoc = 36980;
+		rLoc = 35227;
 		rType = 0;
 		vrLen = 1150;
 		vrLoc = 32174;
@@ -2513,7 +2559,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1061";
 		rLen = 0;
-		rLoc = 37862;
+		rLoc = 36109;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 32174;
@@ -2523,7 +2569,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1090";
 		rLen = 0;
-		rLoc = 38991;
+		rLoc = 37238;
 		rType = 0;
 		vrLen = 1297;
 		vrLoc = 32706;
@@ -2533,7 +2579,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 441";
 		rLen = 0;
-		rLoc = 18167;
+		rLoc = 16414;
 		rType = 0;
 		vrLen = 1908;
 		vrLoc = 12417;
@@ -2543,7 +2589,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 442";
 		rLen = 0;
-		rLoc = 18073;
+		rLoc = 16320;
 		rType = 0;
 		vrLen = 1779;
 		vrLoc = 12746;
@@ -2553,7 +2599,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1099";
 		rLen = 0;
-		rLoc = 39281;
+		rLoc = 37528;
 		rType = 0;
 		vrLen = 1295;
 		vrLoc = 33118;
@@ -2563,7 +2609,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 445";
 		rLen = 0;
-		rLoc = 18167;
+		rLoc = 16414;
 		rType = 0;
 		vrLen = 1757;
 		vrLoc = 12940;
@@ -2593,7 +2639,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1059";
 		rLen = 0;
-		rLoc = 37648;
+		rLoc = 35895;
 		rType = 0;
 		vrLen = 1177;
 		vrLoc = 32255;
@@ -2603,7 +2649,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1072";
 		rLen = 0;
-		rLoc = 38197;
+		rLoc = 36444;
 		rType = 0;
 		vrLen = 1182;
 		vrLoc = 32235;
@@ -2613,7 +2659,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1072";
 		rLen = 0;
-		rLoc = 38189;
+		rLoc = 36436;
 		rType = 0;
 		vrLen = 1192;
 		vrLoc = 32235;
@@ -2633,7 +2679,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1072";
 		rLen = 0;
-		rLoc = 38189;
+		rLoc = 36436;
 		rType = 0;
 		vrLen = 1192;
 		vrLoc = 32235;
@@ -2643,7 +2689,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1069";
 		rLen = 0;
-		rLoc = 38094;
+		rLoc = 36341;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 32235;
@@ -2653,7 +2699,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1069";
 		rLen = 0;
-		rLoc = 38056;
+		rLoc = 36303;
 		rType = 0;
 		vrLen = 1234;
 		vrLoc = 32235;
@@ -2673,7 +2719,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1069";
 		rLen = 0;
-		rLoc = 38056;
+		rLoc = 36303;
 		rType = 0;
 		vrLen = 1234;
 		vrLoc = 32235;
@@ -2683,7 +2729,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1045";
 		rLen = 0;
-		rLoc = 37129;
+		rLoc = 35376;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 32235;
@@ -2693,7 +2739,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1058";
 		rLen = 0;
-		rLoc = 37396;
+		rLoc = 35643;
 		rType = 0;
 		vrLen = 1327;
 		vrLoc = 32262;
@@ -2703,7 +2749,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 116";
 		rLen = 0;
-		rLoc = 3258;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 1859;
@@ -2713,7 +2759,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 116";
 		rLen = 0;
-		rLoc = 3258;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 1109;
 		vrLoc = 2600;
@@ -2722,8 +2768,8 @@
 		isa = PBXTextBookmark;
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 164";
-		rLen = 15;
-		rLoc = 4316;
+		rLen = 0;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 1015;
 		vrLoc = 2734;
@@ -2733,7 +2779,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1058";
 		rLen = 0;
-		rLoc = 37396;
+		rLoc = 35643;
 		rType = 0;
 		vrLen = 1327;
 		vrLoc = 32262;
@@ -2743,7 +2789,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 212";
 		rLen = 0;
-		rLoc = 6114;
+		rLoc = 4754;
 		rType = 0;
 		vrLen = 1596;
 		vrLoc = 4866;
@@ -2753,7 +2799,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 298";
 		rLen = 0;
-		rLoc = 8752;
+		rLoc = 7392;
 		rType = 0;
 		vrLen = 1521;
 		vrLoc = 9063;
@@ -2762,8 +2808,8 @@
 		isa = PBXTextBookmark;
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 112";
-		rLen = 17;
-		rLoc = 3176;
+		rLen = 0;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 1941;
@@ -2773,7 +2819,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1173";
 		rLen = 0;
-		rLoc = 39532;
+		rLoc = 37779;
 		rType = 0;
 		vrLen = 1361;
 		vrLoc = 35270;
@@ -2783,7 +2829,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 217";
 		rLen = 0;
-		rLoc = 6218;
+		rLoc = 4858;
 		rType = 0;
 		vrLen = 1216;
 		vrLoc = 7015;
@@ -2793,7 +2839,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 189";
 		rLen = 0;
-		rLoc = 6114;
+		rLoc = 4754;
 		rType = 0;
 		vrLen = 1764;
 		vrLoc = 5299;
@@ -2803,7 +2849,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 189";
 		rLen = 0;
-		rLoc = 6114;
+		rLoc = 4754;
 		rType = 0;
 		vrLen = 1764;
 		vrLoc = 5299;
@@ -2813,7 +2859,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 184";
 		rLen = 0;
-		rLoc = 6114;
+		rLoc = 4754;
 		rType = 0;
 		vrLen = 1764;
 		vrLoc = 5299;
@@ -2823,7 +2869,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 189";
 		rLen = 0;
-		rLoc = 6114;
+		rLoc = 4754;
 		rType = 0;
 		vrLen = 1756;
 		vrLoc = 5299;
@@ -2833,7 +2879,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 190";
 		rLen = 0;
-		rLoc = 6114;
+		rLoc = 4754;
 		rType = 0;
 		vrLen = 1786;
 		vrLoc = 5299;
@@ -2843,7 +2889,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1134";
 		rLen = 0;
-		rLoc = 38056;
+		rLoc = 36303;
 		rType = 0;
 		vrLen = 1423;
 		vrLoc = 34344;
@@ -2853,7 +2899,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1104";
 		rLen = 0;
-		rLoc = 37125;
+		rLoc = 35372;
 		rType = 0;
 		vrLen = 1485;
 		vrLoc = 35523;
@@ -2863,7 +2909,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1104";
 		rLen = 0;
-		rLoc = 37125;
+		rLoc = 35372;
 		rType = 0;
 		vrLen = 1485;
 		vrLoc = 35523;
@@ -2873,7 +2919,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1104";
 		rLen = 0;
-		rLoc = 37125;
+		rLoc = 35372;
 		rType = 0;
 		vrLen = 1381;
 		vrLoc = 34415;
@@ -2883,7 +2929,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1121";
 		rLen = 0;
-		rLoc = 37497;
+		rLoc = 35744;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 34119;
@@ -2893,7 +2939,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1144";
 		rLen = 0;
-		rLoc = 38285;
+		rLoc = 36532;
 		rType = 0;
 		vrLen = 1413;
 		vrLoc = 34544;
@@ -2903,7 +2949,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1127";
 		rLen = 0;
-		rLoc = 37760;
+		rLoc = 36007;
 		rType = 0;
 		vrLen = 1413;
 		vrLoc = 34544;
@@ -2913,7 +2959,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1124";
 		rLen = 0;
-		rLoc = 37614;
+		rLoc = 35861;
 		rType = 0;
 		vrLen = 1411;
 		vrLoc = 34544;
@@ -2923,7 +2969,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1277";
 		rLen = 0;
-		rLoc = 43054;
+		rLoc = 41301;
 		rType = 0;
 		vrLen = 1880;
 		vrLoc = 39504;
@@ -2933,7 +2979,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1277";
 		rLen = 0;
-		rLoc = 43081;
+		rLoc = 41328;
 		rType = 0;
 		vrLen = 1884;
 		vrLoc = 39504;
@@ -2943,7 +2989,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1278";
 		rLen = 0;
-		rLoc = 43113;
+		rLoc = 41360;
 		rType = 0;
 		vrLen = 1881;
 		vrLoc = 39504;
@@ -2953,7 +2999,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1281";
 		rLen = 0;
-		rLoc = 43113;
+		rLoc = 41360;
 		rType = 0;
 		vrLen = 2087;
 		vrLoc = 38355;
@@ -2963,7 +3009,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1281";
 		rLen = 0;
-		rLoc = 43113;
+		rLoc = 41360;
 		rType = 0;
 		vrLen = 2087;
 		vrLoc = 38355;
@@ -2973,7 +3019,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1277";
 		rLen = 0;
-		rLoc = 43081;
+		rLoc = 41328;
 		rType = 0;
 		vrLen = 2091;
 		vrLoc = 38355;
@@ -2983,7 +3029,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 183";
 		rLen = 0;
-		rLoc = 6114;
+		rLoc = 4754;
 		rType = 0;
 		vrLen = 1879;
 		vrLoc = 5538;
@@ -2993,7 +3039,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 183";
 		rLen = 0;
-		rLoc = 6114;
+		rLoc = 4754;
 		rType = 0;
 		vrLen = 1879;
 		vrLoc = 5538;
@@ -3003,7 +3049,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1184";
 		rLen = 0;
-		rLoc = 39751;
+		rLoc = 37998;
 		rType = 0;
 		vrLen = 1433;
 		vrLoc = 35814;
@@ -3013,7 +3059,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 204";
 		rLen = 0;
-		rLoc = 6114;
+		rLoc = 4754;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 6105;
@@ -3023,7 +3069,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1198";
 		rLen = 0;
-		rLoc = 39668;
+		rLoc = 37915;
 		rType = 0;
 		vrLen = 1219;
 		vrLoc = 36144;
@@ -3032,8 +3078,8 @@
 		isa = PBXTextBookmark;
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 112";
-		rLen = 17;
-		rLoc = 3176;
+		rLen = 0;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 1941;
@@ -3043,7 +3089,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 30";
 		rLen = 0;
-		rLoc = 1424;
+		rLoc = 1201;
 		rType = 0;
 		vrLen = 1204;
 		vrLoc = 375;
@@ -3053,7 +3099,7 @@
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 66";
 		rLen = 0;
-		rLoc = 2113;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 1087;
 		vrLoc = 577;
@@ -3063,7 +3109,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1344";
 		rLen = 0;
-		rLoc = 44841;
+		rLoc = 43088;
 		rType = 0;
 		vrLen = 1542;
 		vrLoc = 41396;
@@ -3073,7 +3119,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1344";
 		rLen = 0;
-		rLoc = 44841;
+		rLoc = 43088;
 		rType = 0;
 		vrLen = 1542;
 		vrLoc = 41396;
@@ -3083,7 +3129,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1346";
 		rLen = 0;
-		rLoc = 44828;
+		rLoc = 43075;
 		rType = 0;
 		vrLen = 1602;
 		vrLoc = 41258;
@@ -3093,7 +3139,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1349";
 		rLen = 0;
-		rLoc = 44954;
+		rLoc = 43201;
 		rType = 0;
 		vrLen = 1653;
 		vrLoc = 41258;
@@ -3103,7 +3149,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1352";
 		rLen = 0;
-		rLoc = 45238;
+		rLoc = 43485;
 		rType = 0;
 		vrLen = 1725;
 		vrLoc = 41258;
@@ -3113,7 +3159,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1354";
 		rLen = 0;
-		rLoc = 45238;
+		rLoc = 43485;
 		rType = 0;
 		vrLen = 1698;
 		vrLoc = 41258;
@@ -3123,7 +3169,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1354";
 		rLen = 0;
-		rLoc = 45182;
+		rLoc = 43429;
 		rType = 0;
 		vrLen = 1699;
 		vrLoc = 41258;
@@ -3133,7 +3179,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1356";
 		rLen = 0;
-		rLoc = 45240;
+		rLoc = 43487;
 		rType = 0;
 		vrLen = 1472;
 		vrLoc = 42122;
@@ -3143,7 +3189,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1346";
 		rLen = 0;
-		rLoc = 44784;
+		rLoc = 43031;
 		rType = 0;
 		vrLen = 1629;
 		vrLoc = 41950;
@@ -3153,7 +3199,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1346";
 		rLen = 0;
-		rLoc = 44784;
+		rLoc = 43031;
 		rType = 0;
 		vrLen = 1629;
 		vrLoc = 41950;
@@ -3163,7 +3209,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1371";
 		rLen = 0;
-		rLoc = 45519;
+		rLoc = 43766;
 		rType = 0;
 		vrLen = 1666;
 		vrLoc = 41950;
@@ -3173,7 +3219,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1339";
 		rLen = 0;
-		rLoc = 44359;
+		rLoc = 42606;
 		rType = 0;
 		vrLen = 1625;
 		vrLoc = 41950;
@@ -3183,7 +3229,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1379";
 		rLen = 0;
-		rLoc = 45753;
+		rLoc = 44000;
 		rType = 0;
 		vrLen = 1393;
 		vrLoc = 42689;
@@ -3192,8 +3238,8 @@
 		isa = PBXTextBookmark;
 		fRef = 69269F2414620D0F00F69705 /* packet.h */;
 		name = "packet.h: 63";
-		rLen = 29;
-		rLoc = 2043;
+		rLen = 0;
+		rLoc = 1210;
 		rType = 0;
 		vrLen = 863;
 		vrLoc = 1205;
@@ -3203,7 +3249,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 347";
 		rLen = 0;
-		rLoc = 11458;
+		rLoc = 9705;
 		rType = 0;
 		vrLen = 1144;
 		vrLoc = 10747;
@@ -3213,7 +3259,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 335";
 		rLen = 0;
-		rLoc = 11002;
+		rLoc = 9249;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 11237;
@@ -3221,8 +3267,8 @@
 	6926AC66146DBC7D00F69705 /* README */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {905, 618}}";
-			sepNavSelRange = "{236, 0}";
-			sepNavVisRange = "{0, 1100}";
+			sepNavSelRange = "{937, 0}";
+			sepNavVisRange = "{0, 1119}";
 		};
 	};
 	6926AC67146DBC9B00F69705 /* PBXTextBookmark */ = {
@@ -3230,7 +3276,7 @@
 		fRef = 6926A660146B38F200F69705 /* keychain.c */;
 		name = "keychain.c: 88";
 		rLen = 0;
-		rLoc = 2419;
+		rLoc = 2447;
 		rType = 0;
 		vrLen = 1032;
 		vrLoc = 201;
@@ -3240,7 +3286,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 335";
 		rLen = 0;
-		rLoc = 11002;
+		rLoc = 9249;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 11237;
@@ -3250,7 +3296,7 @@
 		fRef = 6926AC66146DBC7D00F69705 /* README */;
 		name = "README: 1";
 		rLen = 0;
-		rLoc = 1100;
+		rLoc = 1119;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -3260,7 +3306,7 @@
 		fRef = 6926AC66146DBC7D00F69705 /* README */;
 		name = "README: 1";
 		rLen = 0;
-		rLoc = 1100;
+		rLoc = 1119;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -3270,7 +3316,7 @@
 		fRef = 6926AC66146DBC7D00F69705 /* README */;
 		name = "README: 25";
 		rLen = 0;
-		rLoc = 1074;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 921;
 		vrLoc = 0;
@@ -3340,7 +3386,7 @@
 		fRef = 6926A660146B38F200F69705 /* keychain.c */;
 		name = "keychain.c: 88";
 		rLen = 0;
-		rLoc = 2419;
+		rLoc = 2447;
 		rType = 0;
 		vrLen = 1032;
 		vrLoc = 201;
@@ -3383,6 +3429,523 @@
 		rLoc = 236;
 		rType = 0;
 		vrLen = 1100;
+		vrLoc = 0;
+	};
+	6926AC89146DC61500F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AC66146DBC7D00F69705 /* README */;
+		name = "README: 7";
+		rLen = 0;
+		rLoc = 236;
+		rType = 0;
+		vrLen = 1100;
+		vrLoc = 0;
+	};
+	6926AC8A146DC61500F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2414620D0F00F69705 /* packet.h */;
+		name = "packet.h: 206";
+		rLen = 0;
+		rLoc = 1505;
+		rType = 0;
+		vrLen = 984;
+		vrLoc = 4333;
+	};
+	6926AC8B146DC61500F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 7";
+		rLen = 600;
+		rLoc = 81;
+		rType = 0;
+		vrLen = 1246;
+		vrLoc = 0;
+	};
+	6926AC8C146DC61500F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 303";
+		rLen = 0;
+		rLoc = 7999;
+		rType = 0;
+		vrLen = 959;
+		vrLoc = 8934;
+	};
+	6926AC8E146DC65400F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 284";
+		rLen = 0;
+		rLoc = 7999;
+		rType = 0;
+		vrLen = 1270;
+		vrLoc = 8934;
+	};
+	6926AC8F146DC65400F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2414620D0F00F69705 /* packet.h */;
+		name = "packet.h: 206";
+		rLen = 0;
+		rLoc = 1505;
+		rType = 0;
+		vrLen = 984;
+		vrLoc = 4333;
+	};
+	6926AC90146DC65400F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2414620D0F00F69705 /* packet.h */;
+		name = "packet.h: 203";
+		rLen = 0;
+		rLoc = 1428;
+		rType = 0;
+		vrLen = 1158;
+		vrLoc = 4333;
+	};
+	6926AC9B146DC6BC00F69705 /* packet_private.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = packet_private.h;
+		path = "/Users/trevor/Documents/Cocoa Projects/libsimplepgp/packet_private.h";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {905, 2756}}";
+			sepNavSelRange = "{762, 0}";
+			sepNavVisRange = "{0, 1228}";
+		};
+	};
+	6926ACA6146DC70D00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 24";
+		rLen = 27;
+		rLoc = 710;
+		rType = 0;
+		vrLen = 1149;
+		vrLoc = 428;
+	};
+	6926ACA7146DC70D00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2214620D0F00F69705 /* packet_test.h */;
+		name = "packet_test.h: 26";
+		rLen = 0;
+		rLoc = 763;
+		rType = 0;
+		vrLen = 867;
+		vrLoc = 0;
+	};
+	6926ACA8146DC70D00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2114620D0F00F69705 /* packet_test.c */;
+		name = "packet_test.c: 23";
+		rLen = 0;
+		rLoc = 716;
+		rType = 0;
+		vrLen = 1509;
+		vrLoc = 0;
+	};
+	6926ACA9146DC70D00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926A661146B38F200F69705 /* keychain.h */;
+		name = "keychain.h: 19";
+		rLen = 0;
+		rLoc = 680;
+		rType = 0;
+		vrLen = 1207;
+		vrLoc = 0;
+	};
+	6926ACAA146DC70D00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926A660146B38F200F69705 /* keychain.c */;
+		name = "keychain.c: 24";
+		rLen = 0;
+		rLoc = 738;
+		rType = 0;
+		vrLen = 1265;
+		vrLoc = 0;
+	};
+	6926ACAB146DC70D00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AC9B146DC6BC00F69705 /* packet_private.h */;
+		name = "packet_private.h: 12";
+		rLen = 0;
+		rLoc = 742;
+		rType = 0;
+		vrLen = 880;
+		vrLoc = 0;
+	};
+	6926ACAC146DC70D00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2414620D0F00F69705 /* packet.h */;
+		name = "packet.h: 45";
+		rLen = 0;
+		rLoc = 1210;
+		rType = 0;
+		vrLen = 1518;
+		vrLoc = 685;
+	};
+	6926ACAD146DC70D00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2414620D0F00F69705 /* packet.h */;
+		name = "packet.h: 45";
+		rLen = 0;
+		rLoc = 1210;
+		rType = 0;
+		vrLen = 1518;
+		vrLoc = 685;
+	};
+	6926ACB6146DC76A00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AC9B146DC6BC00F69705 /* packet_private.h */;
+		name = "packet_private.h: 35";
+		rLen = 0;
+		rLoc = 1251;
+		rType = 0;
+		vrLen = 955;
+		vrLoc = 0;
+	};
+	6926ACB7146DC76A00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2414620D0F00F69705 /* packet.h */;
+		name = "packet.h: 27";
+		rLen = 0;
+		rLoc = 749;
+		rType = 0;
+		vrLen = 1510;
+		vrLoc = 0;
+	};
+	6926ACB8146DC76A00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 34";
+		rLen = 0;
+		rLoc = 876;
+		rType = 0;
+		vrLen = 1174;
+		vrLoc = 647;
+	};
+	6926ACB9146DC76A00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 34";
+		rLen = 0;
+		rLoc = 876;
+		rType = 0;
+		vrLen = 1256;
+		vrLoc = 690;
+	};
+	6926ACBC146DC78A00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 34";
+		rLen = 0;
+		rLoc = 876;
+		rType = 0;
+		vrLen = 1256;
+		vrLoc = 690;
+	};
+	6926ACBD146DC78A00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AC66146DBC7D00F69705 /* README */;
+		name = "README: 27";
+		rLen = 0;
+		rLoc = 937;
+		rType = 0;
+		vrLen = 1119;
+		vrLoc = 0;
+	};
+	6926ACBE146DC7E400F69705 /* util.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = util.h;
+		path = "/Users/trevor/Documents/Cocoa Projects/libsimplepgp/util.h";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {905, 618}}";
+			sepNavSelRange = "{730, 0}";
+			sepNavVisRange = "{0, 957}";
+		};
+	};
+	6926ACBF146DC7E400F69705 /* util.c */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.c;
+		name = util.c;
+		path = "/Users/trevor/Documents/Cocoa Projects/libsimplepgp/util.c";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {905, 715}}";
+			sepNavSelRange = "{1420, 0}";
+			sepNavVisRange = "{74, 1507}";
+		};
+	};
+	6926ACD7146DC8A000F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AC66146DBC7D00F69705 /* README */;
+		name = "README: 27";
+		rLen = 0;
+		rLoc = 937;
+		rType = 0;
+		vrLen = 1119;
+		vrLoc = 0;
+	};
+	6926ACD8146DC8A000F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926A661146B38F200F69705 /* keychain.h */;
+		name = "keychain.h: 19";
+		rLen = 0;
+		rLoc = 680;
+		rType = 0;
+		vrLen = 1207;
+		vrLoc = 0;
+	};
+	6926ACD9146DC8A000F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2414620D0F00F69705 /* packet.h */;
+		name = "packet.h: 7";
+		rLen = 603;
+		rLoc = 81;
+		rType = 0;
+		vrLen = 1510;
+		vrLoc = 0;
+	};
+	6926ACDA146DC8A000F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926ACBE146DC7E400F69705 /* util.h */;
+		name = "util.h: 25";
+		rLen = 0;
+		rLoc = 730;
+		rType = 0;
+		vrLen = 957;
+		vrLoc = 0;
+	};
+	6926ACDB146DC8A000F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926ACBF146DC7E400F69705 /* util.c */;
+		name = "util.c: 49";
+		rLen = 0;
+		rLoc = 1420;
+		rType = 0;
+		vrLen = 1507;
+		vrLoc = 74;
+	};
+	6926ACDC146DC8A000F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AC9B146DC6BC00F69705 /* packet_private.h */;
+		name = "packet_private.h: 26";
+		rLen = 0;
+		rLoc = 762;
+		rType = 0;
+		vrLen = 930;
+		vrLoc = 688;
+	};
+	6926ACDD146DC8A000F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 25";
+		rLen = 0;
+		rLoc = 777;
+		rType = 0;
+		vrLen = 1193;
+		vrLoc = 575;
+	};
+	6926ACDE146DC8A000F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 26";
+		rLen = 0;
+		rLoc = 777;
+		rType = 0;
+		vrLen = 1171;
+		vrLoc = 575;
+	};
+	6926ACDF146DC8B700F69705 /* mpi.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = mpi.h;
+		path = "/Users/trevor/Documents/Cocoa Projects/libsimplepgp/mpi.h";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {905, 618}}";
+			sepNavSelRange = "{679, 0}";
+			sepNavVisRange = "{0, 1429}";
+		};
+	};
+	6926ACE0146DC8B700F69705 /* mpi.c */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.c;
+		name = mpi.c;
+		path = "/Users/trevor/Documents/Cocoa Projects/libsimplepgp/mpi.c";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {905, 1599}}";
+			sepNavSelRange = "{679, 0}";
+			sepNavVisRange = "{0, 1541}";
+			sepNavWindowFrame = "{{61, 85}, {1136, 746}}";
+		};
+	};
+	6926ACEE146DC91F00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926ACE0146DC8B700F69705 /* mpi.c */;
+		name = "mpi.c: 12";
+		rLen = 0;
+		rLoc = 703;
+		rType = 0;
+		vrLen = 1193;
+		vrLoc = 0;
+	};
+	6926ACEF146DC91F00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926ACDF146DC8B700F69705 /* mpi.h */;
+		name = "mpi.h: 14";
+		rLen = 0;
+		rLoc = 730;
+		rType = 0;
+		vrLen = 881;
+		vrLoc = 0;
+	};
+	6926ACF0146DC91F00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2414620D0F00F69705 /* packet.h */;
+		name = "packet.h: 7";
+		rLen = 603;
+		rLoc = 81;
+		rType = 0;
+		vrLen = 1510;
+		vrLoc = 0;
+	};
+	6926ACF1146DC91F00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1614";
+		rLen = 0;
+		rLoc = 50824;
+		rType = 0;
+		vrLen = 1263;
+		vrLoc = 49545;
+	};
+	6926ACF2146DC91F00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 27";
+		rLen = 0;
+		rLoc = 794;
+		rType = 0;
+		vrLen = 1178;
+		vrLoc = 685;
+	};
+	6926ACF7146DC97F00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 6";
+		rLen = 606;
+		rLoc = 78;
+		rType = 0;
+		vrLen = 1153;
+		vrLoc = 0;
+	};
+	6926ACF8146DC97F00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AC9B146DC6BC00F69705 /* packet_private.h */;
+		name = "packet_private.h: 26";
+		rLen = 0;
+		rLoc = 762;
+		rType = 0;
+		vrLen = 1228;
+		vrLoc = 0;
+	};
+	6926ACF9146DC97F00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926ACBE146DC7E400F69705 /* util.h */;
+		name = "util.h: 25";
+		rLen = 0;
+		rLoc = 730;
+		rType = 0;
+		vrLen = 957;
+		vrLoc = 0;
+	};
+	6926ACFA146DC97F00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926ACBF146DC7E400F69705 /* util.c */;
+		name = "util.c: 49";
+		rLen = 0;
+		rLoc = 1420;
+		rType = 0;
+		vrLen = 1507;
+		vrLoc = 74;
+	};
+	6926ACFB146DC97F00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926ACDF146DC8B700F69705 /* mpi.h */;
+		name = "mpi.h: 20";
+		rLen = 0;
+		rLoc = 679;
+		rType = 0;
+		vrLen = 1429;
+		vrLoc = 0;
+	};
+	6926ACFC146DC97F00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926ACE0146DC8B700F69705 /* mpi.c */;
+		name = "mpi.c: 20";
+		rLen = 0;
+		rLoc = 679;
+		rType = 0;
+		vrLen = 1541;
+		vrLoc = 0;
+	};
+	6926ACFD146DC99E00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926ACDF146DC8B700F69705 /* mpi.h */;
+		name = "mpi.h: 20";
+		rLen = 0;
+		rLoc = 679;
+		rType = 0;
+		vrLen = 1429;
+		vrLoc = 0;
+	};
+	6926ACFE146DC99E00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926ACDF146DC8B700F69705 /* mpi.h */;
+		name = "mpi.h: 20";
+		rLen = 0;
+		rLoc = 679;
+		rType = 0;
+		vrLen = 1429;
+		vrLoc = 0;
+	};
+	6926AD03146DC9BD00F69705 /* util.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {905, 702}}";
+			sepNavSelRange = "{642, 0}";
+			sepNavVisRange = "{0, 1420}";
+		};
+	};
+	6926AD0F146DC9D700F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 6";
+		rLen = 606;
+		rLoc = 78;
+		rType = 0;
+		vrLen = 1153;
+		vrLoc = 0;
+	};
+	6926AD10146DC9D700F69705 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 6926AD03146DC9BD00F69705 /* util.c */;
+	};
+	6926AD11146DC9D700F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD03146DC9BD00F69705 /* util.c */;
+		name = "util.c: 18";
+		rLen = 0;
+		rLoc = 642;
+		rType = 0;
+		vrLen = 1420;
 		vrLoc = 0;
 	};
 	69868AD41460E35F004C5D9B /* Source Control */ = {

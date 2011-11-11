@@ -1,8 +1,8 @@
 /*
- *  packet_test.h
+ *  util.h
  *  simplepgp
  *
- *  Created by Trevor Bentley on 11/2/11.
+ *  Created by Trevor Bentley on 11/11/11.
  *
  *  Copyright 2011 Trevor Bentley
  *
@@ -20,14 +20,15 @@
  *
  */
 
-#ifndef _PACKET_TEST_H
+#ifndef _UTIL_H
 
-#include "packet.h"
 #include "packet_private.h"
-#include <stdint.h>
-#include <stdio.h>
 
-uint8_t test_spgp_packet(void);
+uint8_t spgp_pgp_to_gcrypt_symmetric_algo(uint8_t pgpalgo);
+                            
+uint8_t spgp_iv_length_for_symmetric_algo(uint8_t algo);
 
-#define _PACKET_TEST_H
+uint8_t spgp_salt_length_for_hash_algo(uint8_t algo);
+
+#define _UTIL_H
 #endif

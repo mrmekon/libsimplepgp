@@ -21,6 +21,7 @@
  */
 
 #include "keychain.h"
+#include "packet_private.h"
 
 #define SPGP_KEYCHAIN_DEFAULT_SIZE 5
 
