@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.68])
-AC_INIT([libsimplepgp], [1.0], [trevor@trevorbentley.com])
 
+AC_INIT([simplepgp], [1.0], [trevor@trevorbentley.com])
 AC_COPYRIGHT(Trevor Bentley 2011)
 
 AC_CONFIG_SRCDIR([src/packet.c])
