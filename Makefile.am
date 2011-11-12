@@ -6,3 +6,6 @@ libsimplepgp_la_SOURCES = \
 	src/keychain.c \
 	src/util.c \
 	src/mpi.c 
+
+clean-local:
+	-rm -rf build

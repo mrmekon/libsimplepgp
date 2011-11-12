@@ -11,7 +11,6 @@ AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([Makefile])
 
 AM_INIT_AUTOMAKE([subdir-objects foreign])
-
 AC_PROG_LIBTOOL
 
 AC_CONFIG_MACRO_DIR([m4])

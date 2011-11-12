@@ -2,8 +2,8 @@
 {
 	0867D690FE84028FC02AAC07 /* Project object */ = {
 		activeArchitecturePreference = armv7;
-		activeBuildConfigurationName = Debug;
-		activeSDKPreference = iphonesimulator4.3;
+		activeBuildConfigurationName = Release;
+		activeSDKPreference = iphoneos4.3;
 		activeTarget = D2AAC07D0554694100DB518D /* simplepgp */;
 		addToTargets = (
 			D2AAC07D0554694100DB518D /* simplepgp */,
@@ -41,7 +41,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					812,
+					687,
 					60,
 					20,
 					48,
@@ -415,6 +415,8 @@
 			6926AD44146DDA7900F69705 /* PBXTextBookmark */ = 6926AD44146DDA7900F69705 /* PBXTextBookmark */;
 			6926AD45146DDA7900F69705 /* PBXTextBookmark */ = 6926AD45146DDA7900F69705 /* PBXTextBookmark */;
 			6926AD46146DDA7900F69705 /* PBXTextBookmark */ = 6926AD46146DDA7900F69705 /* PBXTextBookmark */;
+			6926AD49146DF6F600F69705 /* PBXTextBookmark */ = 6926AD49146DF6F600F69705 /* PBXTextBookmark */;
+			6926AD4A146DF6F600F69705 /* PBXTextBookmark */ = 6926AD4A146DF6F600F69705 /* PBXTextBookmark */;
 			69868BD11460F42D004C5D9B = 69868BD11460F42D004C5D9B /* PBXTextBookmark */;
 			69868BD91460F468004C5D9B = 69868BD91460F468004C5D9B /* PBXTextBookmark */;
 			69868C931460F7C3004C5D9B = 69868C931460F7C3004C5D9B /* PBXTextBookmark */;
@@ -4104,6 +4106,26 @@
 		vrLoc = 18819;
 	};
 	6926AD46146DDA7900F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
+		name = "packet_private.h: 14";
+		rLen = 0;
+		rLoc = 361;
+		rType = 0;
+		vrLen = 1231;
+		vrLoc = 0;
+	};
+	6926AD49146DF6F600F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
+		name = "packet_private.h: 14";
+		rLen = 0;
+		rLoc = 361;
+		rType = 0;
+		vrLen = 1231;
+		vrLoc = 0;
+	};
+	6926AD4A146DF6F600F69705 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
 		name = "packet_private.h: 14";
