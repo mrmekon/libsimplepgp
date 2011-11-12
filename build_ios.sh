@@ -3,6 +3,7 @@
 echo "Building iOS library..."
 xcodebuild -project simplepgp.xcodeproj -alltargets > /dev/null
 echo "Building iOS simulator library..."
-xcodebuild -project simplepgp.xcodeproj -alltargets -sdk iphonesimulator4.3 >/dev/null
+SIMSDK=`xcodebuild -showsdks |grep iphonesim |tail -1 |sed 's/.*-sdk \(.*\)/\1/'`
+xcodebuild -project simplepgp.xcodeproj -alltargets -sdk ${SIMSDK} >/dev/null
 echo "Done!"
 

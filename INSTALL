@@ -1,0 +1,27 @@
+********** From Mercurial repository
+
+You must have the autoconf suite installed.  Run:
+
+# autoreconf -i
+
+Then continue as if from tarball.
+
+
+********** From tarball
+
+After extracting, run:
+
+# ./configure
+
+To build for the local host, run:
+
+# make
+# sudo make install
+
+
+
+To build static libraries for Apple iOS, run:
+
+# make ios
+
+Static libraries will be output under the build/ directory.

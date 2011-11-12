@@ -9,3 +9,6 @@ libsimplepgp_la_SOURCES = \
 
 clean-local:
 	-rm -rf build
+
+ios:
+	@./build_ios.sh
