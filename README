@@ -18,6 +18,8 @@ Initial goals are:
    - TripleDES, CAST5, and AES-256 symmetric ciphers
    - SHA-1 hashes
    - ZIP and ZLIB compression
+ * Support PC (UNIX-ish) platforms
+ * Support iOS (iPhone) platforms
    
 Known limitations:
  * No support for RSA keys
@@ -26,6 +28,11 @@ Known limitations:
  * No support for old formats, or deprecated message types
  * Not thread-safe
 
-Note that this is a C library, but currently the build script is an Xcode 
-project for OS X.  I want the code to be semi-portable, but this library is a 
-subset of an iOS project.
+
+Build for desktop with included autoconf script:
+ # ./configure && make && make install
+
+Build static iOS library with Xcode or command-line:
+ # make ios
+
+
