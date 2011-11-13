@@ -1,6 +1,9 @@
 pkglib_LTLIBRARIES = libsimplepgp.la
 pkginclude_HEADERS = src/simplepgp.h
 
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = simplepgp.pc
+
 libsimplepgp_la_LDFLAGS = -version-info 0:1:0
 libsimplepgp_la_SOURCES = \
 	src/packet.c \
