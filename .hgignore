@@ -1,0 +1,22 @@
+syntax: glob
+m4
+config.*
+autom4te*
+Binaries
+.DS_Store
+Makefile
+Makefile.in
+*~
+configure
+autoscan.log
+aclocal.m4
+ios-libraries*
+install-sh
+depcomp
+src/.deps/
+libtool
+ltmain.sh
+missing
+src/.dirstamp
+stamp-h1
+build

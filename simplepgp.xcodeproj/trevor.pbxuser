@@ -2,8 +2,8 @@
 {
 	0867D690FE84028FC02AAC07 /* Project object */ = {
 		activeArchitecturePreference = armv7;
-		activeBuildConfigurationName = Release;
-		activeSDKPreference = iphoneos4.3;
+		activeBuildConfigurationName = "Debug simulator";
+		activeSDKPreference = iphonesimulator4.3;
 		activeTarget = D2AAC07D0554694100DB518D /* simplepgp */;
 		addToTargets = (
 			D2AAC07D0554694100DB518D /* simplepgp */,
@@ -417,6 +417,16 @@
 			6926AD46146DDA7900F69705 /* PBXTextBookmark */ = 6926AD46146DDA7900F69705 /* PBXTextBookmark */;
 			6926AD49146DF6F600F69705 /* PBXTextBookmark */ = 6926AD49146DF6F600F69705 /* PBXTextBookmark */;
 			6926AD4A146DF6F600F69705 /* PBXTextBookmark */ = 6926AD4A146DF6F600F69705 /* PBXTextBookmark */;
+			6926B08E146F4B6600F69705 /* PBXTextBookmark */ = 6926B08E146F4B6600F69705 /* PBXTextBookmark */;
+			6926B0FF146F5A7100F69705 /* PBXTextBookmark */ = 6926B0FF146F5A7100F69705 /* PBXTextBookmark */;
+			6926B100146F5A7100F69705 /* PBXTextBookmark */ = 6926B100146F5A7100F69705 /* PBXTextBookmark */;
+			6926B10B146F5AA300F69705 /* PBXTextBookmark */ = 6926B10B146F5AA300F69705 /* PBXTextBookmark */;
+			6926B112146F5B3900F69705 /* PBXTextBookmark */ = 6926B112146F5B3900F69705 /* PBXTextBookmark */;
+			6926B113146F5B4700F69705 /* PBXTextBookmark */ = 6926B113146F5B4700F69705 /* PBXTextBookmark */;
+			6926B134146F5CFA00F69705 /* PBXTextBookmark */ = 6926B134146F5CFA00F69705 /* PBXTextBookmark */;
+			6926B13C146F5E5F00F69705 /* PBXTextBookmark */ = 6926B13C146F5E5F00F69705 /* PBXTextBookmark */;
+			6926B13F146F5E7F00F69705 /* PBXTextBookmark */ = 6926B13F146F5E7F00F69705 /* PBXTextBookmark */;
+			6926B14F146F5EB300F69705 /* PBXTextBookmark */ = 6926B14F146F5EB300F69705 /* PBXTextBookmark */;
 			69868BD11460F42D004C5D9B = 69868BD11460F42D004C5D9B /* PBXTextBookmark */;
 			69868BD91460F468004C5D9B = 69868BD91460F468004C5D9B /* PBXTextBookmark */;
 			69868C931460F7C3004C5D9B = 69868C931460F7C3004C5D9B /* PBXTextBookmark */;
@@ -441,9 +451,9 @@
 	};
 	69269F2314620D0F00F69705 /* packet.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {509, 21346}}";
+			sepNavIntBoundsRect = "{{0, 0}, {685, 21372}}";
 			sepNavSelRange = "{47236, 0}";
-			sepNavVisRange = "{37622, 261}";
+			sepNavVisRange = "{37622, 342}";
 			sepNavWindowFrame = "{{139, 11}, {1136, 746}}";
 		};
 	};
@@ -2352,10 +2362,16 @@
 		vrLoc = 32098;
 	};
 	6926A9BE146C609200F69705 /* zlib.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = zlib.h;
+		path = "/Users/trevor/Documents/Cocoa Projects/libsimplepgp/zlib.h";
+		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {905, 21346}}";
+			sepNavIntBoundsRect = "{{0, 0}, {905, 21489}}";
 			sepNavSelRange = "{10340, 0}";
-			sepNavVisRange = "{9045, 2376}";
+			sepNavVisRange = "{9045, 2375}";
 		};
 	};
 	6926A9C7146C658300F69705 /* PBXTextBookmark */ = {
@@ -4135,6 +4151,106 @@
 		vrLen = 1231;
 		vrLoc = 0;
 	};
+	6926B08E146F4B6600F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
+		name = "packet_private.h: 14";
+		rLen = 0;
+		rLoc = 361;
+		rType = 0;
+		vrLen = 1231;
+		vrLoc = 0;
+	};
+	6926B0FF146F5A7100F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
+		name = "packet_private.h: 14";
+		rLen = 0;
+		rLoc = 361;
+		rType = 0;
+		vrLen = 1231;
+		vrLoc = 0;
+	};
+	6926B100146F5A7100F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
+		name = "packet_private.h: 14";
+		rLen = 0;
+		rLoc = 361;
+		rType = 0;
+		vrLen = 1231;
+		vrLoc = 0;
+	};
+	6926B10B146F5AA300F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
+		name = "packet_private.h: 14";
+		rLen = 0;
+		rLoc = 361;
+		rType = 0;
+		vrLen = 1231;
+		vrLoc = 0;
+	};
+	6926B112146F5B3900F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1496";
+		rLen = 0;
+		rLoc = 47236;
+		rType = 0;
+		vrLen = 342;
+		vrLoc = 37622;
+	};
+	6926B113146F5B4700F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
+		name = "packet_private.h: 14";
+		rLen = 0;
+		rLoc = 361;
+		rType = 0;
+		vrLen = 1231;
+		vrLoc = 0;
+	};
+	6926B134146F5CFA00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
+		name = "packet_private.h: 14";
+		rLen = 0;
+		rLoc = 361;
+		rType = 0;
+		vrLen = 1231;
+		vrLoc = 0;
+	};
+	6926B13C146F5E5F00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
+		name = "packet_private.h: 14";
+		rLen = 0;
+		rLoc = 361;
+		rType = 0;
+		vrLen = 1231;
+		vrLoc = 0;
+	};
+	6926B13F146F5E7F00F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1496";
+		rLen = 0;
+		rLoc = 47236;
+		rType = 0;
+		vrLen = 342;
+		vrLoc = 37622;
+	};
+	6926B14F146F5EB300F69705 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
+		name = "packet_private.h: 14";
+		rLen = 0;
+		rLoc = 361;
+		rType = 0;
+		vrLen = 1231;
+		vrLoc = 0;
+	};
 	69868AD41460E35F004C5D9B /* Source Control */ = {
 		isa = PBXSourceControlManager;
 		fallbackIsa = XCSourceControlManager;
@@ -4150,6 +4266,12 @@
 		indexTemplatePath = "";
 	};
 	69868BC61460F37E004C5D9B /* gpg-error.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = "gpg-error.h";
+		path = "/Users/trevor/Documents/Cocoa Projects/libsimplepgp/gpg-error.h";
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {905, 8684}}";
 			sepNavSelRange = "{19751, 12}";
@@ -4157,6 +4279,12 @@
 		};
 	};
 	69868BC81460F386004C5D9B /* gcrypt-module.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = "gcrypt-module.h";
+		path = "/Users/trevor/Documents/Cocoa Projects/libsimplepgp/gcrypt-module.h";
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {565, 2925}}";
 			sepNavSelRange = "{0, 0}";
@@ -4164,6 +4292,12 @@
 		};
 	};
 	69868BC91460F386004C5D9B /* gcrypt.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = gcrypt.h;
+		path = "/Users/trevor/Documents/Cocoa Projects/libsimplepgp/gcrypt.h";
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {905, 24739}}";
 			sepNavSelRange = "{43712, 12}";
