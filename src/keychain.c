@@ -85,7 +85,7 @@ uint8_t spgp_keychain_add_packet(spgp_packet_t *pkt) {
 uint8_t spgp_keychain_del_packet(spgp_packet_t *pkt) {
   pthread_mutex_lock(&keychain_mtx);
   pthread_mutex_unlock(&keychain_mtx);
-
+  LOG_PRINT("PACKET DELETE UNIMPLEMENTED\n");
 	return -1;
 }
 
@@ -106,8 +106,7 @@ spgp_packet_t *spgp_keychain_iter_next(void) {
 
 spgp_packet_t *spgp_keychain_secret_key_with_id(uint8_t *keyid) {
   pthread_mutex_lock(&keychain_mtx);
-
   pthread_mutex_unlock(&keychain_mtx);
-
+	LOG_PRINT("SECRET KEY SEARCH UNIMPLEMENTED\n");
 	return NULL;
 }

@@ -40,6 +40,15 @@
 **
 ***********************************************************************/
 
+
+
+/**********************************************************************
+**
+** Extern variables
+**
+***********************************************************************/
+
+pthread_mutex_t spgp_mtx;
 uint32_t _spgp_err;
 jmp_buf exception;
 
@@ -131,6 +140,26 @@ static uint8_t spgp_read_iv(uint8_t *msg,
 ***********************************************************************/
 #pragma mark External Function Definitions
 
+uint8_t spgp_init(void) {
+	if (pthread_mutex_init(&spgp_mtx, NULL)) return -1;
+  if (spgp_keychain_init()) return -1;
+  return 0;
+}
+
+uint8_t spgp_close(void) {
+	spgp_packet_t *chain = NULL;
+  if (spgp_keychain_is_valid()) {
+    spgp_keychain_iter_start();
+    while ((chain = spgp_keychain_iter_next()) != NULL) {
+    	spgp_free_packet(&chain);
+    }
+    spgp_keychain_iter_end();
+    spgp_keychain_free();
+	}
+
+	pthread_mutex_destroy(&spgp_mtx);
+  return 0;
+}
 
 spgp_packet_t *spgp_decode_message(uint8_t *message, uint32_t length) {
 	spgp_packet_t *head = NULL;
@@ -225,6 +254,7 @@ uint8_t spgp_decrypt_all_secret_keys(spgp_packet_t *msg,
                                 		 uint8_t *passphrase, uint32_t length) {
 	spgp_packet_t *cur = msg;
   uint8_t err = 0;
+  uint8_t haskey = 0;
   
 	if (setjmp(exception)) {
     	LOG_PRINT("Exception (0x%x)\n",_spgp_err);
@@ -237,7 +267,12 @@ uint8_t spgp_decrypt_all_secret_keys(spgp_packet_t *msg,
   	LOG_PRINT("Decrypting secret key\n");
   	spgp_decrypt_secret_key(cur, passphrase, length);
   	cur = cur->next;
+    haskey = 1;
   }
+  
+  // Add decrypted keys to keychain
+  if (haskey)
+  	if (spgp_keychain_add_packet(msg) != 0) RAISE(KEYCHAIN_ERROR);
   
   end:
   return err;
@@ -379,7 +414,9 @@ uint8_t spgp_debug_log_enabled(void) {
 	return debug_log_enabled;
 }
 void spgp_debug_log_set(uint8_t enable) {
+	pthread_mutex_lock(&spgp_mtx);
 	debug_log_enabled = enable;
+  pthread_mutex_unlock(&spgp_mtx);
 }
 
 

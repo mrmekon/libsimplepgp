@@ -23,7 +23,6 @@
 #ifndef _KEYCHAIN_H
 
 #include <stdint.h>
-#include <pthread.h>
 #include "simplepgp.h"
 
 

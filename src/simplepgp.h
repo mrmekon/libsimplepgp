@@ -34,6 +34,9 @@ typedef struct spgp_userid_packet_struct  spgp_userid_pkt_t;
 typedef struct spgp_session_packet_struct spgp_session_pkt_t;
 typedef struct spgp_literal_packet_struct spgp_literal_pkt_t;
 
+uint8_t spgp_init(void);
+uint8_t spgp_close(void);
+
 
 /**
  * Break a binary OpenPGP message into decoded packets.

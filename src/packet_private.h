@@ -27,6 +27,7 @@
 
 #include <stdio.h>
 #include <setjmp.h>
+#include <pthread.h>
 
 
 /**********************************************************************
@@ -37,8 +38,10 @@
 #pragma mark Macros
 
 #define RAISE(err) do { \
+		pthread_mutex_lock(&spgp_mtx); \
 		_spgp_err = (err); \
     LOG_PRINT("raise 0x%X\n",_spgp_err); \
+		pthread_mutex_unlock(&spgp_mtx); \
     longjmp(exception,_spgp_err); \
   } while(0)
 
@@ -56,6 +59,7 @@
   } } while(0)
 
 
+extern pthread_mutex_t spgp_mtx;
 extern uint8_t debug_log_enabled;
 extern uint32_t _spgp_err;
 extern jmp_buf exception;
