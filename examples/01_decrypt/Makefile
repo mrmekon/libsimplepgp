@@ -5,3 +5,5 @@ EXEC=decrypt
 OBJS=decrypt.c
 
 default: $(EXEC)
+
+all: default
