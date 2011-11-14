@@ -1,0 +1,13 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: libsimplepgp
+Description: Simple implementation of OpenPGP
+Requires.private: zlib
+Version: @PACKAGE_VERSION@
+Libs: -L${libdir}/simplepgp -lsimplepgp
+Libs.private: `libgcrypt-config --libs` `gpg-error-config --libs`
+Cflags: -I${includedir}/simplepgp
+Cflags.private: `libgcrypt-config --cflags` `gpg-error-config --cflags`

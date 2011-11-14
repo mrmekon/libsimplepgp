@@ -8,7 +8,7 @@ AC_COPYRIGHT(Trevor Bentley 2011)
 
 AC_CONFIG_SRCDIR([src/packet.c])
 AC_CONFIG_HEADERS([config.h])
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([Makefile simplepgp.pc])
 
 AM_INIT_AUTOMAKE([subdir-objects foreign])
 AC_PROG_LIBTOOL
