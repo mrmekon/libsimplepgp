@@ -1,5 +1,3 @@
-SUBDIRS = examples/01_decrypt
-
 pkglib_LTLIBRARIES = libsimplepgp.la
 pkginclude_HEADERS = src/simplepgp.h
 
@@ -12,6 +10,12 @@ libsimplepgp_la_SOURCES = \
 	src/keychain.c \
 	src/util.c \
 	src/mpi.c 
+
+installcheck-local:
+	make -C examples/01_decrypt
+	pushd `pwd`/examples/01_decrypt ;\
+	./decrypt ;\
+	popd
 
 clean-local:
 	-rm -rf build

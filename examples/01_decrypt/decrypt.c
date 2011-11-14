@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <string.h>
+#include <stdint.h>
 
 #include <simplepgp.h>
 
@@ -15,6 +16,8 @@ int main(int argc, char **argv) {
   int fd;
   int seckey_len, ctext_len;
   spgp_packet_t *pkt;
+  char *data, *filename;
+  uint32_t datalen, filenamelen;
 
   printf("simplepgp decrypt example.\n");
 
@@ -55,6 +58,15 @@ int main(int argc, char **argv) {
     fprintf(stderr, "error: %s\n", spgp_err_str(spgp_err()));
     return 1;
   }
+
+  data = spgp_get_literal_data(pkt, &datalen,
+			       &filename, &filenamelen);
+  if (NULL == data) {
+    fprintf(stderr, "error: %s\n", spgp_err_str(spgp_err()));
+    return 1;
+  }
+  printf("Filename length: %u\n", filenamelen);
+  printf("Data length: %u\n", datalen);
 
   spgp_close();
 
