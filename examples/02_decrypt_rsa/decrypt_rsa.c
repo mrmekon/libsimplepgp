@@ -6,7 +6,7 @@
 
 #include <simplepgp.h>
 
-#define SECKEY_BUF 2048
+#define SECKEY_BUF 4096
 #define CTEXT_BUF 1024
 
 #define KEY_PASS "test"
@@ -19,10 +19,11 @@ int main(int argc, char **argv) {
   spgp_packet_t *pkt;
   char *data, *filename;
   uint32_t datalen, filenamelen;
+  uint32_t i;
 
   printf("simplepgp decrypt example.\n");
 
-  fd = open("test1_sec.pgp", O_RDONLY);
+  fd = open("test2_sec.pgp", O_RDONLY);
   if (fd < 0) { perror("seckey open"); return 1; }
   if ((seckey_len = read(fd, seckey, SECKEY_BUF)) < 0) {
     perror("seckey read"); return 1;

@@ -12,10 +12,11 @@ libsimplepgp_la_SOURCES = \
 	src/mpi.c 
 
 installcheck-local:
-	make -C examples/01_decrypt
-	pushd "`pwd`/examples/01_decrypt" ;\
-	./decrypt ;\
-	popd
+	@make -C examples/01_decrypt
+	@make -C examples/02_decrypt_rsa
+	@pushd "`pwd`/examples/01_decrypt";./decrypt;popd
+	@read -p "Press return to run next test..."
+	@pushd "`pwd`/examples/02_decrypt_rsa";./decrypt_rsa;popd
 
 clean-local:
 	-rm -rf build
