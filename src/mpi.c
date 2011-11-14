@@ -34,6 +34,7 @@ uint8_t spgp_read_all_public_mpis(uint8_t *msg,
   	RAISE(INVALID_ARGS);
 
 	switch (pub->asymAlgo) {
+  	case ASYM_ALGO_RSA: mpiCount = 2; break;
   	case ASYM_ALGO_DSA: mpiCount = 4; break;
     case ASYM_ALGO_ELGAMAL: mpiCount = 3; break;
     default: RAISE(FORMAT_UNSUPPORTED);

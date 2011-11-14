@@ -691,6 +691,9 @@ static uint8_t spgp_generate_fingerprint(spgp_packet_t *pkt) {
 
   // Figure out how many MPIs to add
   switch(pkt->c.pub->asymAlgo) {
+  	case ASYM_ALGO_RSA:
+    	targetMpiCount = 2;
+    	break;
   	case ASYM_ALGO_DSA:
     	targetMpiCount = 4;
       break;
@@ -1140,6 +1143,9 @@ static uint8_t spgp_decrypt_secret_key(spgp_packet_t *pkt,
   
   // Decode and store the secret MPIs (algo-specific):
   switch(pub->asymAlgo) {
+  	case ASYM_ALGO_RSA:
+    	secretMpiCount = 4;
+      break;
   	case ASYM_ALGO_DSA:
     case ASYM_ALGO_ELGAMAL:
     	secretMpiCount = 1;
@@ -1158,6 +1164,7 @@ static uint8_t spgp_decrypt_secret_key(spgp_packet_t *pkt,
 	  curMpi->next = spgp_read_mpi(secdata, &idx, secret->encryptedDataLength);
     if (NULL == curMpi->next) RAISE(GENERIC_ERROR);
     curMpi = curMpi->next;
+    SAFE_IDX_INCREMENT(idx, secret->encryptedDataLength);
     pub->mpiCount++;
   }
   secret->isDecrypted = 1;
@@ -1544,6 +1551,15 @@ static uint8_t spgp_parse_session_packet(uint8_t *msg, uint32_t *idx,
 
   
   switch (session->algo) {
+  	case ASYM_ALGO_RSA:
+		  gcry_sexp_build(&sexp_key, NULL,
+				"(private-key(rsa(n%m)(e%m)(d%m)(p%m)(q%m)(u%m)))",
+				mpis[0], mpis[1], mpis[2], mpis[3], mpis[4], mpis[5]);
+		  gcry_sexp_build (&sexp_data, NULL,
+			   "(enc-val(rsa(a%m)))", mpis[6]);
+		  gcry_pk_decrypt (&sexp_result, sexp_data, sexp_key);
+  		mpi_result = gcry_sexp_nth_mpi (sexp_result, 0, GCRYMPI_FMT_STD);
+    	break;
   	case ASYM_ALGO_ELGAMAL:
 		  gcry_sexp_build(&sexp_key, NULL,
 				"(private-key(elg(p%m)(g%m)(y%m)(x%m)))",
