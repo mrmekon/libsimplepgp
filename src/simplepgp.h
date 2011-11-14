@@ -34,12 +34,36 @@ typedef struct spgp_userid_packet_struct  spgp_userid_pkt_t;
 typedef struct spgp_session_packet_struct spgp_session_pkt_t;
 typedef struct spgp_literal_packet_struct spgp_literal_pkt_t;
 
+/**
+ * Initialize simplepgp library
+ *
+ * This function MUST be called before calling any other functions in the
+ * simplepgp library.  It initializes global variables and data structures
+ * that are used throughout the library.
+ *
+ * @return 0 on success, non-zero on failure
+ */
 uint8_t spgp_init(void);
+
+/**
+ * Call when finished with simplepgp library to free resources.
+ *
+ * @return 0 on success, non-zero on failure
+ */
 uint8_t spgp_close(void);
 
 
 /**
  * Break a binary OpenPGP message into decoded packets.
+ *
+ * This is the work-horse function of the library.  OpenPGP message, which may
+ * be keys or encrypted data, are passed into this function.  It splits them
+ * into a linked-list of OpenPGP packets, which can further be manipulated
+ * by other functions within the library.
+ *
+ * Encrypted messages will be decrypted automatically using keys found in the
+ * in-RAM keychain.  See spgp_decrypt_all_secret_keys() for how to load
+ * a secret key into the keychain.
  *
  * @param message Binary OpenPGP message to analyze
  * @param length Length of |message|
@@ -51,6 +75,10 @@ spgp_packet_t *spgp_decode_message(uint8_t *message, uint32_t length);
 /**
  * Decrypt all secret keys found in |msg| with given passphrase.
  *
+ * Call this function after decoding a message known to contain secret keys.
+ * This function decrypts the secret keys in the packet chain, and stores the
+ * decrypted keys internally in the in-RAM keychain.
+ *
  * @param msg Linked list of PGP packets
  * @param passphrase String to use as decryption passphrase.  No NUL termination.
  * @param length Length of passphrase.
@@ -61,6 +89,8 @@ uint8_t spgp_decrypt_all_secret_keys(spgp_packet_t *msg,
 
 /**
  * Frees all dynamic resources associated with |pkt|.
+ *
+ * @param pkt Pointer-to-pointer-to-packet to free.
  */
 void spgp_free_packet(spgp_packet_t **pkt);
 
