@@ -250,6 +250,33 @@ spgp_packet_t *spgp_decode_message(uint8_t *message, uint32_t length) {
   return head;
 }
 
+char *spgp_get_literal_data(spgp_packet_t *msg, uint32_t *datalen,
+														char **filename, uint32_t *filenamelen) {
+	spgp_packet_t *cur = msg;
+  
+	if (setjmp(exception)) {
+    	LOG_PRINT("Exception (0x%x)\n",_spgp_err);
+  	  goto end;
+  }
+  
+  if (NULL == msg || NULL == datalen || 
+  		NULL == filename || NULL == filenamelen) 
+  	RAISE(INVALID_ARGS);
+  
+  while (cur) {
+  	if (cur->header->type == PKT_TYPE_LITERAL_DATA) {
+    	*datalen = cur->c.literal->dataLen;
+      *filenamelen = cur->c.literal->filenameLen;
+      *filename = cur->c.literal->filename;
+      return cur->c.literal->data;
+    }
+  	cur = cur->next;
+  }
+  
+	end:
+	return NULL;
+}
+
 uint8_t spgp_decrypt_all_secret_keys(spgp_packet_t *msg, 
                                 		 uint8_t *passphrase, uint32_t length) {
 	spgp_packet_t *cur = msg;

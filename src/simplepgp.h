@@ -86,6 +86,18 @@ spgp_packet_t *spgp_decode_message(uint8_t *message, uint32_t length);
  */
 uint8_t spgp_decrypt_all_secret_keys(spgp_packet_t *msg, 
                                 		 uint8_t *passphrase, uint32_t length);
+                                     
+/**
+ * Gets the literal data buffer from a decrypted message
+ *
+ * @param Linked-list of packets to search for data
+ * @param datalen Set to size of returned data (in bytes)
+ * @param filename Set to buffer containing filename
+ * @param filenamelen Set to size of filename (in bytes)
+ * @return Buffer with literal data, or NULL if none available
+ */
+char *spgp_get_literal_data(spgp_packet_t *msg, uint32_t *datalen,
+														char **filename, uint32_t *filenamelen);
 
 /**
  * Frees all dynamic resources associated with |pkt|.

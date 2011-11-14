@@ -94,9 +94,9 @@
 	};
 	69269F2314620D0F00F69705 /* packet.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {905, 21840}}";
-			sepNavSelRange = "{7998, 0}";
-			sepNavVisRange = "{6413, 1690}";
+			sepNavIntBoundsRect = "{{0, 0}, {905, 22152}}";
+			sepNavSelRange = "{8104, 120}";
+			sepNavVisRange = "{8101, 1269}";
 			sepNavWindowFrame = "{{139, 11}, {1136, 746}}";
 		};
 	};
@@ -213,9 +213,9 @@
 	};
 	6926AD2B146DDA1900F69705 /* simplepgp.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1077, 1222}}";
-			sepNavSelRange = "{1265, 0}";
-			sepNavVisRange = "{753, 1477}";
+			sepNavIntBoundsRect = "{{0, 0}, {905, 1742}}";
+			sepNavSelRange = "{3330, 67}";
+			sepNavVisRange = "{2500, 1469}";
 			sepNavWindowFrame = "{{107, 43}, {1136, 746}}";
 		};
 	};
