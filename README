@@ -31,6 +31,9 @@ Known limitations:
 
 Build for desktop with included autoconf script:
  # ./configure && make && make install
+ 
+Build and run example:
+ # make installcheck
 
 Build static iOS library with Xcode or command-line:
  # make ios

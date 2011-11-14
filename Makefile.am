@@ -13,7 +13,7 @@ libsimplepgp_la_SOURCES = \
 
 installcheck-local:
 	make -C examples/01_decrypt
-	pushd `pwd`/examples/01_decrypt ;\
+	pushd "`pwd`/examples/01_decrypt" ;\
 	./decrypt ;\
 	popd
 
