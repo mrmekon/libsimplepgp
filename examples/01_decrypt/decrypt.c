@@ -74,6 +74,8 @@ int main(int argc, char **argv) {
   write(STDOUT_FILENO, data, datalen);
   printf("\n");
 
+  if (pkt) spgp_free_packet(&pkt);
+
   spgp_close();
 
   return 0;

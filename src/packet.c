@@ -325,7 +325,7 @@ void spgp_free_packet(spgp_packet_t **pkt) {
       (*pkt)->c.secret != NULL) {
   	if ((*pkt)->c.secret->pub.mpiCount > 0) {
     	curMpi = (*pkt)->c.secret->pub.mpiHead;
-      while (curMpi->next) {
+      while (curMpi) {
       	nextMpi = curMpi->next;
         if (curMpi->data) free(curMpi->data);
         free(curMpi);
@@ -333,6 +333,12 @@ void spgp_free_packet(spgp_packet_t **pkt) {
       }
       (*pkt)->c.secret->pub.mpiHead = NULL;
       (*pkt)->c.secret->pub.mpiCount = 0;
+    }
+    if ((*pkt)->c.secret->pub.fingerprint) {
+    	free((*pkt)->c.secret->pub.fingerprint);
+    }
+    if ((*pkt)->c.secret->encryptedData) {
+    	free((*pkt)->c.secret->encryptedData);
     }
     if ((*pkt)->c.secret->s2kSalt) {
     	free((*pkt)->c.secret->s2kSalt);
@@ -363,7 +369,10 @@ void spgp_free_packet(spgp_packet_t **pkt) {
       }
       (*pkt)->c.pub->mpiHead = NULL;
       (*pkt)->c.pub->mpiCount = 0;
-    }            
+    }      
+    if ((*pkt)->c.pub->fingerprint) {
+    	free((*pkt)->c.pub->fingerprint);
+    }      
   }
   
   else if ((*pkt)->header->type == PKT_TYPE_USER_ID &&
@@ -382,13 +391,16 @@ void spgp_free_packet(spgp_packet_t **pkt) {
       (*pkt)->c.session->key = NULL;
     }
   	if ((*pkt)->c.session->mpi1) {
+    	free((*pkt)->c.session->mpi1->data);
     	free((*pkt)->c.session->mpi1);
       (*pkt)->c.session->mpi1 = NULL;
     }
   	if ((*pkt)->c.session->mpi2) {
+    	free((*pkt)->c.session->mpi2->data);
     	free((*pkt)->c.session->mpi2);
       (*pkt)->c.session->mpi2 = NULL;
     }
+    free((*pkt)->c.session);
   }
   
   else if ((*pkt)->header->type == PKT_TYPE_LITERAL_DATA &&
@@ -401,6 +413,7 @@ void spgp_free_packet(spgp_packet_t **pkt) {
     	free((*pkt)->c.literal->data);
       (*pkt)->c.literal->data = NULL;
     }
+    free((*pkt)->c.literal);
   }
   
   // release header
@@ -1482,7 +1495,7 @@ static uint8_t spgp_parse_session_packet(uint8_t *msg, uint32_t *idx,
   gcry_mpi_t mpis[10], mpi_result;
   spgp_mpi_t *cur;
   uint32_t checksum, sum;
-  int i;
+  int i,mpi_count;
   unsigned long frame_len;
   uint8_t *frame;
   
@@ -1548,6 +1561,7 @@ static uint8_t spgp_parse_session_packet(uint8_t *msg, uint32_t *idx,
   	gcry_mpi_scan (&(mpis[i++]), GCRYMPI_FMT_PGP, 
                    session->mpi2->data, session->mpi2->count+2, NULL);
   }
+  mpi_count = i;
 
   
   switch (session->algo) {
@@ -1573,10 +1587,21 @@ static uint8_t spgp_parse_session_packet(uint8_t *msg, uint32_t *idx,
     	RAISE(FORMAT_UNSUPPORTED);
   }
 
+	if (!mpi_result) RAISE(GCRY_ERROR);
+
   gcry_mpi_print(GCRYMPI_FMT_PGP, NULL, 0, &frame_len, mpi_result);
   frame = malloc(frame_len);
   if (NULL == frame) RAISE(OUT_OF_MEMORY);
   gcry_mpi_print(GCRYMPI_FMT_PGP, frame, frame_len, NULL, mpi_result);
+
+	if (mpi_result) {gcry_mpi_release(mpi_result);}
+  if (sexp_key) {gcry_sexp_release(sexp_key);}
+  if (sexp_data) {gcry_sexp_release(sexp_data);}
+  if (sexp_result) {gcry_sexp_release(sexp_result);}
+
+	for (i = 0; i < mpi_count; i++) {
+  	gcry_mpi_release(mpis[i]);
+  }
 
 	i = 2; // skip first two bytes, they're the length of the mpi
   if (frame[i++] != 2) RAISE(DECRYPT_FAILED);
@@ -1609,6 +1634,10 @@ static uint8_t spgp_parse_session_packet(uint8_t *msg, uint32_t *idx,
   	LOG_PRINT("Session key checksum failed!\n");
   	RAISE(DECRYPT_FAILED);
   }
+  
+  free(frame);
+  frame = NULL;
+  
 	LOG_PRINT("Decrypted session key.\n");
   return 0;
 }
