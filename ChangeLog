@@ -1,0 +1,30 @@
+2011-11-14  Trevor Bentley  <trevor@trevorbentley.com>
+
+	* libsimplepgp: Support RSA decryption
+	* libsimplepgp: Added RSA example
+	* decrypt.c: Output contents of decrypted data
+	* spgp_read_all_public_mpis(): Support RSA algorithm
+	* spgp_generate_fingerprint(): Support RSA algorithm
+	* spgp_decrypt_secret_key(): Support RSA algorithm
+	* spgp_decrypt_secret_key(): BUG: Didn't increment index after reading an MPI, cause multiple-MPI secret key algorithms to fail.
+	* spgp_parse_session_packet(): Support RSA algorithm
+
+2011-11-13  Trevor Bentley  <trevor@trevorbentley.com>
+
+	* libsimplepgp: Initial release (1.0RC2)
+	* libsimplepgp: Public and private key parsing
+	* libsimplepgp: Store secret keys in keychain in RAM
+	* libsimplepgp: Decrypt DSA/Elgamal messages
+	* libsimplepgp: Support TripleDES, CAST5, AES-256 symmetric ciphers
+	* libsimplepgp: Support SHA-1 hashes
+	* libsimplepgp: Support ZLIB and ZIP compressed packets
+	* libsimplepgp: Support PC platform (autoconf)
+	* libsimplepgp: Support iOS platform (Xcode)
+	* libsimplepgp: DSA example
+	
+	
+
+
+	
+	
+

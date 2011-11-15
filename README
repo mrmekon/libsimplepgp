@@ -14,7 +14,7 @@ Initial goals are:
  * Parse secret and public keys
  * Store secret keys in an in-memory keychain
  * Decrypt message formats commonly found in e-mail communication:
-   - DSA/Elgamal asymmetric keys
+   - DSA/Elgamal and RSA asymmetric keys
    - TripleDES, CAST5, and AES-256 symmetric ciphers
    - SHA-1 hashes
    - ZIP and ZLIB compression
@@ -22,7 +22,6 @@ Initial goals are:
  * Support iOS (iPhone) platforms
    
 Known limitations:
- * No support for RSA keys
  * No support for creating messages (encryption)
  * No support for validating signatures
  * No support for old formats, or deprecated message types
