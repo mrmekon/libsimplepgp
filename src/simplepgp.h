@@ -28,11 +28,12 @@
 typedef struct spgp_packet_header_struct spgp_pkt_header_t;
 typedef struct spgp_packet_struct spgp_packet_t;
 typedef struct spgp_mpi_struct spgp_mpi_t;
-typedef struct spgp_public_packet_struct  spgp_public_pkt_t;
-typedef struct spgp_secret_packet_struct  spgp_secret_pkt_t;
-typedef struct spgp_userid_packet_struct  spgp_userid_pkt_t;
-typedef struct spgp_session_packet_struct spgp_session_pkt_t;
-typedef struct spgp_literal_packet_struct spgp_literal_pkt_t;
+typedef struct spgp_public_packet_struct    spgp_public_pkt_t;
+typedef struct spgp_secret_packet_struct    spgp_secret_pkt_t;
+typedef struct spgp_userid_packet_struct    spgp_userid_pkt_t;
+typedef struct spgp_session_packet_struct   spgp_session_pkt_t;
+typedef struct spgp_literal_packet_struct   spgp_literal_pkt_t;
+typedef struct spgp_signature_packet_struct spgp_signature_pkt_t;
 
 /**
  * Initialize simplepgp library

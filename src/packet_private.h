@@ -78,11 +78,12 @@ struct spgp_packet_header_struct {
 struct spgp_packet_struct {
 	spgp_pkt_header_t *header;
   union {
-  	spgp_public_pkt_t  *pub;
-  	spgp_secret_pkt_t  *secret;
-    spgp_userid_pkt_t  *userid;
-    spgp_session_pkt_t *session;
-    spgp_literal_pkt_t *literal;
+  	spgp_public_pkt_t    *pub;
+  	spgp_secret_pkt_t    *secret;
+    spgp_userid_pkt_t    *userid;
+    spgp_session_pkt_t   *session;
+    spgp_literal_pkt_t   *literal;
+    spgp_signature_pkt_t *signature;
   } c;
 	spgp_packet_t *next;
   spgp_packet_t *prev;
@@ -101,6 +102,18 @@ struct spgp_literal_packet_struct {
   uint32_t dataLen;
   uint32_t filenameLen;
 };
+
+struct spgp_signature_packet_struct {
+	uint8_t version;
+  uint8_t type;
+  uint8_t asymAlgo;
+  uint8_t hashAlgo;
+  uint16_t hashedSubLength;
+  uint16_t unhashedSubLength;
+  uint16_t hashTest;
+  spgp_mpi_t *mpiHead;
+};
+
 
 struct spgp_userid_packet_struct {
 	uint8_t *data;

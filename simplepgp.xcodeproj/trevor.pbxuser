@@ -10,8 +10,8 @@
 		);
 		breakpoints = (
 			69868C9D14618450004C5D9B /* packet.c:22 */,
-			69269F4E14620FC200F69705 /* packet.c:232 */,
-			69410DB61471B24400CE89DE /* packet.c:1121 */,
+			69269F4E14620FC200F69705 /* packet.c:237 */,
+			69410DB61471B24400CE89DE /* packet.c:1129 */,
 		);
 		codeSenseManager = 69868AD51460E35F004C5D9B /* Code sense */;
 		perUserDictionary = {
@@ -134,6 +134,38 @@
 			698B3A911472170F00898269 /* PBXTextBookmark */ = 698B3A911472170F00898269 /* PBXTextBookmark */;
 			698B3A991472178100898269 /* PBXTextBookmark */ = 698B3A991472178100898269 /* PBXTextBookmark */;
 			698B3A9D147217B900898269 /* PBXTextBookmark */ = 698B3A9D147217B900898269 /* PBXTextBookmark */;
+			698B3AA11473466900898269 /* PBXTextBookmark */ = 698B3AA11473466900898269 /* PBXTextBookmark */;
+			698B3AA21473466900898269 /* PBXTextBookmark */ = 698B3AA21473466900898269 /* PBXTextBookmark */;
+			698B3AA31473466900898269 /* PBXTextBookmark */ = 698B3AA31473466900898269 /* PBXTextBookmark */;
+			698B3AB51473478B00898269 /* PBXTextBookmark */ = 698B3AB51473478B00898269 /* PBXTextBookmark */;
+			698B3AB61473478B00898269 /* PBXTextBookmark */ = 698B3AB61473478B00898269 /* PBXTextBookmark */;
+			698B3AB71473478B00898269 /* PBXTextBookmark */ = 698B3AB71473478B00898269 /* PBXTextBookmark */;
+			698B3AB81473478B00898269 /* PBXTextBookmark */ = 698B3AB81473478B00898269 /* PBXTextBookmark */;
+			698B3ABC147347B200898269 /* PBXTextBookmark */ = 698B3ABC147347B200898269 /* PBXTextBookmark */;
+			698B3ABD147347B200898269 /* PBXTextBookmark */ = 698B3ABD147347B200898269 /* PBXTextBookmark */;
+			698B3ABE147347B200898269 /* PBXTextBookmark */ = 698B3ABE147347B200898269 /* PBXTextBookmark */;
+			698B3ABF147347B200898269 /* PBXTextBookmark */ = 698B3ABF147347B200898269 /* PBXTextBookmark */;
+			698B3AC1147347C000898269 /* PBXTextBookmark */ = 698B3AC1147347C000898269 /* PBXTextBookmark */;
+			698B3AC71473480800898269 /* PBXTextBookmark */ = 698B3AC71473480800898269 /* PBXTextBookmark */;
+			698B3AC81473480800898269 /* PBXTextBookmark */ = 698B3AC81473480800898269 /* PBXTextBookmark */;
+			698B3AC91473480800898269 /* PBXTextBookmark */ = 698B3AC91473480800898269 /* PBXTextBookmark */;
+			698B3ACF1473487600898269 /* PBXTextBookmark */ = 698B3ACF1473487600898269 /* PBXTextBookmark */;
+			698B3AD01473487600898269 /* PBXTextBookmark */ = 698B3AD01473487600898269 /* PBXTextBookmark */;
+			698B3AD11473487600898269 /* PBXTextBookmark */ = 698B3AD11473487600898269 /* PBXTextBookmark */;
+			698B3AD21473487600898269 /* PBXTextBookmark */ = 698B3AD21473487600898269 /* PBXTextBookmark */;
+			698B3AD41473488E00898269 /* PBXTextBookmark */ = 698B3AD41473488E00898269 /* PBXTextBookmark */;
+			698B3AD8147348B300898269 /* PBXTextBookmark */ = 698B3AD8147348B300898269 /* PBXTextBookmark */;
+			698B3AD9147348B300898269 /* PBXTextBookmark */ = 698B3AD9147348B300898269 /* PBXTextBookmark */;
+			698B3ADA147348B300898269 /* PBXTextBookmark */ = 698B3ADA147348B300898269 /* PBXTextBookmark */;
+			698B3ADB147348B300898269 /* PBXTextBookmark */ = 698B3ADB147348B300898269 /* PBXTextBookmark */;
+			698B3ADC147348D900898269 /* PBXTextBookmark */ = 698B3ADC147348D900898269 /* PBXTextBookmark */;
+			698B3ADD147348D900898269 /* PBXTextBookmark */ = 698B3ADD147348D900898269 /* PBXTextBookmark */;
+			698B3ADE147348D900898269 /* PBXTextBookmark */ = 698B3ADE147348D900898269 /* PBXTextBookmark */;
+			698B3AE01473491600898269 /* PBXTextBookmark */ = 698B3AE01473491600898269 /* PBXTextBookmark */;
+			698B3AE11473491600898269 /* PBXTextBookmark */ = 698B3AE11473491600898269 /* PBXTextBookmark */;
+			698B3AE21473491600898269 /* PBXTextBookmark */ = 698B3AE21473491600898269 /* PBXTextBookmark */;
+			698B3AE61473494100898269 /* PBXTextBookmark */ = 698B3AE61473494100898269 /* PBXTextBookmark */;
+			698B3AE81473495600898269 /* PBXTextBookmark */ = 698B3AE81473495600898269 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 69868AD41460E35F004C5D9B /* Source Control */;
 		userBuildSettings = {
@@ -155,13 +187,13 @@
 	};
 	69269F2314620D0F00F69705 /* packet.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {905, 22828}}";
-			sepNavSelRange = "{10503, 0}";
-			sepNavVisRange = "{9667, 1586}";
+			sepNavIntBoundsRect = "{{0, 0}, {905, 23530}}";
+			sepNavSelRange = "{48149, 0}";
+			sepNavVisRange = "{47373, 1253}";
 			sepNavWindowFrame = "{{139, 11}, {1136, 746}}";
 		};
 	};
-	69269F4E14620FC200F69705 /* packet.c:232 */ = {
+	69269F4E14620FC200F69705 /* packet.c:237 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -173,7 +205,7 @@
 		functionName = "spgp_decode_message()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 232;
+		lineNumber = 237;
 		location = duckdog;
 		modificationTime = 342999044.95911;
 		originalNumberOfMultipleMatches = 1;
@@ -240,9 +272,9 @@
 	};
 	6926AD00146DC9BD00F69705 /* packet_private.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {905, 2847}}";
-			sepNavSelRange = "{3360, 0}";
-			sepNavVisRange = "{1960, 863}";
+			sepNavIntBoundsRect = "{{0, 0}, {905, 3237}}";
+			sepNavSelRange = "{2587, 0}";
+			sepNavVisRange = "{2160, 822}";
 		};
 	};
 	6926AD02146DC9BD00F69705 /* mpi.c */ = {
@@ -281,9 +313,9 @@
 	};
 	6926AD2B146DDA1900F69705 /* simplepgp.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {905, 1755}}";
-			sepNavSelRange = "{3688, 16}";
-			sepNavVisRange = "{732, 1695}";
+			sepNavIntBoundsRect = "{{0, 0}, {905, 1781}}";
+			sepNavSelRange = "{949, 0}";
+			sepNavVisRange = "{732, 1770}";
 			sepNavWindowFrame = "{{107, 43}, {1136, 746}}";
 		};
 	};
@@ -322,7 +354,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 245";
 		rLen = 0;
-		rLoc = 7998;
+		rLoc = 8268;
 		rType = 0;
 		vrLen = 1635;
 		vrLoc = 6468;
@@ -332,7 +364,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 245";
 		rLen = 0;
-		rLoc = 7998;
+		rLoc = 8268;
 		rType = 0;
 		vrLen = 1691;
 		vrLoc = 6413;
@@ -352,7 +384,7 @@
 		fRef = 6926AD2B146DDA1900F69705 /* simplepgp.h */;
 		name = "simplepgp.h: 94";
 		rLen = 0;
-		rLoc = 3259;
+		rLoc = 3335;
 		rType = 0;
 		vrLen = 1593;
 		vrLoc = 2500;
@@ -382,7 +414,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 923";
 		rLen = 0;
-		rLoc = 29307;
+		rLoc = 29686;
 		rType = 0;
 		vrLen = 1653;
 		vrLoc = 28509;
@@ -392,12 +424,12 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 695";
 		rLen = 0;
-		rLoc = 21776;
+		rLoc = 22155;
 		rType = 0;
 		vrLen = 1339;
 		vrLoc = 20767;
 	};
-	69410DB61471B24400CE89DE /* packet.c:1121 */ = {
+	69410DB61471B24400CE89DE /* packet.c:1129 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -409,7 +441,7 @@
 		functionName = "spgp_decrypt_secret_key()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1121;
+		lineNumber = 1129;
 		modificationTime = 342999044.95923;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
@@ -419,7 +451,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1142";
 		rLen = 0;
-		rLoc = 36212;
+		rLoc = 36591;
 		rType = 0;
 		vrLen = 1534;
 		vrLoc = 33905;
@@ -429,7 +461,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1142";
 		rLen = 0;
-		rLoc = 36212;
+		rLoc = 36591;
 		rType = 0;
 		vrLen = 1534;
 		vrLoc = 33905;
@@ -439,7 +471,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1142";
 		rLen = 0;
-		rLoc = 36212;
+		rLoc = 36591;
 		rType = 0;
 		vrLen = 1534;
 		vrLoc = 33905;
@@ -449,7 +481,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1142";
 		rLen = 0;
-		rLoc = 36212;
+		rLoc = 36591;
 		rType = 0;
 		vrLen = 1534;
 		vrLoc = 33905;
@@ -507,7 +539,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1142";
 		rLen = 0;
-		rLoc = 36212;
+		rLoc = 36591;
 		rType = 0;
 		vrLen = 1566;
 		vrLoc = 33904;
@@ -517,7 +549,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 962";
 		rLen = 112;
-		rLoc = 30461;
+		rLoc = 30840;
 		rType = 0;
 		vrLen = 1677;
 		vrLoc = 31947;
@@ -527,7 +559,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 962";
 		rLen = 112;
-		rLoc = 30461;
+		rLoc = 30840;
 		rType = 0;
 		vrLen = 1677;
 		vrLoc = 31947;
@@ -537,7 +569,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 962";
 		rLen = 112;
-		rLoc = 30461;
+		rLoc = 30840;
 		rType = 0;
 		vrLen = 1677;
 		vrLoc = 31947;
@@ -597,7 +629,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 962";
 		rLen = 112;
-		rLoc = 30461;
+		rLoc = 30840;
 		rType = 0;
 		vrLen = 1666;
 		vrLoc = 31947;
@@ -607,7 +639,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 503";
 		rLen = 0;
-		rLoc = 15425;
+		rLoc = 15804;
 		rType = 0;
 		vrLen = 1965;
 		vrLoc = 14163;
@@ -617,7 +649,7 @@
 		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
 		name = "packet_private.h: 155";
 		rLen = 0;
-		rLoc = 3360;
+		rLoc = 3626;
 		rType = 0;
 		vrLen = 1134;
 		vrLoc = 2946;
@@ -627,7 +659,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 503";
 		rLen = 0;
-		rLoc = 15425;
+		rLoc = 15804;
 		rType = 0;
 		vrLen = 1937;
 		vrLoc = 14191;
@@ -637,7 +669,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1148";
 		rLen = 0;
-		rLoc = 36374;
+		rLoc = 36753;
 		rType = 0;
 		vrLen = 1324;
 		vrLoc = 35538;
@@ -647,7 +679,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1148";
 		rLen = 0;
-		rLoc = 36374;
+		rLoc = 36753;
 		rType = 0;
 		vrLen = 1272;
 		vrLoc = 35345;
@@ -657,7 +689,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1148";
 		rLen = 0;
-		rLoc = 36374;
+		rLoc = 36753;
 		rType = 0;
 		vrLen = 1272;
 		vrLoc = 35345;
@@ -667,7 +699,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1141";
 		rLen = 0;
-		rLoc = 36166;
+		rLoc = 36545;
 		rType = 0;
 		vrLen = 1518;
 		vrLoc = 35013;
@@ -677,7 +709,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1141";
 		rLen = 0;
-		rLoc = 36166;
+		rLoc = 36545;
 		rType = 0;
 		vrLen = 1518;
 		vrLoc = 35013;
@@ -687,7 +719,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1167";
 		rLen = 0;
-		rLoc = 36908;
+		rLoc = 37287;
 		rType = 0;
 		vrLen = 1291;
 		vrLoc = 35345;
@@ -697,7 +729,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1167";
 		rLen = 0;
-		rLoc = 36940;
+		rLoc = 37319;
 		rType = 0;
 		vrLen = 1312;
 		vrLoc = 35345;
@@ -707,7 +739,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1167";
 		rLen = 0;
-		rLoc = 36940;
+		rLoc = 37319;
 		rType = 0;
 		vrLen = 1312;
 		vrLoc = 35345;
@@ -717,7 +749,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1556";
 		rLen = 0;
-		rLoc = 49352;
+		rLoc = 51460;
 		rType = 0;
 		vrLen = 1635;
 		vrLoc = 47800;
@@ -727,7 +759,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1561";
 		rLen = 0;
-		rLoc = 49271;
+		rLoc = 51379;
 		rType = 0;
 		vrLen = 1732;
 		vrLoc = 48011;
@@ -737,7 +769,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1561";
 		rLen = 0;
-		rLoc = 49271;
+		rLoc = 51379;
 		rType = 0;
 		vrLen = 1732;
 		vrLoc = 48011;
@@ -767,7 +799,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1167";
 		rLen = 0;
-		rLoc = 36904;
+		rLoc = 37283;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 35266;
@@ -777,7 +809,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1576";
 		rLen = 0;
-		rLoc = 49813;
+		rLoc = 51921;
 		rType = 0;
 		vrLen = 1677;
 		vrLoc = 48641;
@@ -787,7 +819,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1585";
 		rLen = 0;
-		rLoc = 50231;
+		rLoc = 52339;
 		rType = 0;
 		vrLen = 1732;
 		vrLoc = 48369;
@@ -797,7 +829,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1583";
 		rLen = 0;
-		rLoc = 50036;
+		rLoc = 52144;
 		rType = 0;
 		vrLen = 1726;
 		vrLoc = 48835;
@@ -807,7 +839,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1584";
 		rLen = 0;
-		rLoc = 50127;
+		rLoc = 52235;
 		rType = 0;
 		vrLen = 1699;
 		vrLoc = 48490;
@@ -817,7 +849,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1590";
 		rLen = 0;
-		rLoc = 50272;
+		rLoc = 52380;
 		rType = 0;
 		vrLen = 1649;
 		vrLoc = 48971;
@@ -827,7 +859,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1590";
 		rLen = 0;
-		rLoc = 50295;
+		rLoc = 52403;
 		rType = 0;
 		vrLen = 1599;
 		vrLoc = 49376;
@@ -837,7 +869,7 @@
 		fRef = 6926AD2B146DDA1900F69705 /* simplepgp.h */;
 		name = "simplepgp.h: 107";
 		rLen = 16;
-		rLoc = 3688;
+		rLoc = 3764;
 		rType = 0;
 		vrLen = 1695;
 		vrLoc = 732;
@@ -857,7 +889,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 115";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 4120;
 		rType = 0;
 		vrLen = 2031;
 		vrLoc = 3058;
@@ -867,7 +899,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 388";
 		rLen = 0;
-		rLoc = 12102;
+		rLoc = 12372;
 		rType = 0;
 		vrLen = 1174;
 		vrLoc = 11197;
@@ -877,7 +909,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 1626";
 		rLen = 0;
-		rLoc = 51368;
+		rLoc = 53476;
 		rType = 0;
 		vrLen = 1330;
 		vrLoc = 49824;
@@ -887,7 +919,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 328";
 		rLen = 0;
-		rLoc = 10093;
+		rLoc = 10363;
 		rType = 0;
 		vrLen = 1434;
 		vrLoc = 9523;
@@ -907,7 +939,7 @@
 		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
 		name = "packet_private.h: 155";
 		rLen = 0;
-		rLoc = 3360;
+		rLoc = 3626;
 		rType = 0;
 		vrLen = 919;
 		vrLoc = 2190;
@@ -917,7 +949,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 385";
 		rLen = 0;
-		rLoc = 11963;
+		rLoc = 12233;
 		rType = 0;
 		vrLen = 1217;
 		vrLoc = 11111;
@@ -927,7 +959,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 390";
 		rLen = 0;
-		rLoc = 12161;
+		rLoc = 12431;
 		rType = 0;
 		vrLen = 1289;
 		vrLoc = 11111;
@@ -937,7 +969,7 @@
 		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
 		name = "packet_private.h: 155";
 		rLen = 0;
-		rLoc = 3360;
+		rLoc = 3626;
 		rType = 0;
 		vrLen = 863;
 		vrLoc = 1960;
@@ -947,7 +979,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 386";
 		rLen = 0;
-		rLoc = 11958;
+		rLoc = 12228;
 		rType = 0;
 		vrLen = 1343;
 		vrLoc = 10986;
@@ -957,7 +989,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 390";
 		rLen = 0;
-		rLoc = 12153;
+		rLoc = 12423;
 		rType = 0;
 		vrLen = 1324;
 		vrLoc = 10986;
@@ -967,7 +999,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 406";
 		rLen = 0;
-		rLoc = 12634;
+		rLoc = 12904;
 		rType = 0;
 		vrLen = 1138;
 		vrLoc = 11385;
@@ -977,7 +1009,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 394";
 		rLen = 0;
-		rLoc = 12262;
+		rLoc = 12532;
 		rType = 0;
 		vrLen = 1236;
 		vrLoc = 11271;
@@ -987,7 +1019,7 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 371";
 		rLen = 0;
-		rLoc = 11456;
+		rLoc = 11726;
 		rType = 0;
 		vrLen = 1371;
 		vrLoc = 10222;
@@ -997,10 +1029,330 @@
 		fRef = 69269F2314620D0F00F69705 /* packet.c */;
 		name = "packet.c: 341";
 		rLen = 0;
-		rLoc = 10503;
+		rLoc = 10773;
 		rType = 0;
 		vrLen = 1586;
 		vrLoc = 9667;
+	};
+	698B3AA11473466900898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
+		name = "packet_private.h: 155";
+		rLen = 0;
+		rLoc = 3626;
+		rType = 0;
+		vrLen = 1064;
+		vrLoc = 3179;
+	};
+	698B3AA21473466900898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1486";
+		rLen = 0;
+		rLoc = 48257;
+		rType = 0;
+		vrLen = 1447;
+		vrLoc = 45544;
+	};
+	698B3AA31473466900898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1491";
+		rLen = 0;
+		rLoc = 47065;
+		rType = 0;
+		vrLen = 1486;
+		vrLoc = 45544;
+	};
+	698B3AB51473478B00898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD2B146DDA1900F69705 /* simplepgp.h */;
+		name = "simplepgp.h: 31";
+		rLen = 0;
+		rLoc = 949;
+		rType = 0;
+		vrLen = 1770;
+		vrLoc = 732;
+	};
+	698B3AB61473478B00898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
+		name = "packet_private.h: 86";
+		rLen = 0;
+		rLoc = 2103;
+		rType = 0;
+		vrLen = 841;
+		vrLoc = 1835;
+	};
+	698B3AB71473478B00898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1485";
+		rLen = 0;
+		rLoc = 46780;
+		rType = 0;
+		vrLen = 1545;
+		vrLoc = 45714;
+	};
+	698B3AB81473478B00898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1501";
+		rLen = 0;
+		rLoc = 47564;
+		rType = 0;
+		vrLen = 1320;
+		vrLoc = 46079;
+	};
+	698B3ABC147347B200898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
+		name = "packet_private.h: 110";
+		rLen = 0;
+		rLoc = 2588;
+		rType = 0;
+		vrLen = 872;
+		vrLoc = 1835;
+	};
+	698B3ABD147347B200898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD02146DC9BD00F69705 /* mpi.c */;
+		name = "mpi.c: 115";
+		rLen = 0;
+		rLoc = 3264;
+		rType = 0;
+		vrLen = 1193;
+		vrLoc = 2291;
+	};
+	698B3ABE147347B200898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1501";
+		rLen = 0;
+		rLoc = 47564;
+		rType = 0;
+		vrLen = 1320;
+		vrLoc = 46079;
+	};
+	698B3ABF147347B200898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1509";
+		rLen = 0;
+		rLoc = 47373;
+		rType = 0;
+		vrLen = 1302;
+		vrLoc = 46079;
+	};
+	698B3AC1147347C000898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1507";
+		rLen = 0;
+		rLoc = 47323;
+		rType = 0;
+		vrLen = 1309;
+		vrLoc = 46079;
+	};
+	698B3AC71473480800898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
+		name = "packet_private.h: 109";
+		rLen = 0;
+		rLoc = 2461;
+		rType = 0;
+		vrLen = 788;
+		vrLoc = 2112;
+	};
+	698B3AC81473480800898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1511";
+		rLen = 0;
+		rLoc = 47476;
+		rType = 0;
+		vrLen = 1399;
+		vrLoc = 46079;
+	};
+	698B3AC91473480800898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1511";
+		rLen = 0;
+		rLoc = 47457;
+		rType = 0;
+		vrLen = 1416;
+		vrLoc = 46211;
+	};
+	698B3ACF1473487600898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2114620D0F00F69705 /* packet_test.c */;
+		name = "packet_test.c: 23";
+		rLen = 0;
+		rLoc = 716;
+		rType = 0;
+		vrLen = 1509;
+		vrLoc = 0;
+	};
+	698B3AD01473487600898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
+		name = "packet_private.h: 111";
+		rLen = 0;
+		rLoc = 2507;
+		rType = 0;
+		vrLen = 819;
+		vrLoc = 2160;
+	};
+	698B3AD11473487600898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1511";
+		rLen = 0;
+		rLoc = 47457;
+		rType = 0;
+		vrLen = 1416;
+		vrLoc = 46211;
+	};
+	698B3AD21473487600898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1516";
+		rLen = 0;
+		rLoc = 48246;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 46211;
+	};
+	698B3AD41473488E00898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1521";
+		rLen = 0;
+		rLoc = 48257;
+		rType = 0;
+		vrLen = 1296;
+		vrLoc = 46428;
+	};
+	698B3AD8147348B300898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
+		name = "packet_private.h: 112";
+		rLen = 0;
+		rLoc = 2588;
+		rType = 0;
+		vrLen = 822;
+		vrLoc = 2160;
+	};
+	698B3AD9147348B300898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD02146DC9BD00F69705 /* mpi.c */;
+		name = "mpi.c: 115";
+		rLen = 0;
+		rLoc = 3264;
+		rType = 0;
+		vrLen = 1193;
+		vrLoc = 2291;
+	};
+	698B3ADA147348B300898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1521";
+		rLen = 0;
+		rLoc = 48257;
+		rType = 0;
+		vrLen = 1296;
+		vrLoc = 46428;
+	};
+	698B3ADB147348B300898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1528";
+		rLen = 0;
+		rLoc = 48246;
+		rType = 0;
+		vrLen = 1313;
+		vrLoc = 46761;
+	};
+	698B3ADC147348D900898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1528";
+		rLen = 0;
+		rLoc = 48246;
+		rType = 0;
+		vrLen = 1313;
+		vrLoc = 46761;
+	};
+	698B3ADD147348D900898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
+		name = "packet_private.h: 112";
+		rLen = 0;
+		rLoc = 2588;
+		rType = 0;
+		vrLen = 822;
+		vrLoc = 2160;
+	};
+	698B3ADE147348D900898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
+		name = "packet_private.h: 114";
+		rLen = 0;
+		rLoc = 2588;
+		rType = 0;
+		vrLen = 819;
+		vrLoc = 2160;
+	};
+	698B3AE01473491600898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6926AD00146DC9BD00F69705 /* packet_private.h */;
+		name = "packet_private.h: 114";
+		rLen = 0;
+		rLoc = 2587;
+		rType = 0;
+		vrLen = 822;
+		vrLoc = 2160;
+	};
+	698B3AE11473491600898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1528";
+		rLen = 0;
+		rLoc = 48246;
+		rType = 0;
+		vrLen = 1313;
+		vrLoc = 46761;
+	};
+	698B3AE21473491600898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1534";
+		rLen = 0;
+		rLoc = 48110;
+		rType = 0;
+		vrLen = 1227;
+		vrLoc = 47434;
+	};
+	698B3AE61473494100898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1537";
+		rLen = 0;
+		rLoc = 48246;
+		rType = 0;
+		vrLen = 1218;
+		vrLoc = 47373;
+	};
+	698B3AE81473495600898269 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69269F2314620D0F00F69705 /* packet.c */;
+		name = "packet.c: 1535";
+		rLen = 0;
+		rLoc = 48149;
+		rType = 0;
+		vrLen = 1253;
+		vrLoc = 47373;
 	};
 	AA747D9E0F9514B9006C5449 /* simplepgp_Prefix.pch */ = {
 		uiCtxt = {

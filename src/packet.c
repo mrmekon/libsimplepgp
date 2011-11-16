@@ -111,6 +111,11 @@ static uint8_t spgp_parse_literal_packet(uint8_t *msg,
                                          uint32_t *idx, 
           													 		 uint32_t length, 
                                          spgp_packet_t *pkt);
+                                         
+static uint8_t spgp_parse_signature_packet(uint8_t *msg, 
+                                           uint32_t *idx, 
+          													 		   uint32_t length, 
+                                           spgp_packet_t *pkt);
                                                      
 static spgp_packet_t *spgp_find_session_packet(spgp_packet_t *chain);
          
@@ -511,6 +516,9 @@ static spgp_packet_t* spgp_packet_decode_loop(uint8_t *message,
         break;
       case PKT_TYPE_LITERAL_DATA:
       	spgp_parse_literal_packet(message, idx, length, pkt);
+        break;
+      case PKT_TYPE_SIGNATURE:
+      	spgp_parse_signature_packet(message, idx, length, pkt);
         break;
       default:
         LOG_PRINT("WARNING: Unsupported packet type %u\n", pkt->header->type);
@@ -1467,6 +1475,67 @@ static uint8_t spgp_parse_literal_packet(uint8_t *msg,
   
   LOG_PRINT("Stored %u bytes\n", literal->dataLen);
   
+	return 0;
+}
+
+static uint8_t spgp_parse_signature_packet(uint8_t *msg, 
+                                           uint32_t *idx, 
+          													 		   uint32_t length, 
+                                           spgp_packet_t *pkt) {
+	spgp_signature_pkt_t *sig;
+
+	LOG_PRINT("Parsing signature packet\n");
+  
+  if (msg == NULL || idx == NULL || pkt == NULL || 0 == length)
+  	RAISE(INVALID_ARGS);
+    
+  pkt->c.signature = malloc(sizeof(*(pkt->c.signature)));
+  if (NULL == pkt->c.signature) RAISE(OUT_OF_MEMORY);
+  sig = pkt->c.signature;
+
+	sig->version = msg[*idx];
+  SAFE_IDX_INCREMENT(*idx, length);
+
+	if (sig->version != 4) RAISE(FORMAT_UNSUPPORTED);
+
+	sig->type = msg[*idx];
+  SAFE_IDX_INCREMENT(*idx, length);
+
+	sig->asymAlgo = msg[*idx];
+  SAFE_IDX_INCREMENT(*idx, length);
+
+	sig->hashAlgo = msg[*idx];
+  SAFE_IDX_INCREMENT(*idx, length);
+	
+  LOG_PRINT("Signature type 0x%X, algo 0x%X, hash 0x%X\n",
+  	sig->type, sig->asymAlgo, sig->hashAlgo);
+    
+  sig->hashedSubLength = ((msg[*idx] << 8) & 0xFF) | msg[*idx + 1];
+  *idx += 1;
+  SAFE_IDX_INCREMENT(*idx, length);
+  
+  // skip hashed subpackets for now
+  *idx += sig->hashedSubLength - 1;
+  SAFE_IDX_INCREMENT(*idx, length);
+
+  sig->unhashedSubLength = ((msg[*idx] << 8) & 0xFF) | msg[*idx + 1];
+  *idx += 1;
+  SAFE_IDX_INCREMENT(*idx, length);
+  
+  // skip unhashed subpackets for now
+  *idx += sig->unhashedSubLength - 1;
+  SAFE_IDX_INCREMENT(*idx, length);
+
+  sig->hashTest = ((msg[*idx] << 8) & 0xFF) | msg[*idx + 1];
+  *idx += 1;
+  SAFE_IDX_INCREMENT(*idx, length);
+
+	sig->mpiHead = spgp_read_mpi(msg, idx, length);
+  if (sig->asymAlgo == ASYM_ALGO_DSA) {
+	  SAFE_IDX_INCREMENT(*idx, length);
+  	sig->mpiHead->next = spgp_read_mpi(msg, idx, length);
+  }
+
 	return 0;
 }
                                          
