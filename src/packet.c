@@ -1483,6 +1483,11 @@ static uint8_t spgp_parse_signature_packet(uint8_t *msg,
           													 		   uint32_t length, 
                                            spgp_packet_t *pkt) {
 	spgp_signature_pkt_t *sig;
+  spgp_literal_pkt_t *literal;
+  gcry_md_hd_t md;
+  uint32_t startidx, stopidx;
+  unsigned char *hash;
+  uint32_t totalLen;
 
 	LOG_PRINT("Parsing signature packet\n");
   
@@ -1491,7 +1496,10 @@ static uint8_t spgp_parse_signature_packet(uint8_t *msg,
     
   pkt->c.signature = malloc(sizeof(*(pkt->c.signature)));
   if (NULL == pkt->c.signature) RAISE(OUT_OF_MEMORY);
+  memset(pkt->c.signature, 0, sizeof(*(pkt->c.signature)));
   sig = pkt->c.signature;
+
+	startidx = *idx;
 
 	sig->version = msg[*idx];
   SAFE_IDX_INCREMENT(*idx, length);
@@ -1510,7 +1518,7 @@ static uint8_t spgp_parse_signature_packet(uint8_t *msg,
   LOG_PRINT("Signature type 0x%X, algo 0x%X, hash 0x%X\n",
   	sig->type, sig->asymAlgo, sig->hashAlgo);
     
-  sig->hashedSubLength = ((msg[*idx] << 8) & 0xFF) | msg[*idx + 1];
+  sig->hashedSubLength = ((msg[*idx] & 0xFF) << 8) | msg[*idx + 1];
   *idx += 1;
   SAFE_IDX_INCREMENT(*idx, length);
   
@@ -1518,7 +1526,9 @@ static uint8_t spgp_parse_signature_packet(uint8_t *msg,
   *idx += sig->hashedSubLength - 1;
   SAFE_IDX_INCREMENT(*idx, length);
 
-  sig->unhashedSubLength = ((msg[*idx] << 8) & 0xFF) | msg[*idx + 1];
+	stopidx = *idx;
+
+  sig->unhashedSubLength = ((msg[*idx] & 0xFF) << 8) | msg[*idx + 1];
   *idx += 1;
   SAFE_IDX_INCREMENT(*idx, length);
   
@@ -1526,7 +1536,7 @@ static uint8_t spgp_parse_signature_packet(uint8_t *msg,
   *idx += sig->unhashedSubLength - 1;
   SAFE_IDX_INCREMENT(*idx, length);
 
-  sig->hashTest = ((msg[*idx] << 8) & 0xFF) | msg[*idx + 1];
+  sig->hashTest = ((msg[*idx] & 0xFF) << 8) | (msg[*idx + 1] & 0xFF);
   *idx += 1;
   SAFE_IDX_INCREMENT(*idx, length);
 
@@ -1536,6 +1546,45 @@ static uint8_t spgp_parse_signature_packet(uint8_t *msg,
   	sig->mpiHead->next = spgp_read_mpi(msg, idx, length);
   }
 
+	// All data accounted for, idx incremented to the end
+  // We can exit cleanly any time after this point
+
+	if (NULL == pkt->prev || 
+  		pkt->prev->header->type != PKT_TYPE_LITERAL_DATA ||
+  		NULL == pkt->prev->c.literal ||
+  		NULL == pkt->prev->c.literal->data) 
+      return -1;
+      
+  literal = pkt->prev->c.literal;
+
+	if (gcry_md_open (&md, GCRY_MD_SHA1, 0) != 0) RAISE(GCRY_ERROR);
+  gcry_md_write (md, literal->data, literal->dataLen);
+  gcry_md_write (md, msg+startidx, stopidx-startidx);
+  
+  /* They hide this shit in here because they hate us.  What's really great
+   is that the length will always be (hashedSubLength+6), and hashedSubLength
+   is a 16-bit int, so in the worst case this final length would only be 3
+   bytes.  Top byte in this 32-bit int will always be zero.
+  
+   RFC 4880 - 5.2.4
+   V4 signatures also hash in a final trailer of six octets: the
+   version of the Signature packet, i.e., 0x04; 0xFF; and a four-octet,
+   big-endian number that is the length of the hashed data from the
+   Signature packet (note that this number does not include these final
+   six octets).*/
+   
+  totalLen = sig->hashedSubLength + 6;
+   
+  gcry_md_putc(md, sig->version);
+  gcry_md_putc(md, 0xFF);
+  gcry_md_putc(md, totalLen >> 24);
+  gcry_md_putc(md, totalLen >> 16);
+  gcry_md_putc(md, totalLen >>  8);
+  gcry_md_putc(md, totalLen >>  0);
+     
+  gcry_md_final(md);
+  hash = gcry_md_read(md, 0);
+  
 	return 0;
 }
                                          
