@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Libsimplepgp by mrmekon</title>
+    
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Libsimplepgp</h1>
+        <p>An open-source C library for loading PGP keys and decrypting PGP messages.</p>
+        <p class="view"><a href="https://github.com/mrmekon/libsimplepgp">View the Project on GitHub <small>mrmekon/libsimplepgp</small></a></p>
+        <ul>
+          <li><a href="https://github.com/mrmekon/libsimplepgp/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/mrmekon/libsimplepgp/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/mrmekon/libsimplepgp">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>libsimplepgp</h1>
+
+<h2>C library for parsing OpenPGP messages.</h2>
+
+<pre><code>Copyright 2011 Trevor Bentley
+Provided under Apache License, Version 2.0
+See LICENSE file for details
+</code></pre>
+
+<h2>Summary</h2>
+
+<p><strong>libsimplepgp</strong> is a library for loading PGP keys and decrypting PGP messages.</p>
+
+<p>Instead of aiming to support the entire OpenPGP standard, as GnuPG does, this 
+project aims to support only the most common PGP message formats used for 
+encrypting e-mail messages.  </p>
+
+<p>With libsimplepgp, you can get PGP message decryption support in your iPhone or iPad application without jailbreaking or violating the App Store Terms of Service.</p>
+
+<h2>Initial goals:</h2>
+
+<ul>
+<li>Parse secret and public keys</li>
+<li>Store secret keys in an in-memory keychain</li>
+<li>Decrypt message formats commonly found in e-mail communication:
+
+<ul>
+<li>DSA/Elgamal and RSA asymmetric keys</li>
+<li>TripleDES, CAST5, and AES-256 symmetric ciphers</li>
+<li>SHA-1 hashes</li>
+<li>ZIP and ZLIB compression</li>
+</ul>
+</li>
+<li>Support PC (UNIX-ish) platforms</li>
+<li>Support iOS (iPhone) platforms</li>
+</ul><h2>Expected uses:</h2>
+
+<ul>
+<li>PGP decryption in mobile apps, without GnuPG unavailable</li>
+<li>PGP decryption in desktop apps, where GnuPG dependency is too restrictive</li>
+</ul><h2>Known limitations:</h2>
+
+<ul>
+<li>No support for creating messages (encryption)</li>
+<li>No support for validating signatures</li>
+<li>No support for old formats, or deprecated message types</li>
+<li>Not thread-safe</li>
+</ul><h2>Try it out</h2>
+
+<p>Build for desktop with included autoconf script:</p>
+
+<p><code># ./configure &amp;&amp; make &amp;&amp; make install</code></p>
+
+<p>Build and run example:</p>
+
+<p><code># make installcheck</code></p>
+
+<p>Build static iOS library with Xcode or command-line:</p>
+
+<p><code># make ios</code></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/mrmekon">mrmekon</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
+</html>
